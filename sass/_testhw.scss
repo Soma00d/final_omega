@@ -1,0 +1,143 @@
+#content_testhw{
+    .test_hw_container{
+        .table_test{
+            .title{
+                font-weight: bold;
+                font-style: italic;
+                font-size: 19px;
+                /* margin-bottom: 5px; */
+                margin-top: 20px;
+                border-bottom: 3px solid #3b73b9
+            }
+            .header_table_test{
+                background: #3b73b9;
+                .head_test{                    
+                    color: white;
+                    text-align: center;
+                    padding: 7px;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    display: inline-block;
+                    vertical-align: top;
+                    font-size: 17px;
+                    margin-left: -6px;
+                    &.ref{
+                        width: 30px;
+                    }
+                    &.description{
+                        width: 160px;
+                    }
+                    &.photo{
+                        width: 88px;
+                    }
+                    &.hw_signals{
+                        width: 250px;
+                        text-align:left;
+                    }
+                    &.press_test{
+                        width: 41px;
+                    }
+                    &.release_test{
+                        width: 41px;
+                    }
+                    &.user_action{
+                        width: 82px;
+                    }
+                    &.validation{
+                        width: 58px;
+                    }
+                    &.check{
+                        display:none;
+                    }
+                }
+            }
+            .line_table_test{
+                &:nth-child(even) {
+                    background-color:#cde1f0;
+                }
+                .td_test{
+                    text-align: center;
+                    padding: 7px;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    display: inline-block;
+                    vertical-align: middle;
+                    font-size: 15px;
+                    margin-left: -3px;
+                    margin-right: -3px;
+                    &.ref{
+                        width: 30px;
+                        font-weight:bold;
+                    }
+                    &.description{
+                        width: 160px;
+                    }
+                    &.photo{
+                        width: 88px;
+                        img{
+                            width: 65px;
+                        }
+                    }
+                    &.hw_signals{
+                        width: 250px;
+                        text-align:left;
+                        .valide{
+                            background: #87fb8b99;
+                            padding: 2px;
+                        }
+                        .error{
+                            background: #fb928785;
+                            padding: 2px;
+                        }
+                        .values{
+                            font-weight:bold;
+                            font-size: 12px;
+                            font-style:italic
+                        }
+                    }
+                    &.press_test{
+                        width: 41px;
+                    }
+                    &.release_test{
+                        width: 41px;
+                    }
+                    &.user_action{
+                        width: 77px;
+                        font-weight: bold;
+                        font-style: italic;
+                        font-size: 15px;
+                        color: orangered;
+                    }
+                    &.validation{
+                        width: 58px;
+                        .valide{
+                            color: green;
+                            font-weight: bold;
+                        }
+                        .error{
+                            color: red;
+                            font-weight: bold;
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+    .continue_to_final {
+        margin-top: 21px;
+        background: #3b73b9;
+        color: white;
+        font-size: 20px;
+        width: 210px;
+        height: 30px;
+        border-radius: 5px;
+        box-shadow: 1px 1px 1px black;
+        padding-top: 8px;
+        cursor: pointer;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+}
