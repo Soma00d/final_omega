@@ -5,7 +5,7 @@
 ///////////////////////////////////////////////////////////////////
 $VALEUR_hote = 'localhost';
 $VALEUR_port = '';
-$VALEUR_nom_bd = 'testbench_sbsh';
+$VALEUR_nom_bd = 'testbench';
 $VALEUR_user = 'root';
 $VALEUR_mot_de_passe = '';
 
@@ -105,9 +105,25 @@ $getFinalTest = function ($id, $connexion) {
 //enregistre les log d'un pretest
 $saveLogPretest = function ($connexion) {
     $jsonlog = $_POST['jsonlog'];
-    $jsoncaliblog = $_POST['jsonlog'];
-    $jsonTesthwlog = $_POST['jsonTesthwLog'];
-    $jsonPowerTestLog = $_POST['jsonPowerTestLog'];
+    
+    if(isset($_POST['jsonCalibLog'])){
+        $jsoncaliblog = $_POST['jsonCalibLog'];
+    }else{
+        $jsoncaliblog = "[]";
+    }
+    
+    if(isset($_POST['jsonTesthwLog'])){
+        $jsonTesthwlog = $_POST['jsonTesthwLog'];
+    }else{
+        $jsonTesthwlog ="[]";
+    }
+    
+     if(isset($_POST['jsonPowerTestLog'])){
+        $jsonPowerTestLog = $_POST['jsonPowerTestLog'];
+    }else{
+        $jsonPowerTestLog ="[]";
+    }
+    
     $user_sso = $_POST['sso'];
     $pn = $_POST['pn'];
     $serial = $_POST['sn'];
@@ -116,7 +132,7 @@ $saveLogPretest = function ($connexion) {
     $fw_fct_version = $_POST['FWfctV'];
     $sw_version = $_POST['SWv'];
     $fw_calib_version = $_POST['FWcalibV'];
-    $node_id = $_POST['nodeID'];
+    if(isset($_POST['nodeId'])){$node_id = $_POST['nodeId'];}else{$node_id = "-";}
 
     $alim_tsui = 0;
     $alim_testbench = 0;
@@ -169,9 +185,26 @@ $saveLogPretest = function ($connexion) {
 //enregistre les log d'un testfinal
 $saveLogFinal = function ($connexion) {
     $jsonlog = $_POST['jsonlog'];
-    $jsoncaliblog = $_POST['jsonCalibLog'];
-    $jsonTesthwlog = $_POST['jsonTesthwLog'];
-    $jsonPowerTestLog = $_POST['jsonPowerTestLog'];
+    if(isset($_POST['jsonCalibLog'])){
+        $jsoncaliblog = $_POST['jsonCalibLog'];
+    }else{
+        $jsoncaliblog ="[]";
+    }
+    
+    if(isset($_POST['jsonTesthwLog'])){
+        $jsonTesthwlog = $_POST['jsonTesthwLog'];
+    }else{
+        $jsonTesthwlog ="[]";
+    }
+    
+     if(isset($_POST['jsonPowerTestLog'])){
+        $jsonPowerTestLog = $_POST['jsonPowerTestLog'];
+    }else{
+        $jsonPowerTestLog ="[]";
+    }
+    
+    
+    
     $user_sso = $_POST['sso'];
     $pn = $_POST['pn'];
     $serial = $_POST['sn'];
@@ -186,7 +219,7 @@ $saveLogFinal = function ($connexion) {
     $fw_calib_version = $_POST['FWcalibV'];
     $sw_version = $_POST['SWv'];
     
-    if(isset($_POST['nodeID'])){$node_id = $_POST['nodeID'];}else{$node_id = "-";}
+    if(isset($_POST['nodeId'])){$node_id = $_POST['nodeId'];}else{$node_id = "-";}
     
     
     $alim_tsui = $_POST['alimTsui'];

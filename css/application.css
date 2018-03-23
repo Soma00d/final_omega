@@ -3985,10 +3985,14 @@ and open the template in the editor.
   display: none;
 }
 /* line 55, ../sass/_testhw.scss */
+#content_testhw .test_hw_container .table_test .line_table_test.disabled {
+  display: none;
+}
+/* line 58, ../sass/_testhw.scss */
 #content_testhw .test_hw_container .table_test .line_table_test:nth-child(even) {
   background-color: #cde1f0;
 }
-/* line 58, ../sass/_testhw.scss */
+/* line 61, ../sass/_testhw.scss */
 #content_testhw .test_hw_container .table_test .line_table_test .td_test {
   text-align: center;
   padding: 7px;
@@ -4000,53 +4004,53 @@ and open the template in the editor.
   margin-left: -3px;
   margin-right: -3px;
 }
-/* line 68, ../sass/_testhw.scss */
+/* line 71, ../sass/_testhw.scss */
 #content_testhw .test_hw_container .table_test .line_table_test .td_test.ref {
   width: 30px;
   font-weight: bold;
 }
-/* line 72, ../sass/_testhw.scss */
+/* line 75, ../sass/_testhw.scss */
 #content_testhw .test_hw_container .table_test .line_table_test .td_test.description {
   width: 160px;
 }
-/* line 75, ../sass/_testhw.scss */
+/* line 78, ../sass/_testhw.scss */
 #content_testhw .test_hw_container .table_test .line_table_test .td_test.photo {
   width: 88px;
 }
-/* line 77, ../sass/_testhw.scss */
+/* line 80, ../sass/_testhw.scss */
 #content_testhw .test_hw_container .table_test .line_table_test .td_test.photo img {
   width: 65px;
 }
-/* line 81, ../sass/_testhw.scss */
+/* line 84, ../sass/_testhw.scss */
 #content_testhw .test_hw_container .table_test .line_table_test .td_test.hw_signals {
   width: 250px;
   text-align: left;
 }
-/* line 84, ../sass/_testhw.scss */
+/* line 87, ../sass/_testhw.scss */
 #content_testhw .test_hw_container .table_test .line_table_test .td_test.hw_signals .valide {
   background: #87fb8b99;
   padding: 2px;
 }
-/* line 88, ../sass/_testhw.scss */
+/* line 91, ../sass/_testhw.scss */
 #content_testhw .test_hw_container .table_test .line_table_test .td_test.hw_signals .error {
   background: #fb928785;
   padding: 2px;
 }
-/* line 92, ../sass/_testhw.scss */
+/* line 95, ../sass/_testhw.scss */
 #content_testhw .test_hw_container .table_test .line_table_test .td_test.hw_signals .values {
   font-weight: bold;
   font-size: 12px;
   font-style: italic;
 }
-/* line 98, ../sass/_testhw.scss */
+/* line 101, ../sass/_testhw.scss */
 #content_testhw .test_hw_container .table_test .line_table_test .td_test.press_test {
   width: 41px;
 }
-/* line 101, ../sass/_testhw.scss */
+/* line 104, ../sass/_testhw.scss */
 #content_testhw .test_hw_container .table_test .line_table_test .td_test.release_test {
   width: 41px;
 }
-/* line 104, ../sass/_testhw.scss */
+/* line 107, ../sass/_testhw.scss */
 #content_testhw .test_hw_container .table_test .line_table_test .td_test.user_action {
   width: 77px;
   font-weight: bold;
@@ -4054,21 +4058,21 @@ and open the template in the editor.
   font-size: 15px;
   color: orangered;
 }
-/* line 111, ../sass/_testhw.scss */
+/* line 114, ../sass/_testhw.scss */
 #content_testhw .test_hw_container .table_test .line_table_test .td_test.validation {
   width: 58px;
 }
-/* line 113, ../sass/_testhw.scss */
+/* line 116, ../sass/_testhw.scss */
 #content_testhw .test_hw_container .table_test .line_table_test .td_test.validation .valide {
   color: green;
   font-weight: bold;
 }
-/* line 117, ../sass/_testhw.scss */
+/* line 120, ../sass/_testhw.scss */
 #content_testhw .test_hw_container .table_test .line_table_test .td_test.validation .error {
   color: red;
   font-weight: bold;
 }
-/* line 127, ../sass/_testhw.scss */
+/* line 130, ../sass/_testhw.scss */
 #content_testhw .continue_to_final {
   margin-top: 21px;
   background: #3b73b9;

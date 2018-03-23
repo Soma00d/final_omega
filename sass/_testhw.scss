@@ -52,6 +52,9 @@
                 }
             }
             .line_table_test{
+                &.disabled{
+                    display:none;
+                }
                 &:nth-child(even) {
                     background-color:#cde1f0;
                 }

@@ -10,8 +10,8 @@ $(document).ready(function (){
     var testhwLog = [];
     var powerTestLog = [];
     var calibLogJSON;
-    var testhwLogJSON;
-    var powertestLogJSON;
+    var testhwLogJSON = "";
+    var powertestLogJSON = "";
     var userInfo = {};
 
     //------//
@@ -250,6 +250,10 @@ $(document).ready(function (){
     var curr_SCI_FRTL_DR_REQ;
     var curr_OUT_CONTACT_STOP;
     
+    var curr_LAT_LOCK;
+    var curr_LONG_LOCK;
+    var curr_ROTATION_LOCK;
+    
     //Spybox
     var spyBox = $("#dialog-spybox .content_line");
     var spyBoxDialog = $("#dialog-spybox");
@@ -345,7 +349,7 @@ $(document).ready(function (){
                                     setGenericMessages(globalName.trim());
                                     setTimeout(function(){
                                         getInfoCard(globalName, cobID2);
-                                    },500);
+                                    },5000);
                                     
                                     checkSN(serialNumber);
                                 }
@@ -573,7 +577,7 @@ $(document).ready(function (){
                                     setGenericMessages(globalName.trim());
                                     setTimeout(function(){
                                         getInfoCard(globalName, cobID2);
-                                    },500);
+                                    },5000);
                                     checkSN(serialNumber);
                                     
                                     displayCalibrationTest(switchNb, hasServiceBt);
@@ -1139,7 +1143,7 @@ $(document).ready(function (){
                                     setGenericMessages(globalName.trim());
                                     setTimeout(function(){
                                         getInfoCard(globalName, cobID2);
-                                    },500)
+                                    },5000)
                                 }
                                 //Recupération du dictionnaire correspondant + remplissage des zones toolbox
                                 $.ajax({
@@ -1229,26 +1233,26 @@ $(document).ready(function (){
                                                                 + "<div class='title'>Final Values</div>"
                                                                 + "<div class='bloc_left_joy'>"
                                                                 + "<span class='text_config'>X : </span><span class='x_value_joy'>0</span><br>"
-                                                                + "<span class='text_config'>Min X : </span><span class='minx_value_joy'>0</span><br>"
-                                                                + "<span class='text_config'>Max X : </span><span class='maxx_value_joy'>0</span><br>"
+                                                                + "<span class='text_config'>Left : </span><span class='minx_value_joy'>0</span><br>"
+                                                                + "<span class='text_config'>Right : </span><span class='maxx_value_joy'>0</span><br>"
                                                                 + "</div>"
                                                                 + "<div class='bloc_right_joy'>"
                                                                 + "<span class='text_config'>Y : </span><span class='y_value_joy'>0</span><br>"
-                                                                + "<span class='text_config'>Min Y : </span><span class='miny_value_joy'>0</span><br>"
-                                                                + "<span class='text_config'>Max Y : </span><span class='maxy_value_joy'>0</span>"
+                                                                + "<span class='text_config'>Bot : </span><span class='miny_value_joy'>0</span><br>"
+                                                                + "<span class='text_config'>Top : </span><span class='maxy_value_joy'>0</span>"
                                                                 + "</div>"                                                            
                                                             + "</div>"
                                                             + "<div class='bloc_raw_data'>"
                                                                 + "<div class='title'>Axis Raw (RAM)</div>"
                                                                 + "<div class='bloc_left_joy'>"
                                                                 + "<span class='text_config'>Zero X : </span><span class='raw_zero_x get_val'  data-descri='zero_x'>-</span><br>"
-                                                                + "<span class='text_config'>Min X : </span><span class='raw_min_x get_val'  data-descri='left'>-</span><br>"
-                                                                + "<span class='text_config'>Max X : </span><span class='raw_max_x get_val'  data-descri='right'>-</span><br>"
+                                                                + "<span class='text_config'>Left : </span><span class='raw_min_x get_val'  data-descri='left'>-</span><br>"
+                                                                + "<span class='text_config'>Right : </span><span class='raw_max_x get_val'  data-descri='right'>-</span><br>"
                                                                 + "</div>"
                                                                 + "<div class='bloc_right_joy'>"
                                                                 + "<span class='text_config'>Zero Y : </span><span class='raw_zero_y get_val' data-descri='zero_y'>-</span><br>"
-                                                                + "<span class='text_config'>Min Y : </span><span class='raw_min_y get_val' data-descri='bottom'>-</span><br>"
-                                                                + "<span class='text_config'>Max Y : </span><span class='raw_max_y get_val' data-descri='top'>-</span>"
+                                                                + "<span class='text_config'>Bot : </span><span class='raw_min_y get_val' data-descri='bottom'>-</span><br>"
+                                                                + "<span class='text_config'>Top : </span><span class='raw_max_y get_val' data-descri='top'>-</span>"
                                                                 + "</div>"                                                            
                                                             + "</div>"
                                                             + "</div>"
@@ -1280,13 +1284,13 @@ $(document).ready(function (){
                                                                 + "<div class='title'>Final Values</div>"
                                                                 + "<div class='bloc_left_joy'>"
                                                                 + "<span class='text_config'>X : </span><span class='x_value_joy'>0</span><br>"
-                                                                + "<span class='text_config'>Min X : </span><span class='minx_value_joy'>0</span><br>"
-                                                                + "<span class='text_config'>Max X : </span><span class='maxx_value_joy'>0</span><br>"
+                                                                + "<span class='text_config'>Left : </span><span class='minx_value_joy'>0</span><br>"
+                                                                + "<span class='text_config'>Right : </span><span class='maxx_value_joy'>0</span><br>"
                                                                 + "</div>"
                                                                 + "<div class='bloc_right_joy'>"
                                                                 + "<span class='text_config'>Y : </span><span class='y_value_joy'>0</span><br>"
-                                                                + "<span class='text_config'>Min Y : </span><span class='miny_value_joy'>0</span><br>"
-                                                                + "<span class='text_config'>Max Y : </span><span class='maxy_value_joy'>0</span>"
+                                                                + "<span class='text_config'>Bot : </span><span class='miny_value_joy'>0</span><br>"
+                                                                + "<span class='text_config'>Top : </span><span class='maxy_value_joy'>0</span>"
                                                                 + "</div>"                                                            
                                                             + "</div>"
                                                             + "<div class='bloc_raw_data mushroom'>"
@@ -1336,7 +1340,9 @@ $(document).ready(function (){
                                                 var dlcCompletionSignal = "080000";
                                             } else {
                                                 var dlcCompletionSignal = "0" + (((onSignal.length) - 8) / 2) + "0006";
-
+                                                if(flashSignal){
+                                                    var dlcCompletionSignalFlash = "0" + (((flashSignal.length) - 8) / 2) + "0006";
+                                                } 
                                             }
                                             
                                             if ($(this).hasClass("activated")) {
@@ -1361,7 +1367,7 @@ $(document).ready(function (){
                                                 } else if ($(this).hasClass('dim')) {
                                                     sendSignal(postSignal + dlcCompletionSignal + dimSignal);
                                                 } else if ($(this).hasClass('flash')) {
-                                                    sendSignal(postSignal + dlcCompletionSignal + flashSignal);
+                                                    sendSignal(postSignal + dlcCompletionSignalFlash + flashSignal);
                                                 }
                                             }
                                         });
@@ -2277,10 +2283,14 @@ $(document).ready(function (){
                         var unreg5 = message.unreg5;
                         var unreg12 = message.unreg12;
                         
-                        var latLock = message.latLock;
-                        var longLock = message.longLock;
-                        var rotationLock = message.rotationLock;
+                        var latLock = message.latLock; // 
+                        var longLock = message.longLock; // 
+                        var rotationLock = message.rotationLock; // 
                         var roomLight = message.roomLight;
+                        
+                        curr_LAT_LOCK = latLock;
+                        curr_LONG_LOCK = longLock;
+                        curr_ROTATION_LOCK = rotationLock;
                         
                         if(latLock > 0){latLockCtn.find(".voyant img").attr('src', 'images/voyant_on.png')}else{latLockCtn.find(".voyant img").attr('src', 'images/voyant_off.png')};
                         if(longLock > 0){longLockCtn.find(".voyant img").attr('src', 'images/voyant_on.png')}else{longLockCtn.find(".voyant img").attr('src', 'images/voyant_off.png')};
@@ -2307,7 +2317,8 @@ $(document).ready(function (){
                         curr_SCI_LAT_DR_REQ = sciLAT;
                         curr_AUTO_POS_DR_REQ = autoposDR;
                         curr_SCI_FRTL_DR_REQ = sciFRTL;
-                        curr_OUT_CONTACT_STOP = outCtStop;
+                        curr_GLOBAL_GANTRY_ENABLE = globGantry;
+                        curr_OUT_CONTACT_STOP = outCtStop;                       
                         
                         
                         outCtStopCtn.find(".value").html(outCtStop.toFixed(2)+ " V");
@@ -2435,8 +2446,7 @@ $(document).ready(function (){
                             waitPingResponse = "";
                         }
                     }
-                }
-                
+                }                
                 break;
             case "CALIBRATION_VERIFY":
                 var message = JSON.parse(event.data);
@@ -2608,18 +2618,54 @@ $(document).ready(function (){
                         supplyContainer.html(tsuiVoltage.toFixed(2) + " V");
                         
                         
-                        outCtStopCtn.find(".value").html(outCtStop.toFixed(2)+ " V");
-                        if(outCtStop > seuil){outCtStopCtn.find(".voyant img").attr('src', 'images/voyant_on.png')}else{outCtStopCtn.find(".voyant img").attr('src', 'images/voyant_off.png')};
-                        latSwitchCtn.find(".value").html(latSwitch.toFixed(2)+ " V");
-                        if(latSwitch > seuil){latSwitchCtn.find(".voyant img").attr('src', 'images/voyant_on.png')}else{latSwitchCtn.find(".voyant img").attr('src', 'images/voyant_off.png')};
-                        autoposDRCtn.find(".value").html(autoposDR.toFixed(2)+ " V");
-                        if(autoposDR > seuil){autoposDRCtn.find(".voyant img").attr('src', 'images/voyant_on.png')}else{autoposDRCtn.find(".voyant img").attr('src', 'images/voyant_off.png')};
-                        globGantryCtn.find(".value").html(globGantry.toFixed(2)+ " V");
-                        if(globGantry > seuil){globGantryCtn.find(".voyant img").attr('src', 'images/voyant_on.png')}else{globGantryCtn.find(".voyant img").attr('src', 'images/voyant_off.png')};
-                        sciFRTLCtn.find(".value").html(sciFRTL.toFixed(2)+ " V");
-                        if(sciFRTL > seuil){sciFRTLCtn.find(".voyant img").attr('src', 'images/voyant_on.png')}else{sciFRTLCtn.find(".voyant img").attr('src', 'images/voyant_off.png')};
-                        sciLATCtn.find(".value").html(sciLAT.toFixed(2)+ " V");
-                        if(sciLAT > seuil){sciLATCtn.find(".voyant img").attr('src', 'images/voyant_on.png')}else{sciLATCtn.find(".voyant img").attr('src', 'images/voyant_off.png')};  
+                        
+                        if(outCtStop > seuil){
+                            outCtStopCtn.find(".voyant img").attr('src', 'images/voyant_on.png');
+                            outCtStopCtn.find(".value").html(outCtStop.toFixed(2)+ " V");
+                        }else{
+                            outCtStopCtn.find(".voyant img").attr('src', 'images/voyant_off.png');
+                            outCtStopCtn.find(".value").html("0 V");
+                        }
+                        
+                        if(latSwitch > seuil){
+                            latSwitchCtn.find(".voyant img").attr('src', 'images/voyant_on.png');
+                            latSwitchCtn.find(".value").html(latSwitch.toFixed(2)+ " V");
+                        }else{
+                            latSwitchCtn.find(".voyant img").attr('src', 'images/voyant_off.png');
+                            latSwitchCtn.find(".value").html("0 V");
+                        }
+                        
+                        if(autoposDR > seuil){
+                            autoposDRCtn.find(".voyant img").attr('src', 'images/voyant_on.png')
+                            autoposDRCtn.find(".value").html(autoposDR.toFixed(2)+ " V");
+                        }else{
+                            autoposDRCtn.find(".voyant img").attr('src', 'images/voyant_off.png')
+                            autoposDRCtn.find(".value").html("0 V");
+                        }
+                        
+                        if(globGantry > seuil){
+                            globGantryCtn.find(".voyant img").attr('src', 'images/voyant_on.png');
+                            globGantryCtn.find(".value").html(globGantry.toFixed(2)+ " V");
+                        }else{
+                            globGantryCtn.find(".voyant img").attr('src', 'images/voyant_off.png');
+                            globGantryCtn.find(".value").html("0 V");
+                        }
+                        
+                        if(sciFRTL > seuil){
+                            sciFRTLCtn.find(".voyant img").attr('src', 'images/voyant_on.png');
+                            sciFRTLCtn.find(".value").html(sciFRTL.toFixed(2)+ " V");    
+                        }else{
+                            sciFRTLCtn.find(".voyant img").attr('src', 'images/voyant_off.png');
+                            sciFRTLCtn.find(".value").html("0 V");
+                        }
+                        
+                        if(sciLAT > seuil){
+                            sciLATCtn.find(".voyant img").attr('src', 'images/voyant_on.png');
+                            sciLATCtn.find(".value").html(sciLAT.toFixed(2)+ " V");
+                        }else{
+                            sciLATCtn.find(".voyant img").attr('src', 'images/voyant_off.png');
+                            sciLATCtn.find(".value").html("0 V");
+                        };  
                         
                         tsuiSupplyCtn.find(".value").html(tsuiSupply.toFixed(2)+ " V");
                         FRTLgantryCtn.find(".value").html(FRTLgantry.toFixed(2)+ " V");
@@ -2628,7 +2674,7 @@ $(document).ready(function (){
 
                     
                     }else if(message.typeMsg == "S"){  
-                        var seuil = 10;
+                        var seuil = 3;
                         var longEnable = message.longEnable;
                         var TBLtopPan = message.TBLtopPan;
                         var sc1LatDR = message.sc1LatDR;
@@ -2680,29 +2726,70 @@ $(document).ready(function (){
                         
                         supplyContainer.html(tsuiVoltage.toFixed(2) + " V");
                         
-                        longEnableCtn.find(".value").html(longEnable.toFixed(2)+ " V");
-                        if(longEnable > seuil){longEnableCtn.find(".voyant img").attr('src', 'images/voyant_on.png')}else{longEnableCtn.find(".voyant img").attr('src', 'images/voyant_off.png')};
                         
-                        TBLtopPanCtn.find(".value").html(TBLtopPan.toFixed(2)+ " V");
-                        if(TBLtopPan > seuil){TBLtopPanCtn.find(".voyant img").attr('src', 'images/voyant_on.png')}else{TBLtopPanCtn.find(".voyant img").attr('src', 'images/voyant_off.png')};
+                        if(longEnable > seuil){
+                            longEnableCtn.find(".voyant img").attr('src', 'images/voyant_on.png');
+                            longEnableCtn.find(".value").html(longEnable.toFixed(2)+ " V");
+                        }else{
+                            longEnableCtn.find(".voyant img").attr('src', 'images/voyant_off.png');
+                            longEnableCtn.find(".value").html("0 V");
+                        };
+                                                
+                        if(TBLtopPan > seuil){
+                            TBLtopPanCtn.find(".voyant img").attr('src', 'images/voyant_on.png');
+                            TBLtopPanCtn.find(".value").html(TBLtopPan.toFixed(2)+ " V");
+                        }else{
+                            TBLtopPanCtn.find(".voyant img").attr('src', 'images/voyant_off.png');
+                            TBLtopPanCtn.find(".value").html("0 V");
+                        };
+                                                
+                        if(sc1LatDR > seuil){
+                            sc1LatDRCtn.find(".voyant img").attr('src', 'images/voyant_on.png');
+                            sc1LatDRCtn.find(".value").html(sc1LatDR.toFixed(2)+ " V");
+                        }else{
+                            sc1LatDRCtn.find(".voyant img").attr('src', 'images/voyant_off.png');
+                            sc1LatDRCtn.find(".value").html("0 V");
+                        }
                         
-                        sc1LatDRCtn.find(".value").html(sc1LatDR.toFixed(2)+ " V");
-                        if(sc1LatDR > seuil){sc1LatDRCtn.find(".voyant img").attr('src', 'images/voyant_on.png')}else{sc1LatDRCtn.find(".voyant img").attr('src', 'images/voyant_off.png')};
+                        if(TBLtopUpDown > seuil){
+                            TBLtopUpDownCtn.find(".voyant img").attr('src', 'images/voyant_on.png');
+                            TBLtopUpDownCtn.find(".value").html(TBLtopUpDown.toFixed(2)+ " V");
+                        }else{
+                            TBLtopUpDownCtn.find(".voyant img").attr('src', 'images/voyant_off.png');
+                            TBLtopUpDownCtn.find(".value").html("0 V");
+                        }                        
                         
-                        TBLtopUpDownCtn.find(".value").html(TBLtopUpDown.toFixed(2)+ " V");
-                        if(TBLtopUpDown > seuil){TBLtopUpDownCtn.find(".voyant img").attr('src', 'images/voyant_on.png')}else{TBLtopUpDownCtn.find(".voyant img").attr('src', 'images/voyant_off.png')};
+                        if(globGantry2 > seuil){
+                            globGantry2Ctn.find(".voyant img").attr('src', 'images/voyant_on.png');
+                            globGantry2Ctn.find(".value").html(globGantry2.toFixed(2)+ " V");
+                        }else{
+                            globGantry2Ctn.find(".voyant img").attr('src', 'images/voyant_off.png');
+                            globGantry2Ctn.find(".value").html("0 V");
+                        }                        
                         
-                        globGantry2Ctn.find(".value").html(globGantry2.toFixed(2)+ " V");
-                        if(globGantry2 > seuil){globGantry2Ctn.find(".voyant img").attr('src', 'images/voyant_on.png')}else{globGantry2Ctn.find(".voyant img").attr('src', 'images/voyant_off.png')};
+                        if(globTable > seuil){
+                            globTableCtn.find(".voyant img").attr('src', 'images/voyant_on.png');
+                            globTableCtn.find(".value").html(globTable.toFixed(2)+ " V");
+                        }else{
+                            globTableCtn.find(".voyant img").attr('src', 'images/voyant_off.png');
+                            globTableCtn.find(".value").html("0 V");
+                        }
                         
-                        globTableCtn.find(".value").html(globTable.toFixed(2)+ " V");
-                        if(globTable > seuil){globTableCtn.find(".voyant img").attr('src', 'images/voyant_on.png')}else{globTableCtn.find(".voyant img").attr('src', 'images/voyant_off.png')};
+                        if(FRTLlatGantry > seuil){
+                            FRTLlatGantryCtn.find(".voyant img").attr('src', 'images/voyant_on.png');
+                            FRTLlatGantryCtn.find(".value").html(FRTLlatGantry.toFixed(2)+ " V");
+                        }else{
+                            FRTLlatGantryCtn.find(".voyant img").attr('src', 'images/voyant_off.png');
+                            FRTLlatGantryCtn.find(".value").html("0 V");
+                        }
                         
-                        FRTLlatGantryCtn.find(".value").html(FRTLlatGantry.toFixed(2)+ " V");
-                        if(FRTLlatGantry > seuil){FRTLlatGantryCtn.find(".voyant img").attr('src', 'images/voyant_on.png')}else{FRTLlatGantryCtn.find(".voyant img").attr('src', 'images/voyant_off.png')};
-                        
-                        latSwitch2Ctn.find(".value").html(latSwitch2.toFixed(2)+ " V");
-                        if(latSwitch2 > seuil){latSwitch2Ctn.find(".voyant img").attr('src', 'images/voyant_on.png')}else{latSwitch2Ctn.find(".voyant img").attr('src', 'images/voyant_off.png')};
+                        if(latSwitch2 > seuil){
+                            latSwitch2Ctn.find(".voyant img").attr('src', 'images/voyant_on.png');
+                            latSwitch2Ctn.find(".value").html(latSwitch2.toFixed(2)+ " V");
+                        }else{
+                            latSwitch2Ctn.find(".voyant img").attr('src', 'images/voyant_off.png');
+                            latSwitch2Ctn.find(".value").html("0 V");
+                        }
                         
                         tsuiSupplyCtn.find(".value").html(tsuiSupply.toFixed(2)+ " V");
                         FRTLgantryCtn.find(".value").html(FRTLgantry.toFixed(2)+ " V");
@@ -3233,24 +3320,24 @@ $(document).ready(function (){
             switch (modelName) {
                 case "TSSC" :
                     sendSignalPic("B");
-                    sendSignal(startSlaveTSSC);
                     var stopTestMode = Cal_post + "030000" + "1fc22f00" + "070000"
-                    sendSignal(stopTestMode);
+                    //sendSignal(stopTestMode);
+                    sendSignal(startSlaveTSSC); 
                     break;
                 case "SMARTBOX" :
                     sendSignalPic("C");
-                    sendSignal(startSlaveSBSH);
-                    sendSignal(startSlaveSBSH2);
                     var stopTestMode = Cal_post + "030000" + "1fc42f00" + "070000"
                     sendSignal(stopTestMode);
+                    sendSignal(startSlaveSBSH);
+                    sendSignal(startSlaveSBSH2);
                     stopAllLED(globalName, modelName, typeChoice);
                     break;
                 case "SMARTHANDLE" :
                     sendSignalPic("C");
-                    sendSignal(startSlaveSBSH);
-                    sendSignal(startSlaveSBSH2);
                     var stopTestMode = Cal_post + "030000" + "1fc42f00" + "070000"
                     sendSignal(stopTestMode);
+                    sendSignal(startSlaveSBSH);
+                    sendSignal(startSlaveSBSH2);
                     stopAllLED(globalName, modelName, typeChoice);
                     break;
                 default:
@@ -3293,6 +3380,13 @@ $(document).ready(function (){
         initial_safety_srtl = 0;
         initial_enable_srtl = 0;
         
+        jsonLog = [];
+        calibLog = [];
+        testhwLog = [];
+        powerTestLog = [];
+        calibLogJSON = [];
+        testhwLogJSON = [];
+        powertestLogJSON = [];        
         
         zone0.parent().addClass("hidden");
         zone1.parent().addClass("hidden");
@@ -3324,7 +3418,6 @@ $(document).ready(function (){
         $('#fileinput4').val(""); 
         $('#fileinput5').val(""); 
         $('#fileinput6').val(""); 
-        
         
         $(".safety_container .name_container").html("SAFETY LOOP");
         $(".enable_container .state").removeClass("hidden");
@@ -3364,6 +3457,8 @@ $(document).ready(function (){
         $(".warning_firmware.inverted").addClass("hidden");
         $(".warning_firmware.elegance").removeClass("hidden");
         $(".warning_firmware.omega").addClass("hidden");
+        $(".warning_firmware.smarthandle").addClass("hidden");
+        $(".warning_firmware.sbsh").addClass("hidden");
         $(".diag_inge .diag_component").each(function () {
             $(this).remove();
         });    
@@ -3373,9 +3468,7 @@ $(document).ready(function (){
         $(".legend_inge .nodeIDleg").removeClass("hidden");
         $(".legend_inge .dimleg").removeClass("hidden");
         $(".eprom_protect").removeClass("hidden");
-        $(".switch_nb.omega").addClass("hidden");
-        
-        
+        $(".switch_nb.omega").addClass("hidden");        
         
         if (globalName == "OMEGA") {       
             $(".legend_inge .nodeIDleg").addClass("hidden");
@@ -3417,7 +3510,7 @@ $(document).ready(function (){
                 $(".hw_signals_container.sbsh").removeClass("hidden");
                 $(".hw_signal_command_container.sbsh").removeClass("hidden"); 
                 $(".switch_nb.omega").removeClass("hidden");
-                
+                $(".warning_firmware.sbsh").removeClass("hidden");
                 $(".display_all_bt").removeClass("hidden");
                 $(".stop_all_bt").removeClass("hidden");
                 $(".tsui_restart_bt").removeClass("hidden");
@@ -3428,6 +3521,7 @@ $(document).ready(function (){
                 }else{
                     $(".test_hw_container .smartbox_omega").addClass("hidden");
                     $(".test_hw_container .smarthandle_omega").removeClass("hidden");
+                    $(".warning_firmware.smarthandle").removeClass("hidden");
                 }
             }
         }else if(globalName == "ELEGANCE"){    
@@ -3687,6 +3781,7 @@ $(document).ready(function (){
 
         if (totalLength == 26 && is_hexadecimal(dlcInputSender) && is_hexadecimal(idInputSender) && is_hexadecimal(dataInputSender)) {
 
+            sendToSpy(idInputSender, dataInputSender);
             sendSignal("002400806d68d7551407f09b861e3aad000549a844" + dlcInputSender + "0000" + idInputSender + dataInputSender);
             $(".result_send_confirm").fadeIn(300);
             setTimeout(function(){$(".result_send_confirm").fadeOut(300);},1000)
@@ -3839,14 +3934,14 @@ $(document).ready(function (){
             data: {jsonlog: jsonLog, sn: serialNumber, pn: partNumber, sso: userSSO, nodeID:nodeID, FWfctV: FWfctV, FWcalibV: FWcalibV, SWv: SWv, globalNameRapport:globalName, modelNameRapport: modelName},
             success: function (msg) {
                 alert("Your log has been saved.");
-                printJsonLog(jsonLog, serialNumber, partNumber, userSSO, nodeID, datetime, FWfctV, SWv);
+                printJsonLog(jsonLog, serialNumber, partNumber, userSSO, nodeID, datetime, FWfctV, SWv, globalName, modelName);
                 $("#print_log").removeClass("hidden");
             }
         });
     }
 
     //Generation du rapport de test et affichage de la fenetre d'impression 
-    function printJsonLog(jsonLog, serialNumber, partNumber, userSSO, nodeID, datetime, FWfctV, SWv) {
+    function printJsonLog(jsonLog, serialNumber, partNumber, userSSO, nodeID, datetime, FWfctV, SWv, globalNameRapport, modelNameRapport) {
         var msg = JSON.parse(jsonLog);
         var lineButton = "";
         var lineLed = "";
@@ -3920,7 +4015,11 @@ $(document).ready(function (){
         
         
         var myWindow = window.open('', '', 'width=1000,height=800');
-        myWindow.document.write("<h2>PRETEST LOG RECORD - " + datetime + "</h2><div style='border:1px solid black;padding:5px;'><b>PN</b>: " + partNumber + " - <b>SN</b>: " + serialNumber + " - <b>Firmware version</b>: "+FWfctV+" - <b>Sofware version</b>: "+SWv+" - <b>User SSO</b>: " + userSSO + " - <b>Node ID:</b> "+nodeID+"</div><h3>BUTTONS</h3><div>" + lineButton + "</div><h3>BUZZERS</h3><div>" + lineBuzzer + "</div><h3>BACKLIGHTS</h3><div>" + lineLed + "</div><h3>DISPLAYS</h3><div>" + lineDisplay + "</div><h3>JOYSTICKS</h3><div>" + lineJoystick + "</div>");
+        if(globalNameRapport == "OMEGA"){
+            myWindow.document.write("<h2>PRETEST LOG RECORD - " + datetime + "</h2><div style='border:1px solid black;padding:5px;'><b>PN</b>: " + partNumber + " - <b>SN</b>: " + serialNumber + " - <b>UI version</b>: "+UIsoftVersion+" - <b>Sofware version</b>: "+SWv+" - <b>User SSO</b>: " + userSSO + "</div><h3>BUTTONS</h3><div>" + lineButton + "</div><h3>BUZZERS</h3><div>" + lineBuzzer + "</div><h3>BACKLIGHTS</h3><div>" + lineLed + "</div><h3>DISPLAYS</h3><div>" + lineDisplay + "</div><h3>JOYSTICKS</h3><div>" + lineJoystick + "</div>");
+        }else{
+            myWindow.document.write("<h2>PRETEST LOG RECORD - " + datetime + "</h2><div style='border:1px solid black;padding:5px;'><b>PN</b>: " + partNumber + " - <b>SN</b>: " + serialNumber + " - <b>UI version</b>: "+UIsoftVersion+" - <b>Firmware version</b>: "+FWfctV+" - <b>Sofware version</b>: "+SWv+" - <b>User SSO</b>: " + userSSO + " - <b>Node ID:</b> "+nodeID+"</div><h3>BUTTONS</h3><div>" + lineButton + "</div><h3>BUZZERS</h3><div>" + lineBuzzer + "</div><h3>BACKLIGHTS</h3><div>" + lineLed + "</div><h3>DISPLAYS</h3><div>" + lineDisplay + "</div><h3>JOYSTICKS</h3><div>" + lineJoystick + "</div>");
+        }
         myWindow.document.close();
         myWindow.focus();
         myWindow.print();
@@ -3940,18 +4039,29 @@ $(document).ready(function (){
         
         $(".instructions_testfinal").addClass("hidden");
         if(globalName =="OMEGA"){
-            //
+            $("#user_wait").removeClass("hidden");
+            $("#testfinal_container").addClass("hidden");
+            setTimeout(function(){
+                $("#testfinal_container").removeClass("hidden");
+                $("#user_wait").addClass("hidden");
+                launchFinalTest();                
+            },3000)
         }else{
+            $("#user_wait").removeClass("hidden");
+            $("#testfinal_container").addClass("hidden");
             sendSignal(startNodeMsg);
             if(typeChoice == "AGILA"){
                 setTimeout(function(){
                     var sign = "002400806d68d7551407f09b861e3aad000549a844080000" + cobID2 + "2f01300101000000";
                     sendSignal(sign);
+                    launchFinalTest();
                 },100)                    
+            }else{
+                launchFinalTest();
             }
         }
             
-        launchFinalTest();
+        
     });
 
     //valider manuellement l'étape (dev only)
@@ -3995,23 +4105,23 @@ $(document).ready(function (){
                 var finalJoystickList = [];
                 var finalBuzzerList = [];
 
-                console.log(data.length);
+                //console.log(data.length);
                 for (var i = 0; i < data.length; i++) {
-                    console.log(data[i]);
+                    //console.log(data[i]);
                     if (data[i].type == "button") {
                         finalButtonList.push({symbol_name: data[i].symbol_name, type: data[i].type, description: data[i].description, photo_link: data[i].photo_link, timer: data[i].timer, off_signal: data[i].off_signal, on_signal: data[i].on_signal, can_id: data[i].can_id, pressed_val: data[i].pressed_val, released_val: data[i].released_val, standard_name: data[i].standard_name, is_cdrh: data[i].is_cdrh, is_enable: data[i].is_enable, is_safety: data[i].is_safety});
                         if (data[i].is_led == "1") {
-                            finalLedList.push({symbol_name: data[i].symbol_name, type: "led", description: data[i].description, photo_link: data[i].photo_link, timer: data[i].timer, off_signal: data[i].off_signal, on_signal: data[i].on_signal, can_id: data[i].can_id, pressed_val: data[i].pressed_val, released_val: data[i].released_val, standard_name: data[i].standard_name, is_cdrh: data[i].is_cdrh, is_enable: data[i].is_enable});
+                            finalLedList.push({symbol_name: data[i].symbol_name, type: "led", description: data[i].description, photo_link: data[i].photo_link, timer: data[i].timer, off_signal: data[i].off_signal, on_signal: data[i].on_signal, can_id: data[i].can_id, pressed_val: data[i].pressed_val, released_val: data[i].released_val, standard_name: data[i].standard_name, is_cdrh: data[i].is_cdrh, is_enable: data[i].is_enable, is_safety: data[i].is_safety});
                         }
                         else if(data[i].is_led == "2"){
                             finalLedList.push({symbol_name: data[i].symbol_name, type: "led_spe", description: data[i].description, photo_link: data[i].photo_link, timer: data[i].timer, off_signal: data[i].off_signal, on_signal: data[i].on_signal, can_id: data[i].can_id, pressed_val: data[i].pressed_val, released_val: data[i].released_val, standard_name: data[i].standard_name, is_cdrh: data[i].is_cdrh, is_enable: data[i].is_enable});
                         }
                     } else if (data[i].type == "display") {
-                        finalDisplayList.push({symbol_name: data[i].symbol_name, type: data[i].type, description: data[i].description, photo_link: data[i].photo_link, timer: data[i].timer, off_signal: data[i].off_signal, on_signal: data[i].on_signal, can_id: data[i].can_id, pressed_val: data[i].pressed_val, released_val: data[i].released_val, standard_name: data[i].standard_name, is_cdrh: data[i].is_cdrh, is_enable: data[i].is_enable});
+                        finalDisplayList.push({symbol_name: data[i].symbol_name, type: data[i].type, description: data[i].description, photo_link: data[i].photo_link, timer: data[i].timer, off_signal: data[i].off_signal, on_signal: data[i].on_signal, can_id: data[i].can_id, pressed_val: data[i].pressed_val, released_val: data[i].released_val, standard_name: data[i].standard_name, is_cdrh: data[i].is_cdrh, is_enable: data[i].is_enable, is_safety: data[i].is_safety});
                     } else if (data[i].type == "joystick") {
-                        finalJoystickList.push({symbol_name: data[i].symbol_name, type: data[i].type, description: data[i].description, photo_link: data[i].photo_link, timer: data[i].timer, off_signal: data[i].off_signal, on_signal: data[i].on_signal, can_id: data[i].can_id, pressed_val: data[i].pressed_val, released_val: data[i].released_val, x_pos: data[i].x_pos, y_pos: data[i].y_pos, standard_name: data[i].standard_name, is_cdrh: data[i].is_cdrh, is_enable: data[i].is_enable});
+                        finalJoystickList.push({symbol_name: data[i].symbol_name, type: data[i].type, description: data[i].description, photo_link: data[i].photo_link, timer: data[i].timer, off_signal: data[i].off_signal, on_signal: data[i].on_signal, can_id: data[i].can_id, pressed_val: data[i].pressed_val, released_val: data[i].released_val, x_pos: data[i].x_pos, y_pos: data[i].y_pos, standard_name: data[i].standard_name, is_cdrh: data[i].is_cdrh, is_enable: data[i].is_enable, is_safety: data[i].is_safety});
                     } else if (data[i].type == "buzzer") {
-                        finalBuzzerList.push({symbol_name: data[i].symbol_name, type: data[i].type, description: data[i].description, photo_link: data[i].photo_link, timer: data[i].timer, off_signal: data[i].off_signal, on_signal: data[i].on_signal, can_id: data[i].can_id, pressed_val: data[i].pressed_val, released_val: data[i].released_val, standard_name: data[i].standard_name, is_cdrh: data[i].is_cdrh, is_enable: data[i].is_enable});
+                        finalBuzzerList.push({symbol_name: data[i].symbol_name, type: data[i].type, description: data[i].description, photo_link: data[i].photo_link, timer: data[i].timer, off_signal: data[i].off_signal, on_signal: data[i].on_signal, can_id: data[i].can_id, pressed_val: data[i].pressed_val, released_val: data[i].released_val, standard_name: data[i].standard_name, is_cdrh: data[i].is_cdrh, is_enable: data[i].is_enable, is_safety: data[i].is_safety});
                     }
                 }                
                 for (var i = 0; i < finalButtonList.length; i++) {
@@ -4029,7 +4139,7 @@ $(document).ready(function (){
                 for (var i = 0; i < finalJoystickList.length; i++) {
                     finalTestEntriesTest.push(finalJoystickList[i]);
                 }
-
+                console.log(finalTestEntriesTest );
             }
         }
         );
@@ -4046,6 +4156,7 @@ $(document).ready(function (){
         setTimeout(function(){
             console.log(finalTestEntriesTest)
             if(globalName == "ELEGANCE"){  
+                $("#testfinal_container").addClass("hidden");
                 sendSignalPic("1"); 
                 sendSignalPic("3");            
                 if(typeChoice == "AGILA"){
@@ -4076,16 +4187,52 @@ $(document).ready(function (){
 
             }else if(globalName == "OMEGA"){
                 $("#testfinal_container").addClass("hidden");
-
                 if(modelName == "TSSC"){
-                   var stopTestMode = Cal_post + "030000" + "1fc22f00" + "070000"
-                    sendSignal(stopTestMode);
                     sendSignalPic("6");
-                    setTimeout(function () {                         
-                        powerTestLog.push({tsuiSupply: currTsuiSupply, FRTLgantry: currFRTLgantry, unreg5: currUnreg5, unreg12: currUnreg12});
-                        powertestLogJSON = JSON.stringify(powerTestLog);
-                        console.log(powertestLogJSON);
-                        sendSignalPic("7");
+                    var startTestMode = Cal_post + "030000" + "1fc22f00" + "060000"
+                    sendSignal(startTestMode);
+                    _MODE = "TEST_HARDWARE_OMEGA";
+                    setTimeout(function () {                        
+                        //ping roue codeuse
+                        var signalPing = Cal_post+"0300001fc22f0000"+"0034";
+                        sendSignal(signalPing);
+                        waitPingResponse = "1fc00f41";
+                        setTimeout(function(){
+                            var responseRoueCodeuse = finalResponseData.substring(6,8);
+                            
+                            //ping des switch
+                            var signalPing = Cal_post+"0300001fc22f0000"+"002b";
+                            sendSignal(signalPing);
+                            waitPingResponse = "1fc00f41";
+                            setTimeout(function(){
+                                var responseSwitch1 = finalResponseData.substring(6,8);
+                                var signalPing = Cal_post+"0300001fc22f0000"+"002c";
+                                sendSignal(signalPing);
+                                waitPingResponse = "1fc00f41";
+                                setTimeout(function(){
+                                    var responseSwitch2 = finalResponseData.substring(6,8);
+                                    var signalPing = Cal_post+"0300001fc22f0000"+"002d";
+                                    sendSignal(signalPing);
+                                    waitPingResponse = "1fc00f41";
+                                    setTimeout(function(){
+                                        var responseSwitch3 = finalResponseData.substring(6,8);     
+                                        var stopTestMode = Cal_post + "030000" + "1fc22f00" + "070000"
+                                        sendSignal(stopTestMode);
+                                        _MODE = "TESTFINAL";
+                                        sendSignalPic("6");
+                                        setTimeout(function(){
+                                             powerTestLog.push({
+                                            tsuiSupply: currTsuiSupply, FRTLgantry: currFRTLgantry, unreg5: currUnreg5, unreg12: currUnreg12,
+                                            roue:responseRoueCodeuse, switch1:responseSwitch1, switch2:responseSwitch2, switch3:responseSwitch3
+                                            });
+                                            powertestLogJSON = JSON.stringify(powerTestLog);
+                                            console.log(powertestLogJSON);
+                                            sendSignalPic("7");
+                                        },300)
+                                    },200)
+                                },200)
+                            },200)                            
+                        },200)
                     }, 300);
                 }
                 else{
@@ -4125,49 +4272,51 @@ $(document).ready(function (){
                     }
                 }, 11000);
             }else{
-                if(modelName == "TSSC"){
-                    maxIndexFinal = finalTestEntriesTest.length;            
-                    console.log(maxIndexFinal);
-                    console.log(finalTestEntriesTest);
+                setTimeout(function(){
+                    if(modelName == "TSSC"){
+                        maxIndexFinal = finalTestEntriesTest.length;            
+                        console.log(maxIndexFinal);
+                        console.log(finalTestEntriesTest);
 
-                    if (maxIndexFinal > 0) {
-                        $("#testfinal_container .display_test_content").removeClass("hidden");
-                        $("#testfinal_container #launch_final_test").addClass("hidden");
-                        nameFinalContainer.removeClass("hidden");
-                        timerBloc.removeClass("hidden");
-                        imgFinalBloc.removeClass("hidden");
-                        stopTestBloc.addClass("hidden");
-                        $("#stop_final_test").removeClass("hidden");
-                        $("#next_final_test").removeClass("hidden");
-                        recapListFinal.empty();
-                        timerBloc.html("");              
+                        if (maxIndexFinal > 0) {
+                            $("#testfinal_container .display_test_content").removeClass("hidden");
+                            $("#testfinal_container #launch_final_test").addClass("hidden");
+                            nameFinalContainer.removeClass("hidden");
+                            timerBloc.removeClass("hidden");
+                            imgFinalBloc.removeClass("hidden");
+                            stopTestBloc.addClass("hidden");
+                            $("#stop_final_test").removeClass("hidden");
+                            $("#next_final_test").removeClass("hidden");
+                            recapListFinal.empty();
+                            timerBloc.html("");              
 
-                        displayFinalTest(indexFinal);
-                        $("#testfinal_container").removeClass("hidden");
-                        $("#user_wait").addClass("hidden");
+                            displayFinalTest(indexFinal);
+                            $("#testfinal_container").removeClass("hidden");
+                            $("#user_wait").addClass("hidden");
+                        }
+                    }else{
+                        maxIndexFinal = finalTestEntriesTest.length;            
+                        console.log(maxIndexFinal);
+                        console.log(finalTestEntriesTest);
+
+                        if (maxIndexFinal > 0) {
+                            $("#testfinal_container .display_test_content").removeClass("hidden");
+                            $("#testfinal_container #launch_final_test").addClass("hidden");
+                            nameFinalContainer.removeClass("hidden");
+                            timerBloc.removeClass("hidden");
+                            imgFinalBloc.removeClass("hidden");
+                            stopTestBloc.addClass("hidden");
+                            $("#stop_final_test").removeClass("hidden");
+                            $("#next_final_test").removeClass("hidden");
+                            recapListFinal.empty();
+                            timerBloc.html("");              
+
+                            displayFinalTest(indexFinal);
+                            $("#testfinal_container").removeClass("hidden");
+                            $("#user_wait").addClass("hidden");
+                        }
                     }
-                }else{
-                    maxIndexFinal = finalTestEntriesTest.length;            
-                    console.log(maxIndexFinal);
-                    console.log(finalTestEntriesTest);
-
-                    if (maxIndexFinal > 0) {
-                        $("#testfinal_container .display_test_content").removeClass("hidden");
-                        $("#testfinal_container #launch_final_test").addClass("hidden");
-                        nameFinalContainer.removeClass("hidden");
-                        timerBloc.removeClass("hidden");
-                        imgFinalBloc.removeClass("hidden");
-                        stopTestBloc.addClass("hidden");
-                        $("#stop_final_test").removeClass("hidden");
-                        $("#next_final_test").removeClass("hidden");
-                        recapListFinal.empty();
-                        timerBloc.html("");              
-
-                        displayFinalTest(indexFinal);
-                        $("#testfinal_container").removeClass("hidden");
-                        $("#user_wait").addClass("hidden");
-                    }
-                }
+                },3000)                
             }
         },500)    
         
@@ -4198,6 +4347,7 @@ $(document).ready(function (){
         isCdrh = finalTestEntriesTest[indexFinal]["is_cdrh"];
         isEnable = finalTestEntriesTest[indexFinal]["is_enable"];
         isSafety = finalTestEntriesTest[indexFinal]["is_safety"];
+
         setTimeout(function () {
             if (isEnable == 1  && globalName == "ELEGANCE") {
                 console.log("is enable");                
@@ -4228,7 +4378,8 @@ $(document).ready(function (){
              var dlcSign = "080000"
         }else{
             if(modelName == "TSSC"){
-                //dynamique DLC 
+                var dlcSign = ((currOnSignal.length)-8)/2; //dynamique DLC
+                dlcSign = "0"+dlcSign+"0000";
             }else{
                 var dlcSign = "010000"
             }
@@ -4241,7 +4392,13 @@ $(document).ready(function (){
 
         switch (currType) {
             case "button":
-                symbolNameFinal.html("Press and release " + currSymbol_name);
+                if(globalName =="OMEGA" && modelName == "TSSC" && (currSymbol_name == "PB6" || currSymbol_name == "PB8")){
+                    symbolNameFinal.html("Press and hold PB7 then Press and release " + currSymbol_name);
+                }else if(globalName =="OMEGA" && modelName == "TSSC" && (currSymbol_name == "PD1")){
+                    symbolNameFinal.html("Press " + currSymbol_name + " then press Reset Emergency (BAG) for release action.");
+                }else{
+                    symbolNameFinal.html("Press and release " + currSymbol_name);
+                }                
                 descriptionFinal.html(currDescription);
                 imgFinal.attr('src', 'images/' + currPhoto_link);
                 progressBarFinalInside.css('width', pourcentage + '%');
@@ -4567,7 +4724,7 @@ $(document).ready(function (){
             data: {jsonlog: jsonLogFinal, sn: serialNumber, pn: partNumber, sso: userSSO, nodeId:nodeID, FWfctV: FWfctV, FWcalibV: FWcalibV, SWv: SWv, enableTens: initial_enable_tens, enableFreq: initial_enable_freq, safetyTens:initial_safety_tens, safetyFreq:initial_safety_freq, alimTestbench: currGlobalVoltage, alimTsui: currTsuiVoltage, jsonCalibLog : calibLogJSON, jsonTesthwLog: testhwLogJSON, jsonPowerTestLog: powertestLogJSON, isSRTL:SRTLfinalTest, shouldHaveSRTL:shouldHaveSRTL, initialSafetySRTL:initial_safety_srtl, initialEnableSRTL:initial_enable_srtl, is_manufacturing:modeManufacturing, globalNameRapport:globalName, modelNameRapport:modelName},
             success: function (msg) {
                 alert("Your log has been saved.");
-                printJsonLogFinal(jsonLogFinal, serialNumber, partNumber, userSSO, nodeID, FWfctV, FWcalibV, SWv, currGlobalVoltage, currTsuiVoltage, initial_enable_freq, initial_enable_tens, initial_safety_freq, initial_safety_tens, calibLogJSON, testhwLogJSON, powertestLogJSON, datetime, SRTLfinalTest, shouldHaveSRTL, initial_safety_srtl, initial_enable_srtl, globalName);
+                printJsonLogFinal(jsonLogFinal, serialNumber, partNumber, userSSO, nodeID, FWfctV, FWcalibV, SWv, currGlobalVoltage, currTsuiVoltage, initial_enable_freq, initial_enable_tens, initial_safety_freq, initial_safety_tens, calibLogJSON, testhwLogJSON, powertestLogJSON, datetime, SRTLfinalTest, shouldHaveSRTL, initial_safety_srtl, initial_enable_srtl, globalName, modelName);
             }
         });
     }
@@ -4576,8 +4733,11 @@ $(document).ready(function (){
     function printJsonLogFinal(jsonLogFinal, serialNumber, partNumber, userSSO, nodeID, FWfctV, FWcalibV, SWv, currGlobalVoltage, currTsuiVoltage, initial_enable_freq, initial_enable_tens, initial_safety_freq, initial_safety_tens, calibLogJSON, testhwLogJSON, powertestLogJSON, datetime, SRTLfinalTest, shouldHaveSRTL, initial_safety_srtl, initial_enable_srtl, globalNameRapport, modelNameRapport) {
         var msg = JSON.parse(jsonLogFinal);
         var msgCalib = JSON.parse(calibLogJSON);
-        var msgTesthw = JSON.parse(testhwLogJSON);
-        var msgPowertest = JSON.parse(powertestLogJSON);
+        if(globalNameRapport == "OMEGA"){
+            var msgTesthw = JSON.parse(testhwLogJSON);            
+            var msgPowertest = JSON.parse(powertestLogJSON);
+        }
+        
         var lineButton = "";
         var lineSafety = "";
         var lineLed = "";
@@ -4792,6 +4952,7 @@ $(document).ready(function (){
 
         }
         var ind = 0;
+        
         for (var i = 0; i < msgCalib.length; i++){            
             if(msgCalib[i].type == "joystick"){
                 if(msgCalib[i].result != "-"){
@@ -4823,9 +4984,7 @@ $(document).ready(function (){
             if(initial_enable_freq == 0){var testResultInitialEnableFreq = "Pass"}else{var testResultInitialEnableFreq = "Fail"}
             if(initial_enable_tens == 0){var testResultInitialEnableTens = "Pass"}else{var testResultInitialEnableTens = "Fail"}
             if(initial_safety_freq >= 1800 && initial_safety_freq <= 2200){var testResultInitialSafetyFreq = "Pass"}else{var testResultInitialSafetyFreq = "Fail"}
-            if(initial_safety_tens >= 21.6 && initial_safety_tens <= 26.4){var testResultInitialSafetyTens = "Pass"}else{var testResultInitialSafetyTens = "Fail"}
-            if(initial_enable_srtl == 0 ){var testInitialSRTLenable = "Pass"}else{var testInitialSRTLenable = "Fail"}
-            if(initial_safety_srtl == 0 ){var testInitialSRTLsafety = "Pass"}else{var testInitialSRTLsafety = "Fail"}
+            if(initial_safety_tens >= 21.6 && initial_safety_tens <= 26.4){var testResultInitialSafetyTens = "Pass"}else{var testResultInitialSafetyTens = "Fail"}           
             
             lineInitial = "<div><span style='display:inline-block;vertical-align:top;width:150px;margin-left:5px;'><b>Type</b></span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'><b>Measured Value</b></span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'><b>LSL</b></span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'><b>USL</b></span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'><b>Pass/Fail</b></span></div>"
                 + "<div><span style='display:inline-block;vertical-align:top;width:150px;margin-left:5px;'>Enable Frequency</span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'>"+initial_enable_freq+"Hz</span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'>0Hz</span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'>0Hz</span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'>"+testResultInitialEnableFreq+"</span></div>"
@@ -4833,6 +4992,8 @@ $(document).ready(function (){
                 + "<div><span style='display:inline-block;vertical-align:top;width:150px;margin-left:5px;'>Safety Frequency</span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'>"+initial_safety_freq+"Hz</span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'>1800Hz</span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'>2200Hz</span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'>"+testResultInitialSafetyFreq+"</span></div>"
                 + "<div><span style='display:inline-block;vertical-align:top;width:150px;margin-left:5px;'>Safety Voltage</span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'>"+initial_safety_tens+"V</span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'>21.6V</span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'>26.4V</span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'>"+testResultInitialSafetyTens+"</span></div>";
         }else{
+            if(initial_enable_srtl == 0 ){var testInitialSRTLenable = "Pass"}else{var testInitialSRTLenable = "Fail"}
+            if(initial_safety_srtl == 0 ){var testInitialSRTLsafety = "Pass"}else{var testInitialSRTLsafety = "Fail"}
             lineInitial = "<div><span style='display:inline-block;vertical-align:top;width:150px;margin-left:5px;'><b>Type</b></span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'><b>Value</b></span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'><b>Required Value</b></span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'><b>Pass/Fail</b></span></div>"
             + "<div><span style='display:inline-block;vertical-align:top;width:150px;margin-left:5px;'>Test SRTL</span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'>"+SRTLfinalTesttxt+"</span></div>"
             + "<div><span style='display:inline-block;vertical-align:top;width:150px;margin-left:5px;'>Enable SRTL</span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'>"+initial_enable_srtl+"</span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'>0</span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'>"+testInitialSRTLenable+"</span></div>"
@@ -4895,10 +5056,30 @@ $(document).ready(function (){
             
                 lineTestHw += lineTest;
             }
-            console.log(lineTestHw);
-            var partInitial = "";                
-            var partBuzzer = "";
-            var partDisplay = "";
+            if(modelNameRapport == "TSSC"){
+                var partInitial =  "<h3>INITIAL STATES</h3>"
+                    +"<div><span style='display:inline-block;vertical-align:top;width:150px;margin-left:5px;'><b>Type</b></span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'><b>Measured Value</b></span></div>" 
+                    +"<div><span style='display:inline-block;vertical-align:top;width:150px;margin-left:5px;'>Coding Wheel - II23</span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'>"+msgPowertest[0].roue+"</span></div>" 
+                    +"<div><span style='display:inline-block;vertical-align:top;width:150px;margin-left:5px;'>Switch - II14B1</span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'>"+msgPowertest[0].switch1+"</span></div>" 
+                    +"<div><span style='display:inline-block;vertical-align:top;width:150px;margin-left:5px;'>Switch - II14B2</span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'>"+msgPowertest[0].switch2+"</span></div>" 
+                    +"<div><span style='display:inline-block;vertical-align:top;width:150px;margin-left:5px;'>Switch - II24</span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'>"+msgPowertest[0].switch3+"</span></div>"; 
+            }else{
+                var partInitial = "";    
+            }
+            if(modelNameRapport == "TSSC"){
+                var partBuzzer = "<h3>BUZZER</h3>"
+                    + "<h5>Test is PASS when user has confirmed he heard TSUI buzzer. </h5>"
+                    + "<div><span style='display:inline-block;vertical-align:top;width:75px;margin-left:5px;'><b>Name</b></span><span style='display:inline-block;vertical-align:top;width:100px;margin-left:5px;'><b>Test Result</b></span><span style='display:inline-block;vertical-align:top;width:100px;margin-left:5px;'><b>CDRH</b></span></div>"
+                    + "<div>" + lineBuzzer + "</div>";
+                var partDisplay = "<h3>7 SEGMENTS DISPLAYS</h3>"
+                    + "<h5>Test is PASS when user has confirmed 8 is lit. </h5>"
+                    + "<div><span style='display:inline-block;vertical-align:top;width:75px;margin-left:5px;'><b>Name</b></span><span style='display:inline-block;vertical-align:top;width:100px;margin-left:5px;'><b>Ref. TST</b></span><span style='display:inline-block;vertical-align:top;width:100px;margin-left:5px;'><b>Test Result</b></span><span style='display:inline-block;vertical-align:top;width:100px;margin-left:5px;'><b>CDRH</b></span></div>"
+                    + "<div>" + lineDisplay + "</div>";
+            }else{
+                var partBuzzer = "";
+                var partDisplay = "";
+            }            
+            
             var partSafety = "";
             var partIntro = "<b>UI Software V.</b> : "+UIsoftVersion+" - <b>PN</b> : " + partNumber + " - <b>SN</b> : " + serialNumber + " - <b>SSO</b> : " + userSSO + " - <b>FW Fonct. V.</b> : " + FWcalibV + "</div>";
             var partButton = "<h3>BUTTONS</h3>"
@@ -4906,8 +5087,8 @@ $(document).ready(function (){
                 + "<div><span style='display:inline-block;vertical-align:top;width:75px;margin-left:5px;'><b>Name</b></span><span style='display:inline-block;vertical-align:top;width:75px;margin-left:5px;'><b>Ref. TST</b></span><span style='display:inline-block;vertical-align:top;width:75px;margin-left:5px;'><b>Action</b></span><span style='display:inline-block;vertical-align:top;width:100px;margin-left:5px;'><b>Test Result</b></span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'><b>Measure</b></span><span style='display:inline-block;vertical-align:top;width:50px;margin-left:5px;'><b>Enable</b></span><span style='display:inline-block;vertical-align:top;width:50px;margin-left:5px;'><b>CDRH</b></span></div>"
                 + "<div>" +lineButton+"</div>"    
             var partTestHW = "<h3>OMEGA TEST HARDWARE</h3>"
-                    + "<h5>For enable signals, Test is PASS when measured pressed value is between 20V & 26V, and 0V for released value. For logical output signals, Test is PASS when measured pressed value is between 20V & 26V, and 0V for released value.</h5>"
-                    +"<div><span style='display:inline-block;vertical-align:top;width:220px;margin-left:5px;'>Description</span><span style='display:inline-block;vertical-align:top;width:250px;margin-left:5px;'>Signal</span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'>Press/Rel</span><span style='display:inline-block;vertical-align:top;width:50px;margin-left:5px;'>Result</span></div>"
+                    + "<h5>For enable signals, Test is PASS when measured pressed value is between 20V & 26V, and 0V for released value. For logical output signals, Test is PASS when change of state is effective for measured pressed value between 20V and 26V, and for 0V for released value.</h5>"
+                    + "<div><span style='display:inline-block;vertical-align:top;width:220px;margin-left:5px;'>Description</span><span style='display:inline-block;vertical-align:top;width:250px;margin-left:5px;'>Signal</span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'>Press/Rel</span><span style='display:inline-block;vertical-align:top;width:50px;margin-left:5px;'>Result</span></div>"
                     + "<div>" +lineTestHw+"</div>";
             var partCalibration = "<h3>CALIBRATION</h3>"                
                 + "<div>" + lineCalib + "</div>";
@@ -6393,6 +6574,7 @@ $(document).ready(function (){
         $(".stop_calibration_verif").addClass("hidden");
         clearInterval(intervalVerify);
         getCalibrationLog();
+        refreshElementsTSSC();
         if(modelName == "TSSC"){
             var startTestMode = Cal_post + "030000" + "1fc22f00" + "060000"
             sendSignal(startTestMode);
@@ -6418,14 +6600,12 @@ $(document).ready(function (){
         testhwLog = [];
         testhwLogJSON = [];
         if(modelName == "SMARTBOX"){
-            $("#content_testhw .smartbox_omega.table_test .line_table_test").each(function(){
-                var description = $(this).find('.description').html();
-                var validation = $(this).find('.validation').html();
-                
-                if(!$(this).hasClass("masterpin")){
+            $("#content_testhw .smartbox_omega.table_test .line_table_test").each(function(){                
+                if(!$(this).hasClass("disabled")){
+                    var description = $(this).find('.description').html();
+                    var validation = $(this).find('.validation').html();
                     var hw1 = $(this).find('.hw_signals .hw1 .name').html();
                     var hw1Val = $(this).find('.hw_signals .hw1 .values').html();
-
                     if($(this).find('.hw_signals .hw2 .name')){
                         var hw2 = $(this).find('.hw_signals .hw2 .name').html();
                         var hw2Val = $(this).find('.hw_signals .hw2 .values').html();
@@ -6433,7 +6613,6 @@ $(document).ready(function (){
                         var hw2 = "";
                         var hw2Val = "";
                     }
-
                     if($(this).find('.hw_signals .hw3 .name')){
                         var hw3 = $(this).find('.hw_signals .hw3 .name').html();
                         var hw3Val = $(this).find('.hw_signals .hw3 .values').html();
@@ -6441,27 +6620,16 @@ $(document).ready(function (){
                         var hw3 = "";
                         var hw3Val = "";
                     }
-                }else{                    
-                    var hw1 = "masterpin";
-                    var hw1Val = "";
-                    var hw2 = "";
-                    var hw2Val = "";
-                    var hw3 = "";
-                    var hw3Val = "";                    
+                    testhwLog.push({description: description, validation: validation, hw1: hw1, hw1Val: hw1Val, hw2 : hw2, hw2Val : hw2Val, hw3 : hw3, hw3Val : hw3Val});
                 }
-
-                testhwLog.push({description: description, validation: validation, hw1: hw1, hw1Val: hw1Val, hw2 : hw2, hw2Val : hw2Val, hw3 : hw3, hw3Val : hw3Val});
-            
             });
         }else if(modelName == "SMARTHANDLE"){
             $("#content_testhw .smarthandle_omega.table_test .line_table_test").each(function(){
-                var description = $(this).find('.description').html();
-                var validation = $(this).find('.validation').html();
-                
-                if(!$(this).hasClass("logical")){
+                if(!$(this).hasClass("disabled")){
+                    var description = $(this).find('.description').html();
+                    var validation = $(this).find('.validation').html();                
                     var hw1 = $(this).find('.hw_signals .hw1 .name').html();
                     var hw1Val = $(this).find('.hw_signals .hw1 .values').html();
-
                     if($(this).find('.hw_signals .hw2 .name')){
                         var hw2 = $(this).find('.hw_signals .hw2 .name').html();
                         var hw2Val = $(this).find('.hw_signals .hw2 .values').html();
@@ -6469,7 +6637,6 @@ $(document).ready(function (){
                         var hw2 = "-";
                         var hw2Val = "-";
                     }
-
                     if($(this).find('.hw_signals .hw3 .name')){
                         var hw3 = $(this).find('.hw_signals .hw3 .name').html();
                         var hw3Val = $(this).find('.hw_signals .hw3 .values').html();
@@ -6477,20 +6644,34 @@ $(document).ready(function (){
                         var hw3 = "-";
                         var hw3Val = "-";
                     }
-                }else{
-                    var hw1 = "-";
-                    var hw1Val = "-";
-                    var hw2 = "-";
-                    var hw2Val = "-";
-                    var hw3 = "-";
-                    var hw3Val = "-";
+                    testhwLog.push({description: description, validation: validation, hw1: hw1, hw1Val: hw1Val, hw2 : hw2, hw2Val : hw2Val, hw3 : hw3, hw3Val : hw3Val});
                 }
-
-                testhwLog.push({description: description, validation: validation, hw1: hw1, hw1Val: hw1Val, hw2 : hw2, hw2Val : hw2Val, hw3 : hw3, hw3Val : hw3Val});
-            
             });
+                
         }else{
-            //TSSC
+            $("#content_testhw .tssc_omega.table_test .line_table_test").each(function(){
+                if(!$(this).hasClass("disabled")){
+                    var description = $(this).find('.description').html();
+                    var validation = $(this).find('.validation').html();  
+                    var hw1 = $(this).find('.hw_signals .hw1 .name').html();
+                    var hw1Val = $(this).find('.hw_signals .hw1 .values').html();
+                    if($(this).find('.hw_signals .hw2 .name')){
+                        var hw2 = $(this).find('.hw_signals .hw2 .name').html();
+                        var hw2Val = $(this).find('.hw_signals .hw2 .values').html();
+                    }else{
+                        var hw2 = "-";
+                        var hw2Val = "-";
+                    }
+                    if($(this).find('.hw_signals .hw3 .name')){
+                        var hw3 = $(this).find('.hw_signals .hw3 .name').html();
+                        var hw3Val = $(this).find('.hw_signals .hw3 .values').html();
+                    }else{
+                        var hw3 = "-";
+                        var hw3Val = "-";
+                    }
+                    testhwLog.push({description: description, validation: validation, hw1: hw1, hw1Val: hw1Val, hw2 : hw2, hw2Val : hw2Val, hw3 : hw3, hw3Val : hw3Val});
+                }            
+            });
         }
         
         
@@ -7349,7 +7530,9 @@ $(document).ready(function (){
                 var sw_version = data[0].sw_version;
                 var user_sso = data[0].user_sso;   
                 var nodeID_history = data[0].node_id;
-                printJsonLog(json_log, serial_number, part_number, user_sso, nodeID_history, date, fw_fct_version, sw_version);
+                var global_name_rapport = data[0].global_name_rapport;
+                var model_name_rapport = data[0].model_name_rapport;
+                printJsonLog(json_log, serial_number, part_number, user_sso, nodeID_history, date, fw_fct_version, sw_version,global_name_rapport, model_name_rapport);
             }
         });
     }
@@ -7585,7 +7768,49 @@ $(document).ready(function (){
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////// TEST HARDWARE SIGNALS   //////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-
+    function refreshElementsTSSC(){
+        var findPB7 = 0;
+        var findPD3 = 0;
+        
+        $(".test_hw_container .table_test .line_table_test").each(function(){
+            $(this).removeClass(".test_ok");
+            $(this).removeClass(".test_fail");
+            $(this).find(".press_test").html("-");
+            $(this).find(".release_test").html("-");
+            $(this).find(".user_action").html("-");
+            $(this).find(".validation").html("untested");
+            
+            $(this).find(".signal").each(function(){
+                $(this).find(".values").html("");
+                $(this).removeClass("valide");
+                $(this).removeClass("error");
+            })
+        });
+        
+        for(var i = 0; i < dictionary.length; i++){
+            if(dictionary[i].type == "button" && dictionary[i].symbol_name == "PB7") {
+                findPB7 = 1;
+            }
+            if(dictionary[i].type == "button" && dictionary[i].symbol_name == "PD3") {
+                findPD3 = 1;
+            }
+        }
+        if(findPB7 == 0){
+            $(".test_hw_container .tssc_omega .pb7").addClass("disabled");
+            $(".test_hw_container .tssc_omega .pb7").addClass("test_ok");
+        }else{
+            $(".test_hw_container .tssc_omega .pb7").removeClass("disabled");
+            $(".test_hw_container .tssc_omega .pb7").removeClass("test_ok");
+        }
+        if(findPD3 == 0){
+            $(".test_hw_container .tssc_omega .pd3").addClass("disabled");
+            $(".test_hw_container .tssc_omega .pd3").addClass("test_ok");
+        }else{
+            $(".test_hw_container .tssc_omega .pd3").removeClass("disabled");
+            $(".test_hw_container .tssc_omega .pd3").removeClass("test_ok");
+        }
+    }
+    
     $(".test_hw_container .bt_check.start").on('click', function(){
         var _this = $(this)
         var hw1 = $(this).parent().data('hw1');
@@ -7692,7 +7917,243 @@ $(document).ready(function (){
        },500)
          
    });
+   
+    $(".test_hw_container .bt_check.start_tssc_pin").on('click', function(){
+       var _this = $(this)
+       _MODE = "TEST_HARDWARE_OMEGA";
+       
+       sendSignalPic("6");
+       
+       var baseMsg = Cal_post + "040000" + "1fc22f00" + "0301";
+       var msgHW1 = "0301";
+       var msgHW2 = "0401";
+       var msgHW3 = "0501";
+       
+       sendSignal(baseMsg + msgHW1);
+       sendSignal(baseMsg + msgHW2);
+       sendSignal(baseMsg + msgHW3);
+       
+       setTimeout(function(){
+            var hw1_v = curr_LAT_LOCK;
+            var hw2_v = curr_LONG_LOCK;
+            var hw3_v = curr_ROTATION_LOCK;
+            console.log("hw1:"+hw1_v + " hw2:"+ hw2_v +" hw3:"+hw3_v);
+            
+            if(hw1_v == 1 && hw2_v == 1 && hw3_v == 1){
+                console.log("on a toutes les valeurs à 1, on passe a la suite")
+                msgHW1 = "0300";
+                msgHW2 = "0400";
+                msgHW3 = "0500";                
+                
+                sendSignal(baseMsg + msgHW1);
+                sendSignal(baseMsg + msgHW2);
+                sendSignal(baseMsg + msgHW3);
+                setTimeout(function(){
+                    hw1_v = curr_LAT_LOCK;
+                    hw2_v = curr_LONG_LOCK;
+                    hw3_v = curr_ROTATION_LOCK;
 
+                    console.log("hw1:"+hw1_v + " hw2:"+ hw2_v +" hw3:"+hw3_v);
+                    
+                    if(hw1_v == 0 && hw2_v == 0 && hw3_v == 0){
+                        console.log("on a toutes les valeurs à 0, on valide le test")
+                        sendSignalPic("7");
+                        _this.parents(".line_table_test").find(".validation").html("<span class='valide'>Validate</span>")
+                        _this.parents(".line_table_test").removeClass("test_fail");
+                        _this.parents(".line_table_test").addClass("test_ok");
+
+                        var counterTotal = 0;
+                        var counterOK = 0;                    
+                        $(".test_hw_container .tssc_omega .line_table_test").each(function(){                    
+                            counterTotal++;
+                            if($(this).hasClass("test_ok")){
+                                counterOK++;
+                            }
+                        });                    
+                        if(counterTotal == counterOK){
+                           $(".continue_to_final").removeClass("hidden");      
+                        }
+                    }
+                },500)
+            }else{
+                sendSignalPic("7");
+                _this.parents(".line_table_test").find(".validation").html("<span class='error'>Failure</span>")
+                _this.parents(".line_table_test").addClass("test_fail");
+                _this.parents(".line_table_test").removeClass("test_ok");
+            }            
+       },500)
+       
+   });
+   
+    $(".test_hw_container .bt_check.start_tssc_input_pin").on('click', function(){
+       var _this = $(this)
+       _MODE = "TEST_HARDWARE_OMEGA";       
+       sendSignalPic("DW");
+       
+       var baseMsg = Cal_post + "030000" + "1fc22f00" + "0000";
+       var msgHW1 = "2f";
+       var msgHW2 = "30";
+       var msgHW3 = "31";       
+      
+        setTimeout(function(){
+            pressInputTest(_this);
+        },500)  
+
+
+        function pressInputTest(_this){
+            sendSignal(baseMsg + msgHW1);
+            waitPingResponse = "1fc00f41"
+            setTimeout(function(){
+               var response_hw1 = finalResponseData;
+               if(response_hw1.substring(0,6) == "80002f" && response_hw1.substring(6,8) ==  "01"){
+                   console.log("premier msg activé, on active le 2eme");
+                   sendSignal(baseMsg + msgHW2);
+                   waitPingResponse = "1fc00f41";
+                   setTimeout(function(){
+                       var response_hw2 = finalResponseData;
+                        if(response_hw2.substring(0,6) == "800030" && response_hw2.substring(6,8) ==  "01"){
+                            console.log("2em msg activé, on active le 3eme");
+                            sendSignal(baseMsg + msgHW3);
+                            waitPingResponse = "1fc00f41";
+                            setTimeout(function(){
+                                var response_hw3 = finalResponseData;
+                                if(response_hw3.substring(0,6) == "800031" && response_hw2.substring(6,8) ==  "01"){
+                                    sendSignalPic("DP");
+                                    setTimeout(function(){
+                                        releaseInputTest(_this);
+                                    },500)                                
+                                }else{
+                                    fail(_this);
+                                }
+                            },200); 
+                         }else{
+                            fail(_this);
+                        }
+                   },200);
+               }else{
+                   fail(_this);
+               }
+           },200);
+        } 
+
+        function releaseInputTest(_this){
+            sendSignal(baseMsg + msgHW1);
+            waitPingResponse = "1fc00f41"
+            setTimeout(function(){
+               var response_hw1 = finalResponseData;
+               if(response_hw1.substring(0,6) == "80002f" && response_hw1.substring(6,8) ==  "00"){
+                   console.log("premier msg release, on active le 2eme");
+                   sendSignal(baseMsg + msgHW2);
+                   waitPingResponse = "1fc00f41";
+                   setTimeout(function(){
+                       var response_hw2 = finalResponseData;
+                        if(response_hw2.substring(0,6) == "800030" && response_hw2.substring(6,8) ==  "00"){
+                            console.log("2em msg release, on active le 3eme");
+                            sendSignal(baseMsg + msgHW3);
+                            waitPingResponse = "1fc00f41";
+                            setTimeout(function(){
+                                var response_hw3 = finalResponseData;
+                                if(response_hw3.substring(0,6) == "800031" && response_hw2.substring(6,8) ==  "00"){
+                                    _this.parents(".line_table_test").find(".validation").html("<span class='valide'>Validate</span>")
+                                    _this.parents(".line_table_test").removeClass("test_fail");
+                                    _this.parents(".line_table_test").addClass("test_ok");
+
+                                    var counterTotal = 0;
+                                    var counterOK = 0;                    
+                                    $(".test_hw_container .tssc_omega .line_table_test").each(function(){                    
+                                        counterTotal++;
+                                        if($(this).hasClass("test_ok")){
+                                            counterOK++;
+                                        }
+                                    });                    
+                                    if(counterTotal == counterOK){
+                                       $(".continue_to_final").removeClass("hidden");      
+                                    }
+                                }else{
+                                    fail(_this);
+                                }
+                            },200); 
+                         }else{
+                            fail(_this);
+                        }
+                   },200);
+               }else{
+                   fail(_this);
+               }
+           },200);
+        } 
+        
+        function fail(_this){
+            sendSignalPic("DP");
+            _this.parents(".line_table_test").find(".validation").html("<span class='error'>Failure</span>")
+            _this.parents(".line_table_test").addClass("test_fail");
+            _this.parents(".line_table_test").removeClass("test_ok");
+        }
+    });
+    
+    $(".test_hw_container .bt_check.start_tssc_master_pin").on('click', function(){
+       var _this = $(this)
+       _MODE = "TEST_HARDWARE_OMEGA";       
+       sendSignalPic("DC");
+       
+       var baseMsg = Cal_post + "030000" + "1fc22f00" + "0000";
+       var msgHW1 = "32";     
+      
+        setTimeout(function(){
+            pressInputTest(_this);
+        },500)  
+
+
+        function pressInputTest(_this){
+            sendSignal(baseMsg + msgHW1);
+            waitPingResponse = "1fc00f41"
+            setTimeout(function(){
+               var response_hw1 = finalResponseData;
+               if(response_hw1.substring(0,6) == "800032" && response_hw1.substring(6,8) ==  "01"){                   
+                    sendSignalPic("D@");
+                    setTimeout(function(){
+                        releaseInputTest(_this);
+                    },200)                                
+                }else{
+                    fail(_this);
+                }            
+           },200);
+        } 
+
+        function releaseInputTest(_this){
+            sendSignal(baseMsg + msgHW1);
+            waitPingResponse = "1fc00f41"
+            setTimeout(function(){
+               var response_hw1 = finalResponseData;
+               if(response_hw1.substring(0,6) == "800032" && response_hw1.substring(6,8) ==  "00"){                   
+                    _this.parents(".line_table_test").find(".validation").html("<span class='valide'>Validate</span>")
+                    _this.parents(".line_table_test").removeClass("test_fail");
+                    _this.parents(".line_table_test").addClass("test_ok");
+                    var counterTotal = 0;
+                    var counterOK = 0;                    
+                    $(".test_hw_container .tssc_omega .line_table_test").each(function(){                    
+                        counterTotal++;
+                        if($(this).hasClass("test_ok")){
+                            counterOK++;
+                        }
+                    });                    
+                    if(counterTotal == counterOK){
+                       $(".continue_to_final").removeClass("hidden");      
+                    }
+                }else{
+                   fail(_this);
+                }
+           },200);
+        }
+        
+        function fail(_this){
+            sendSignalPic("D@");
+            _this.parents(".line_table_test").find(".validation").html("<span class='error'>Failure</span>")
+            _this.parents(".line_table_test").addClass("test_fail");
+            _this.parents(".line_table_test").removeClass("test_ok");
+        }
+    });
+    
     $(".test_hw_container .bt_check.stop").on('click', function(){
         var _this = $(this)
         var actualLine = _this.parents(".line_table_test");
@@ -7775,69 +8236,117 @@ $(document).ready(function (){
                 _this.find(".hw_signals .hw1").addClass("valide");
             }
         }
-        if(hw2 != "" && hw2 && hw2!= "-"){
-            if(checkHWsignal(hw2, "press", _this) == 0){
-                error++;
-                _this.find(".hw_signals .hw2").addClass("error");
-                _this.find(".hw_signals .hw2").removeClass("valide");
-            }else{
-                _this.find(".hw_signals .hw2").removeClass("error");
-                _this.find(".hw_signals .hw2").addClass("valide");
+        setTimeout(function(){
+            if(hw2 != "" && hw2 && hw2!= "-"){
+                if(checkHWsignal(hw2, "press", _this) == 0){
+                    error++;
+                    _this.find(".hw_signals .hw2").addClass("error");
+                    _this.find(".hw_signals .hw2").removeClass("valide");
+                }else{
+                    _this.find(".hw_signals .hw2").removeClass("error");
+                    _this.find(".hw_signals .hw2").addClass("valide");
+                }
             }
-        }
-        if(hw3 != "" && hw3 && hw3!= "-"){
-            if(checkHWsignal(hw3, "press", _this) == 0){
-                error++;
-                _this.find(".hw_signals .hw3").addClass("error");
-                _this.find(".hw_signals .hw3").removeClass("valide");
-            }else{
-                _this.find(".hw_signals .hw3").removeClass("error");
-                _this.find(".hw_signals .hw3").addClass("valide");
-            }
-        }
+        },200);
         
-        if(error > 0){
+        setTimeout(function(){
+            if(hw3 != "" && hw3 && hw3!= "-"){
+                if(checkHWsignal(hw3, "press", _this) == 0){
+                    error++;
+                    _this.find(".hw_signals .hw3").addClass("error");
+                    _this.find(".hw_signals .hw3").removeClass("valide");
+                }else{
+                    _this.find(".hw_signals .hw3").removeClass("error");
+                    _this.find(".hw_signals .hw3").addClass("valide");
+                }
+            }
+        },400);
+        
+        setTimeout(function(){
+            if(error > 0){
             _this.find(".press_test").html("FAIL");
+            if(_this.hasClass("emergency")){
+                _this.find(".user_action").html("Press Emergency Reset Bt.");
+            }else{
+                _this.find(".user_action").html("Release the button");
+            }
+            
+        
+            if(globalName == "OMEGA" && (modelName == "SMARTBOX" || modelName == "SMARTHANDLE")){
+                var signalPing = Cal_post+"0300001fc42f0000"+ping;
+                sendSignalPic("8");
+            }else{
+                sendSignalPic("6");
+                var signalPing = Cal_post+"0300001fc22f0000"+ping;
+            }
+
+            //on lance la boucle de ping pour check si l'user appuie ou non sur le bouton
+            intervalTestHW = setInterval(function(){
+               sendSignal(signalPing)
+               if(modelName == "TSSC"){
+                   waitPingResponse = "1fc00f41";
+               }else{
+                   waitPingResponse = "1fc00f51";
+               }           
+               setTimeout(function(){
+                   var response = finalResponseData;
+                   if(response.substring(0,2)== "80" && response.substring(6,8)== "01"){
+                       //
+                   }else if(response.substring(0,2)== "80" && response.substring(6,8)== "00"){
+                       console.log(response);
+                       console.log("button is released : "+response.substring(6,8));
+                       checkHWvaluesRelease(hw1, hw2, hw3, ping, _this);
+                   }else{
+                       console.log("no match");
+                   }
+               },100)
+            },200) 
         }else{
             _this.find(".press_test").html("PASS");
-        }        
+            if(_this.hasClass("emergency")){
+                _this.find(".user_action").html("Press Emergency Reset Bt.");
+            }else{
+                _this.find(".user_action").html("Release the button");
+            }
         
-        _this.find(".user_action").html("Release the button");
-        
-        if(globalName == "OMEGA" && (modelName == "SMARTBOX" || modelName == "SMARTHANDLE")){
-            var signalPing = Cal_post+"0300001fc42f0000"+ping;
-            sendSignalPic("8");
-        }else{
-            sendSignalPic("6");
-            var signalPing = Cal_post+"0300001fc22f0000"+ping;
-        }
-        
-        //on lance la boucle de ping pour check si l'user appuie ou non sur le bouton
-        intervalTestHW = setInterval(function(){
-           sendSignal(signalPing)
-           if(modelName == "TSSC"){
-               waitPingResponse = "1fc00f41";
-           }else{
-               waitPingResponse = "1fc00f51";
-           }           
-           setTimeout(function(){
-               var response = finalResponseData;
-               if(response.substring(0,2)== "80" && response.substring(6,8)== "01"){
-                   //
-               }else if(response.substring(0,2)== "80" && response.substring(6,8)== "00"){
-                   console.log(response);
-                   console.log("button is released : "+response.substring(6,8));
-                   checkHWvaluesRelease(hw1, hw2, hw3, ping, _this);
+            if(globalName == "OMEGA" && (modelName == "SMARTBOX" || modelName == "SMARTHANDLE")){
+                var signalPing = Cal_post+"0300001fc42f0000"+ping;
+                sendSignalPic("8");
+            }else{
+                sendSignalPic("6");
+                var signalPing = Cal_post+"0300001fc22f0000"+ping;
+            }
+
+            //on lance la boucle de ping pour check si l'user appuie ou non sur le bouton
+            intervalTestHW = setInterval(function(){
+               sendSignal(signalPing)
+               if(modelName == "TSSC"){
+                   waitPingResponse = "1fc00f41";
                }else{
-                   console.log("no match");
-               }
-           },100)
-        },200)        
+                   waitPingResponse = "1fc00f51";
+               }           
+               setTimeout(function(){
+                   var response = finalResponseData;
+                   if(response.substring(0,2)== "80" && response.substring(6,8)== "01"){
+                       //
+                   }else if(response.substring(0,2)== "80" && response.substring(6,8)== "00"){
+                       console.log(response);
+                       console.log("button is released : "+response.substring(6,8));
+                       checkHWvaluesRelease(hw1, hw2, hw3, ping, _this);
+                   }else{
+                       console.log("no match");
+                   }
+               },100)
+            },200)        
+        }        
+        },600);
+        
     }
     
     function checkHWvaluesRelease(hw1, hw2, hw3, ping, _this){
         clearInterval(intervalTestHW);
         var error = 0;
+        
         if(hw1 != "" && hw1 && hw1!= "-"){
             if(checkHWsignal(hw1, "release", _this) == 0){
                 error++;
@@ -7847,7 +8356,9 @@ $(document).ready(function (){
                 
             }
         }
-        if(hw2 != "" && hw2 && hw2!= "-"){
+        
+        setTimeout(function(){
+            if(hw2 != "" && hw2 && hw2!= "-"){
             if(checkHWsignal(hw2, "release", _this) == 0){
                 error++;
                 _this.find(".hw_signals .hw2").addClass("error");
@@ -7856,7 +8367,9 @@ $(document).ready(function (){
                 
             }
         }
-        if(hw3 != "" && hw3 && hw3!= "-"){
+        },200);
+        setTimeout(function(){
+            if(hw3 != "" && hw3 && hw3!= "-"){
             if(checkHWsignal(hw3, "release", _this) == 0){
                 error++;
                 _this.find(".hw_signals .hw3").addClass("error");
@@ -7865,72 +8378,74 @@ $(document).ready(function (){
                 
             }
         }
+        },400);
         
-                
-        if(error > 0){
-            _this.find(".release_test").html("FAIL");
-        }else{
-            _this.find(".release_test").html("PASS");
-        }
-        
-        if(_this.find(".release_test").html() == "PASS" && _this.find(".press_test").html() == "PASS"){
-            _this.find(".validation").html("<span class='valide'>Validate</span>");
-            _this.removeClass("test_fail");
-            _this.addClass("test_ok");
-            var counterTotal = 0;
-            var counterOK = 0;
-            if(modelName == "SMARTBOX"){
-                $(".test_hw_container .smartbox_omega .line_table_test").each(function(){                    
-                    counterTotal++;
-                    if($(this).hasClass("test_ok")){
-                        counterOK++;
-                    }
-                });
-                
-            }else if(modelName =="SMARTHANDLE"){
-                $(".test_hw_container .smarthandle_omega .line_table_test").each(function(){                    
-                    counterTotal++;
-                    if($(this).hasClass("test_ok")){
-                        counterOK++;
-                    }
-                });
-            }else if(modelName =="TSSC"){
-                $(".test_hw_container .tssc_omega .line_table_test").each(function(){                    
-                    counterTotal++;
-                    if($(this).hasClass("test_ok")){
-                        counterOK++;
-                    }
-                });
+        setTimeout(function(){        
+            if(error > 0){
+                _this.find(".release_test").html("FAIL");
+            }else{
+                _this.find(".release_test").html("PASS");
             }
-            if(counterTotal == counterOK){
-               $(".continue_to_final").removeClass("hidden");      
+
+            if(_this.find(".release_test").html() == "PASS" && _this.find(".press_test").html() == "PASS"){
+                _this.find(".validation").html("<span class='valide'>Validate</span>");
+                _this.removeClass("test_fail");
+                _this.addClass("test_ok");
+                var counterTotal = 0;
+                var counterOK = 0;
+                if(modelName == "SMARTBOX"){
+                    $(".test_hw_container .smartbox_omega .line_table_test").each(function(){                    
+                        counterTotal++;
+                        if($(this).hasClass("test_ok")){
+                            counterOK++;
+                        }
+                    });
+
+                }else if(modelName =="SMARTHANDLE"){
+                    $(".test_hw_container .smarthandle_omega .line_table_test").each(function(){                    
+                        counterTotal++;
+                        if($(this).hasClass("test_ok")){
+                            counterOK++;
+                        }
+                    });
+                }else if(modelName =="TSSC"){
+                    $(".test_hw_container .tssc_omega .line_table_test").each(function(){                    
+                        counterTotal++;
+                        if($(this).hasClass("test_ok")){
+                            counterOK++;
+                        }
+                    });
+                }
+                if(counterTotal == counterOK){
+                   $(".continue_to_final").removeClass("hidden");      
+                }
+
+            }else{
+                _this.find(".validation").html("<span class='error'>Failure</span>");
+                _this.addClass("test_fail");
+                _this.removeClass("test_ok");
             }
-            
-        }else{
-            _this.find(".validation").html("<span class='error'>Failure</span>");
-            _this.addClass("test_fail");
-            _this.removeClass("test_ok");
-        }
-        
-        _this.find(".user_action").html("-");
-        
-        var ping = $(this).parent().data('ping');
-        _this.find(".bt_check.stop").addClass("hidden");
-        
-        $(".test_hw_container .bt_check.start").each(function(){
-            $(this).removeClass("hidden");
-        });
-        clearInterval(intervalTestHW);
-        
-       if(globalName == "OMEGA" && (modelName == "SMARTBOX" || modelName == "SMARTHANDLE")){
-            sendSignalPic("9");
-            if(_this.hasClass("logical")){
-                sendSignal(Cal_post+"0400001fc42f0003010500");
-                sendSignal(Cal_post+"0400001fc42f0003010600");
+
+            _this.find(".user_action").html("-");
+
+            var ping = $(this).parent().data('ping');
+            _this.find(".bt_check.stop").addClass("hidden");
+
+            $(".test_hw_container .bt_check.start").each(function(){
+                $(this).removeClass("hidden");
+            });
+            clearInterval(intervalTestHW);
+
+           if(globalName == "OMEGA" && (modelName == "SMARTBOX" || modelName == "SMARTHANDLE")){
+                sendSignalPic("9");
+                if(_this.hasClass("logical")){
+                    sendSignal(Cal_post+"0400001fc42f0003010500");
+                    sendSignal(Cal_post+"0400001fc42f0003010600");
+                }
+            }else{
+                sendSignalPic("7");
             }
-        }else{
-            sendSignalPic("7");
-        }
+        },600);
     }
     
     function checkHWsignal(signalHW, state, _this){                
@@ -8075,11 +8590,26 @@ $(document).ready(function (){
                 
                 if(curr_LATERAL_SWA1 > 20 && curr_LATERAL_SWA1 < 25){
                    result = 1; 
-                   _this.find(".hw_signals .long_enable .values").html("");
-                   _this.find(".hw_signals .long_enable .values").append(" "+curr_LATERAL_SWA1.toFixed(2)+"V")
+                   _this.find(".hw_signals .lateral_swa1 .values").html("");
+                   _this.find(".hw_signals .lateral_swa1 .values").append(" "+curr_LATERAL_SWA1.toFixed(2)+"V")
                 }else if(curr_LATERAL_SWA1 < 2 && state == "release"){
                    result = 1; 
-                   _this.find(".hw_signals .long_enable .values").append(" / 0V")
+                   _this.find(".hw_signals .lateral_swa1 .values").append(" / 0V")
+                }
+                else{
+                    result = 0; 
+                }
+                break;
+            case "GLOBAL_GANTRY_ENABLE":
+                console.log("GLOBAL_GANTRY_ENABLE -> "+curr_GLOBAL_GANTRY_ENABLE);
+                
+                if(curr_GLOBAL_GANTRY_ENABLE > 20 && curr_GLOBAL_GANTRY_ENABLE < 25){
+                   result = 1; 
+                   _this.find(".hw_signals .global_gantry_enable .values").html("");
+                   _this.find(".hw_signals .global_gantry_enable .values").append(" "+curr_GLOBAL_GANTRY_ENABLE.toFixed(2)+"V")
+                }else if(curr_GLOBAL_GANTRY_ENABLE < 2 && state == "release"){
+                   result = 1; 
+                   _this.find(".hw_signals .global_gantry_enable .values").append(" / 0V")
                 }
                 else{
                     result = 0; 
@@ -8090,11 +8620,11 @@ $(document).ready(function (){
                 
                 if(curr_SCI_LAT_DR_REQ > 20 && curr_SCI_LAT_DR_REQ < 25){
                    result = 1; 
-                   _this.find(".hw_signals .long_enable .values").html("");
-                   _this.find(".hw_signals .long_enable .values").append(" "+curr_SCI_LAT_DR_REQ.toFixed(2)+"V")
+                   _this.find(".hw_signals .sci_lat_dr_req .values").html("");
+                   _this.find(".hw_signals .sci_lat_dr_req .values").append(" "+curr_SCI_LAT_DR_REQ.toFixed(2)+"V")
                 }else if(curr_SCI_LAT_DR_REQ < 2 && state == "release"){
                    result = 1; 
-                   _this.find(".hw_signals .long_enable .values").append(" / 0V")
+                   _this.find(".hw_signals .sci_lat_dr_req .values").append(" / 0V")
                 }
                 else{
                     result = 0; 
@@ -8105,11 +8635,11 @@ $(document).ready(function (){
                 
                if(curr_AUTO_POS_DR_REQ > 20 && curr_AUTO_POS_DR_REQ < 25){
                    result = 1; 
-                   _this.find(".hw_signals .long_enable .values").html("");
-                   _this.find(".hw_signals .long_enable .values").append(" "+curr_AUTO_POS_DR_REQ.toFixed(2)+"V")
+                   _this.find(".hw_signals .auto_pos_dr_req .values").html("");
+                   _this.find(".hw_signals .auto_pos_dr_req .values").append(" "+curr_AUTO_POS_DR_REQ.toFixed(2)+"V")
                 }else if(curr_AUTO_POS_DR_REQ < 2 && state == "release"){
                    result = 1; 
-                   _this.find(".hw_signals .long_enable .values").append(" / 0V")
+                   _this.find(".hw_signals .auto_pos_dr_req .values").append(" / 0V")
                 }
                 else{
                     result = 0; 
@@ -8120,26 +8650,27 @@ $(document).ready(function (){
                 
                 if(curr_SCI_FRTL_DR_REQ > 20 && curr_SCI_FRTL_DR_REQ < 25){
                    result = 1; 
-                   _this.find(".hw_signals .long_enable .values").html("");
-                   _this.find(".hw_signals .long_enable .values").append(" "+curr_SCI_FRTL_DR_REQ.toFixed(2)+"V")
+                   _this.find(".hw_signals .sci_frtl_dr_req .values").html("");
+                   _this.find(".hw_signals .sci_frtl_dr_req .values").append(" "+curr_SCI_FRTL_DR_REQ.toFixed(2)+"V")
                 }else if(curr_SCI_FRTL_DR_REQ < 2 && state == "release"){
                    result = 1; 
-                   _this.find(".hw_signals .long_enable .values").append(" / 0V")
+                   _this.find(".hw_signals .sci_frtl_dr_req .values").append(" / 0V")
                 }
                 else{
                     result = 0; 
                 }
                 break;
             case "OUT_CONTACT_STOP":
-                console.log("SCI_FRTL_DR_REQ -> "+curr_OUT_CONTACT_STOP);
+                console.log("OUT_CONTACT_STOP -> "+curr_OUT_CONTACT_STOP);
                 
-                if(curr_OUT_CONTACT_STOP > 0 && curr_OUT_CONTACT_STOP < 5){
+                if(curr_OUT_CONTACT_STOP > 4 && curr_OUT_CONTACT_STOP < 6){
                    result = 1; 
-                   _this.find(".hw_signals .long_enable .values").html("");
-                   _this.find(".hw_signals .long_enable .values").append(" "+curr_OUT_CONTACT_STOP.toFixed(2)+"V")
-                }else if(curr_OUT_CONTACT_STOP < 2 && state == "release"){
+                   _this.find(".hw_signals .out_contact_stop .values").html("");
+                   _this.find(".hw_signals .out_contact_stop .values").append(" "+curr_OUT_CONTACT_STOP.toFixed(2)+"V")
+                }
+                else if(curr_OUT_CONTACT_STOP < 2 && state == "release"){
                    result = 1; 
-                   _this.find(".hw_signals .long_enable .values").append(" / 0V")
+                   _this.find(".hw_signals .out_contact_stop .values").append(" / 0V")
                 }
                 else{
                     result = 0; 
@@ -8205,8 +8736,46 @@ $(document).ready(function (){
             sendSignal("002400806d68d7551407f09b861e3aad000549a844080000000002200102000000000000");
         }else if(globalName == "OMEGA"){
             if(modelName == "TSSC"){
-                sendSignal("002400806d68d7551407f09b861e3aad000549a84408000006222240AAAAAAAAAAAAAA88");
-                sendSignal("002400806d68d7551407f09b861e3aad000549a84405000006622240AAAAA028AA000000");
+//                sendSignal("002400806d68d7551407f09b861e3aad000549a84408000006222240AAAAAAAAAAAAAA88");
+//                sendSignal("002400806d68d7551407f09b861e3aad000549a84405000006622240AAAAA028AA000000");
+
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302000200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302010200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302020200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302030200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302040200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302050200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302060200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302070200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302080200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302090200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020A0200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020B0200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020C0200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020D0200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020E0200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020F0200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302100200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302110200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302120200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302130200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302140200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302150200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302160200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302170200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302180200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302190200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021A0200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021B0200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021C0200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021D0200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021E0200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021F0200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302200200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302210200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302220200000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302230200000000");
+                  
             }else{
                 sendSignal("002400806d68d7551407f09b861e3aad000549a84401000006c422500800000000000000");
                 sendSignal("002400806d68d7551407f09b861e3aad000549a84401000006c422502a00000000000000");
@@ -8648,7 +9217,10 @@ $(document).ready(function (){
             else{
                 sendSignalPic("2");
             }
-        resetDisplayCalibration(hasServiceBt, switchPosNumber);        
+            if($(this).hasClass("repair_mode") || $(this).hasClass("manufacturing_mode")){
+                resetDisplayCalibration(hasServiceBt, switchPosNumber);
+            }
+            
     });
     
     $(".manufacturing_history_bt").on('click', function(){
@@ -8754,8 +9326,49 @@ $(document).ready(function (){
             sendSignal("002400806d68d7551407f09b861e3aad000549a844080000000002200100000000000000");
         }else if(globalName == "OMEGA"){
             if(modelName == "TSSC"){
-                sendSignal("002400806d68d7551407f09b861e3aad000549a844080000062222400000000000000000");
-                sendSignal("002400806d68d7551407f09b861e3aad000549a844050000066222400000000A00000000");
+                
+//                sendSignal("002400806d68d7551407f09b861e3aad000549a84408000006222240AAAAAAAAAAAAAA88");
+//                sendSignal("002400806d68d7551407f09b861e3aad000549a84405000006622240AAAAA028AA000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302000000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302010000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302020000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302030000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302040000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302050000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302060000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302070000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302080000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302090000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020A0000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020B0000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020C0000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020D0000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020E0000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020F0000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302100000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302110000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302120000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302130000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302140000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302150000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302160000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302170000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302180000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302190000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021A0000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021B0000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021C0000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021D0000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021E0000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021F0000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302200000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302210000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302220000000000");
+                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302230000000000");
+                
+                
+//                sendSignal("002400806d68d7551407f09b861e3aad000549a844080000062222400000000000000000");
+//                sendSignal("002400806d68d7551407f09b861e3aad000549a844050000066222400000000A00000000");
             }else{
                 sendSignal("002400806d68d7551407f09b861e3aad000549a84401000006c422500000000000000000");
                 sendSignal("002400806d68d7551407f09b861e3aad000549a84401000006e422500000000000000000");
@@ -8776,8 +9389,11 @@ $(document).ready(function (){
         
         if(is_hexadecimal(signal) && signal.length <= 72){
             var jsonData = '{"type":"signal", "msg":"' + signal + '"}';
-            console.log(jsonData);        
+            console.log(jsonData);      
+            var canid = signal.substring(48,56)
+            var candata = signal.substring(56,72)
             ws.send(jsonData);
+            sendToSpy(canid, candata);
         }else{
             var jsonData = '{"type":"signal", "msg":"' + signal + '"}';
             console.log(jsonData);    
