@@ -28,6 +28,7 @@ $(document).ready(function (){
 
     var intervalSpe;
     var intervalBAD;
+    var pingSwitchInterval;
     
     //déclaration des zones qui seront utilisées à de multiples reprise dans le soft
     var displayContainer = $("#content_toolbox .diag_inge .display_container .content");
@@ -1081,10 +1082,9 @@ $(document).ready(function (){
     /////////////////////////////////////////// HOMEPAGE ENGINEERING  ////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    //recupération des infos tsui homepage INGE
+    //CONNEXION SECTION ENGINEERING
     $("#send_info_hp_E").on('click', function () {
-        //sendSignal("00240080000000000000000000000000000000000008000606220210FFFFFFFFFFFFFFFF");
-        //alert(addHexVal("00000580", nodeID));
+        //recupération des infos du formulaire
         userSSO = ($("#user_sso_input_E").val());
         familyChoice = ($("#family_choice").html().trim());
         modelChoice = ($("#model_choice").html().trim());
@@ -1094,7 +1094,7 @@ $(document).ready(function (){
         cobID1 = addHexVal("00000580", nodeID);
         cobID2 = addHexVal("00000600", nodeID);
 
-
+        // si les champs sont remplis on continue le process
         if (userSSO !== "" && familyChoice !== "" && modelChoice !== "") {
             $.ajax({
                 url: 'php/api.php?function=check_user_sso&param1=' + userSSO,
@@ -1105,6 +1105,7 @@ $(document).ready(function (){
                     if (userInfo.length == 0) {
                         alert("No result found with this SSO : " + userSSO);
                     } else if (userInfo[0].user_role == "INGE") {
+                        //on recupère le tsui en fonction des choix utilisateur (famille, modèle, type)
                         $.ajax({
                             url: 'php/api.php?function=get_tsui&param1=' + familyChoice + '&param2=' + modelChoice + '&param3=' + typeChoice,
                             type: 'GET',
@@ -1113,6 +1114,7 @@ $(document).ready(function (){
                                 if (data.length == 0) {
                                     alert("No result found with this part number." + familyChoice)
                                 } else {
+                                    //remplissage des variables globales qui seront utilisées tout au long du process
                                     familyName = data[0].name;
                                     var photo = data[0].photo_link;
                                     family_id = data[0].family;
@@ -1120,9 +1122,9 @@ $(document).ready(function (){
                                     globalName = data[0].family_name;
                                     modelName = data[0].model;
                                     typeChoice = data[0].type;
-                                    
+                                    //réinitialisation VISUELLE du soft
                                     setInitialDisplayByModel(globalName, modelName, typeChoice);
-                                    
+                                    //remplissage de l'interface avec les nouvelles infos
                                     $("#content_toolbox .title_main").html("Toolbox - "+globalName+" "+modelName);
                                     $(".actual_node_id").html(nodeID);
                                     $(".photo_tsui").attr('src', 'images/' + photo);
@@ -1131,7 +1133,6 @@ $(document).ready(function (){
                                     } else {
                                         $(".title_bloc.name").html(familyName);
                                     }
-
                                     $(".sso_user").html(userSSO);
                                     $(".part_number").html(partNumber);
                                     $(".serial_number").html(serialNumber);
@@ -1139,20 +1140,22 @@ $(document).ready(function (){
                                     $(".head_userinfo").removeClass("hidden");
                                     $(".head_userinfo .info .role_user").html("Engineering");
                                     modeEngineering = 1;
-                                    
+                                    //envoi des messages CAN vers le driver afin de démarrer et de configurer le TSUI selon le modèle
                                     setGenericMessages(globalName.trim());
+                                    //après un délai, récupération des informations de la carte
                                     setTimeout(function(){
                                         getInfoCard(globalName, cobID2);
                                     },5000)
                                 }
-                                //Recupération du dictionnaire correspondant + remplissage des zones toolbox
+                                //Recupération du dictionnaire correspondant + remplissage des zones template toolbox
                                 $.ajax({
                                     url: 'php/api.php?function=get_dictionaries_by_id&param1=' + family_id,
                                     type: 'GET',
                                     dataType: 'JSON',
                                     success: function (data, statut) {
                                         dictionary = data;
-                                        var len = data.length;                                                                            
+                                        var len = data.length;
+                                        //Remplissage des zones en html en parcourant le dictionnaire récupéré
                                         for (var iter = 0; iter < len; iter++) {
                                             switch (data[iter].zone) {
                                                 case "0":
@@ -1320,6 +1323,7 @@ $(document).ready(function (){
                                             }
 
                                         }
+                                        //on cache les switch DIM qui n'existent pas dans la famille OMEGA
                                         if (globalName == "OMEGA") {
                                             diagInge.find(".switch").each(function(){
                                                 if($(this).hasClass('dim')){
@@ -1327,7 +1331,7 @@ $(document).ready(function (){
                                                 }
                                             })                                            
                                         }
-                                        
+                                        //gestion des actions user sur les interrupteurs des LED
                                         diagInge.find(".switch").on('click', function () {
                                             var postSignal = "002400806d68d7551407f09b861e3aad000549a844";
 
@@ -1371,6 +1375,7 @@ $(document).ready(function (){
                                                 }
                                             }
                                         });
+                                        //gestion des actions user sur les boutons de calibration des joysticks
                                         calibrateContainer.find(".calibrate_bt button").on('click', function () {
                                             var id = $(this).data('id');
                                             $(this).addClass("hidden");
@@ -1384,7 +1389,7 @@ $(document).ready(function (){
                                             }
 
                                         });
-
+                                        //gestion des actions user sur les boutons de verification de calibration des joysticks
                                         $(".verify_calibration").on('click', function () {
                                             if($(this).hasClass("mushroom")){
                                                 var identifier = $(this).data('id');
@@ -1402,8 +1407,7 @@ $(document).ready(function (){
                                                 }
                                                 startVerifyCalibration(subindexX, subindexY, identifier);
                                             }
-                                        });
-                                        
+                                        });                                        
                                         $(".stop_calibration_verif").on('click', function () {
                                             var identifier = $(this).data('id');
                                             stopVerifyCalibration(identifier);
@@ -1436,56 +1440,16 @@ $(document).ready(function (){
         }
     });
 
-    // Ping des informations de la carte du TSUI selon le modele
-    function getInfoCard(model, id) {
-        _MODE = "CALIBRATION";
-        pingGetInfo(model, id);
-        if (model == "ELEGANCE") {
-            setTimeout(function () {
 
-                var newBootRelease = bootRelease.substring(6, 8) + "." + bootRelease.substring(4, 6);
-                var newFPGARelease = FPGARelease.substring(6, 8) + FPGARelease.substring(4, 6) + "." + FPGARelease.substring(2, 4) + FPGARelease.substring(0, 2);
-                var newsoftwareRelease = softwareRelease.substring(6, 8) + "." + softwareRelease.substring(4, 6);
-                var newunicID = unicID.substring(14, 16) + "." + unicID.substring(12, 14) + "." + unicID.substring(10, 12) + "." + unicID.substring(8, 10) + " " + unicID.substring(6, 8) + "." + unicID.substring(4, 6) + "." + unicID.substring(2, 4) + "." + unicID.substring(0, 2);
-
-                $(".boot_config").html(newsoftwareRelease);
-                $(".fpga_config").html(newFPGARelease);
-                $(".sw_config").html(newBootRelease);
-                if (newBootRelease.substring(0, 1) == "c") {
-                    FWcalibV = newBootRelease;
-                } else {
-                    FWfctV = newBootRelease;
-                }
-                SWv = newsoftwareRelease;
-
-                $(".unic_config").html(newunicID);
-
-                _MODE = "PRETEST";
-            }, 1200);
-        } else if(model == "OMEGA"){
-            setTimeout(function () {
-                softwareRelease = hex2a(softwareRelease);
-                $(".boot_config").html("--");
-                $(".fpga_config").html("--");
-                $(".sw_config").html(softwareRelease);
-                $(".unic_config").html("--");
-
-                _MODE = "PRETEST";
-            }, 2000);
-        }
-
-    }
-
-
-
+    
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////// ON MESSAGE WEBSOCKET  ////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    //Traitement des données websocket 
+    //Traitement des données websocket selon des modes prédéfinis
     ws.onmessage = function (event) {
         switch (_MODE) {
-            case "START":
+            case "START": //utilisé au démarrage du soft pour récupérer les heartbeats et associer un node ID (pour elegance)
                 var message = JSON.parse(event.data);
                 console.log("start_mode"+event.data);
                 if (message.type == "from_GW") {
@@ -1499,7 +1463,7 @@ $(document).ready(function (){
                     }
                 }
                 break;
-            case "PRETEST":
+            case "PRETEST": // Le mode pour la section diagnostique de la repair
                 var message = JSON.parse(event.data);
                 console.log(event.data);
                 if (message.type == "from_GW") {
@@ -1868,7 +1832,7 @@ $(document).ready(function (){
                     }
                 }
                 break;
-            case "TESTFINAL":
+            case "TESTFINAL": // le mode pour la section test final de la repair
                 var message = JSON.parse(event.data);
                 console.log(event.data);
                 if (message.type == "from_GW") {
@@ -2101,8 +2065,8 @@ $(document).ready(function (){
                         globv = convertHexaPic(globv) / 51 / 0.138;
                         tsuiSupply = (convertHexaPic(tsuiSupply)+5) / 51 / 0.138;
                         FRTLgantry = (convertHexaPic(FRTLgantry)+5) / 51 / 0.138;
-                        unreg5 = (convertHexaPic(unreg5)+5) / 51 / 0.37;
-                        unreg12 = (convertHexaPic(unreg12)+5) / 51 / 0.175;  
+                        unreg5 = (convertHexaPic(unreg5)+7) / 51 / 0.37;
+                        unreg12 = (convertHexaPic(unreg12)+7) / 51 / 0.175;  
                         
                         
                         currGlobv = globv;
@@ -2150,8 +2114,8 @@ $(document).ready(function (){
                         globv = (convertHexaPic(globv)+7) / 51 / 0.138;
                         tsuiSupply = (convertHexaPic(tsuiSupply)+5) / 51 / 0.138;
                         FRTLgantry = (convertHexaPic(FRTLgantry)+5) / 51 / 0.138;
-                        unreg5 = (convertHexaPic(unreg5)+5) / 51 / 0.37;
-                        unreg12 = (convertHexaPic(unreg12)+5) / 51 / 0.175;
+                        unreg5 = (convertHexaPic(unreg5)+7) / 51 / 0.37;
+                        unreg12 = (convertHexaPic(unreg12)+7) / 51 / 0.175;
                         
                         currLongEnable = longEnable;
                         currTBLtopPan = TBLtopPan;
@@ -2171,7 +2135,7 @@ $(document).ready(function (){
 
                 }
                 break;
-            case "CALIBRATION":
+            case "CALIBRATION": // le mode utilisé pour tous les process de calibration dans les différentes sections
                 var message = JSON.parse(event.data);
                 console.log(event.data);                
                 if (message.type == "from_GW") {
@@ -2223,8 +2187,75 @@ $(document).ready(function (){
                         }
                     }
                 }
+                break;            
+            case "CALIBRATION_VERIFY": //le mode permettant de traiter tous les pings et réponses de la partie verification calibration
+                var message = JSON.parse(event.data);
+                console.log(event.data);
+                if (message.type == "from_GW") {
+                    var canId = message.canId;
+                    var canData = message.canData;
+
+                    if (canId == cobID1) {
+                        console.log("match " + currentIdentifier);
+                        var subindex = canData.substring(6, 8);
+                        var verifyVal = canData.substring(8, 10);
+                        if (subindex == currentSubindexX) {
+                            updateVerifyData(verifyVal, "x", currentIdentifier);
+                        } else if (subindex == currentSubindexY) {
+                            updateVerifyData(verifyVal, "y", currentIdentifier);
+                        } else {
+                            console.log("no match");
+                        }
+
+                    }
+                    else if(globalName == "OMEGA" && modelName == "TSSC" && canId == "1fc00f41"){
+                        var subindex = canData.substring(2, 6)-4;
+                        var verifyVal = canData.substring(6, 10);
+                        if (subindex == currentSubindexX) {
+                            updateVerifyData(verifyVal, "x", currentIdentifier);
+                        } else if (subindex == currentSubindexY) {
+                            updateVerifyData(verifyVal, "y", currentIdentifier);
+                        } else {
+                            console.log("no match");
+                        }
+                    }
+                    else if(globalName == "OMEGA" && (modelName == "SMARTBOX" || modelName == "SMARTHANDLE")  && canId == "1fc00f51"){
+                        var subindex = canData.substring(2, 6)-4;
+                        var verifyVal = canData.substring(6, 10);
+                        if (subindex == currentSubindexX) {
+                            updateVerifyData(verifyVal, "x", currentIdentifier);
+                        } else if (subindex == currentSubindexY) {
+                            updateVerifyData(verifyVal, "y", currentIdentifier);
+                        } else {
+                            console.log("no match");
+                        }
+                    }
+                }
                 break;
-            case "TEST_HARDWARE_OMEGA":
+            case "CALIBRATION_VERIFY_MUSHROOM": //le mode permettant de traiter tous les pings et réponses de la partie verification calibration MUSHROOM
+                var message = JSON.parse(event.data);
+                console.log(event.data);
+                if (message.type == "from_GW") {
+                    var canId = message.canId;
+                    var canData = message.canData;
+
+                    if (canId == cobID1) {
+                        console.log("match " + currentIdentifier);
+                        var subindex = canData.substring(6, 8);
+                        var verifyVal = canData.substring(8, 10);
+                        
+                        if (subindex == "01") {
+                            updateVerifyData(verifyVal, "x", currentIdentifier);
+                        } else if (subindex == "02") {
+                            updateVerifyData(verifyVal, "y", currentIdentifier);
+                        } else {
+                            console.log("no match");
+                        }
+
+                    }
+                }
+                break;
+            case "TEST_HARDWARE_OMEGA": // le mode utilisé pour toutes les opérations de la page Test hardware Omega dans la section repair test final
                 var message = JSON.parse(event.data);
                 console.log(event.data);
                 if (message.type == "from_pic") {
@@ -2308,8 +2339,8 @@ $(document).ready(function (){
                         globv = convertHexaPic(globv) / 51 / 0.138;
                         tsuiSupply = (convertHexaPic(tsuiSupply)+5) / 51 / 0.138;
                         FRTLgantry = (convertHexaPic(FRTLgantry)+5) / 51 / 0.138;
-                        unreg5 = (convertHexaPic(unreg5)+5) / 51 / 0.37;
-                        unreg12 = (convertHexaPic(unreg12)+5) / 51 / 0.175;
+                        unreg5 = (convertHexaPic(unreg5)+7) / 51 / 0.37;
+                        unreg12 = (convertHexaPic(unreg12)+7) / 51 / 0.175;
                         
                         supplyContainer.html(tsuiVoltage.toFixed(2) + " V");
                         
@@ -2398,8 +2429,8 @@ $(document).ready(function (){
                         globv = (convertHexaPic(globv)+7) / 51 / 0.138;
                         tsuiSupply = (convertHexaPic(tsuiSupply)+5) / 51 / 0.138;
                         FRTLgantry = (convertHexaPic(FRTLgantry)+5) / 51 / 0.138;
-                        unreg5 = (convertHexaPic(unreg5)+5) / 51 / 0.37;
-                        unreg12 = (convertHexaPic(unreg12)+5) / 51 / 0.175;
+                        unreg5 = (convertHexaPic(unreg5)+7) / 51 / 0.37;
+                        unreg12 = (convertHexaPic(unreg12)+7) / 51 / 0.175;
                         
                         supplyContainer.html(tsuiVoltage.toFixed(2) + " V");
                         
@@ -2448,74 +2479,7 @@ $(document).ready(function (){
                     }
                 }                
                 break;
-            case "CALIBRATION_VERIFY":
-                var message = JSON.parse(event.data);
-                console.log(event.data);
-                if (message.type == "from_GW") {
-                    var canId = message.canId;
-                    var canData = message.canData;
-
-                    if (canId == cobID1) {
-                        console.log("match " + currentIdentifier);
-                        var subindex = canData.substring(6, 8);
-                        var verifyVal = canData.substring(8, 10);
-                        if (subindex == currentSubindexX) {
-                            updateVerifyData(verifyVal, "x", currentIdentifier);
-                        } else if (subindex == currentSubindexY) {
-                            updateVerifyData(verifyVal, "y", currentIdentifier);
-                        } else {
-                            console.log("no match");
-                        }
-
-                    }
-                    else if(globalName == "OMEGA" && modelName == "TSSC" && canId == "1fc00f41"){
-                        var subindex = canData.substring(2, 6)-4;
-                        var verifyVal = canData.substring(6, 10);
-                        if (subindex == currentSubindexX) {
-                            updateVerifyData(verifyVal, "x", currentIdentifier);
-                        } else if (subindex == currentSubindexY) {
-                            updateVerifyData(verifyVal, "y", currentIdentifier);
-                        } else {
-                            console.log("no match");
-                        }
-                    }
-                    else if(globalName == "OMEGA" && (modelName == "SMARTBOX" || modelName == "SMARTHANDLE")  && canId == "1fc00f51"){
-                        var subindex = canData.substring(2, 6)-4;
-                        var verifyVal = canData.substring(6, 10);
-                        if (subindex == currentSubindexX) {
-                            updateVerifyData(verifyVal, "x", currentIdentifier);
-                        } else if (subindex == currentSubindexY) {
-                            updateVerifyData(verifyVal, "y", currentIdentifier);
-                        } else {
-                            console.log("no match");
-                        }
-                    }
-                }
-                break;
-            case "CALIBRATION_VERIFY_MUSHROOM":
-                var message = JSON.parse(event.data);
-                console.log(event.data);
-                if (message.type == "from_GW") {
-                    var canId = message.canId;
-                    var canData = message.canData;
-
-                    if (canId == cobID1) {
-                        console.log("match " + currentIdentifier);
-                        var subindex = canData.substring(6, 8);
-                        var verifyVal = canData.substring(8, 10);
-                        
-                        if (subindex == "01") {
-                            updateVerifyData(verifyVal, "x", currentIdentifier);
-                        } else if (subindex == "02") {
-                            updateVerifyData(verifyVal, "y", currentIdentifier);
-                        } else {
-                            console.log("no match");
-                        }
-
-                    }
-                }
-                break;
-            case "BAD_CHECK":
+            case "BAD_CHECK": // le mode permettant de traiter tous les pings et reponses lors du test du bouton BAD
                 var message = JSON.parse(event.data);
                 console.log(event.data);
                 if (message.type == "from_GW") {
@@ -2532,7 +2496,7 @@ $(document).ready(function (){
                     }
                 }
                 break;
-            case "TOOLBOX":
+            case "TOOLBOX": // le mode gérant toutes les opérations dans la section toolbox de la partie Engineering
                 var message = JSON.parse(event.data);
                 console.log(event.data);
                 if (message.type == "from_pic") {
@@ -2612,8 +2576,8 @@ $(document).ready(function (){
                         globv = convertHexaPic(globv) / 51 / 0.138;
                         tsuiSupply = (convertHexaPic(tsuiSupply)+5) / 51 / 0.138;
                         FRTLgantry = (convertHexaPic(FRTLgantry)+5) / 51 / 0.138;
-                        unreg5 = (convertHexaPic(unreg5)+5) / 51 / 0.37;
-                        unreg12 = (convertHexaPic(unreg12)+5) / 51 / 0.175;
+                        unreg5 = (convertHexaPic(unreg5)+7) / 51 / 0.37;
+                        unreg12 = (convertHexaPic(unreg12)+7) / 51 / 0.175;
                         
                         supplyContainer.html(tsuiVoltage.toFixed(2) + " V");
                         
@@ -2721,8 +2685,8 @@ $(document).ready(function (){
                         globv = (convertHexaPic(globv)+7) / 51 / 0.138;
                         tsuiSupply = (convertHexaPic(tsuiSupply)+5) / 51 / 0.138;
                         FRTLgantry = (convertHexaPic(FRTLgantry)+5) / 51 / 0.138;
-                        unreg5 = (convertHexaPic(unreg5)+5) / 51 / 0.37;
-                        unreg12 = (convertHexaPic(unreg12)+5) / 51 / 0.175;
+                        unreg5 = (convertHexaPic(unreg5)+7) / 51 / 0.37;
+                        unreg12 = (convertHexaPic(unreg12)+7) / 51 / 0.175;
                         
                         supplyContainer.html(tsuiVoltage.toFixed(2) + " V");
                         
@@ -3215,14 +3179,63 @@ $(document).ready(function (){
                         }
                     }
                 }
-
                 break;
         }
 
     };
 
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////// PING INFO CARD  ////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    // Ping des informations de la carte du TSUI selon le modele
+    function getInfoCard(model, id) {
+        _MODE = "CALIBRATION";
+        pingGetInfo(model, id);
+        
+        $(".boot_config").html("");
+        $(".fpga_config").html("");
+        $(".sw_config").html("");
+        $(".unic_config").html("");
+        
+        if (model == "ELEGANCE") {
+            setTimeout(function () {
 
+                var newBootRelease = bootRelease.substring(6, 8) + "." + bootRelease.substring(4, 6);
+                var newFPGARelease = FPGARelease.substring(6, 8) + FPGARelease.substring(4, 6) + "." + FPGARelease.substring(2, 4) + FPGARelease.substring(0, 2);
+                var newsoftwareRelease = softwareRelease.substring(6, 8) + "." + softwareRelease.substring(4, 6);
+                var newunicID = unicID.substring(14, 16) + "." + unicID.substring(12, 14) + "." + unicID.substring(10, 12) + "." + unicID.substring(8, 10) + " " + unicID.substring(6, 8) + "." + unicID.substring(4, 6) + "." + unicID.substring(2, 4) + "." + unicID.substring(0, 2);
+
+                $(".boot_config").html(newsoftwareRelease);
+                $(".fpga_config").html(newFPGARelease);
+                $(".sw_config").html(newBootRelease);
+                if (newBootRelease.substring(0, 1) == "c") {
+                    FWcalibV = newBootRelease;
+                } else {
+                    FWfctV = newBootRelease;
+                }
+                SWv = newsoftwareRelease;
+
+                $(".unic_config").html(newunicID);
+
+                _MODE = "PRETEST";
+            }, 1200);
+        } else if(model == "OMEGA"){
+            setTimeout(function () {
+                softwareRelease = hex2a(softwareRelease);
+                $(".boot_config").html("--");
+                $(".fpga_config").html("--");
+                $(".sw_config").html(softwareRelease);
+                $(".unic_config").html("--");
+
+                _MODE = "PRETEST";
+            }, 2000);
+        }
+
+    }
+  
+    
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////// SERIAL NUMBER OPERATIONS (REPAIR) ////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6574,7 +6587,7 @@ $(document).ready(function (){
         $(".stop_calibration_verif").addClass("hidden");
         clearInterval(intervalVerify);
         getCalibrationLog();
-        refreshElementsTSSC();
+        refreshElementsTestHW();
         if(modelName == "TSSC"){
             var startTestMode = Cal_post + "030000" + "1fc22f00" + "060000"
             sendSignal(startTestMode);
@@ -7768,7 +7781,7 @@ $(document).ready(function (){
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////// TEST HARDWARE SIGNALS   //////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-    function refreshElementsTSSC(){
+    function refreshElementsTestHW(){
         var findPB7 = 0;
         var findPD3 = 0;
         
@@ -7781,7 +7794,15 @@ $(document).ready(function (){
             $(this).find(".validation").html("untested");
             
             $(this).find(".signal").each(function(){
-                $(this).find(".values").html("");
+                if($(this).hasClass("switch1") || $(this).hasClass("switch2") || $(this).hasClass("switch3")){
+                    $(this).find(".zero_state").addClass("hidden");
+                    $(this).find(".zero_state").removeClass("test_ok");
+                    $(this).find(".one_state").addClass("hidden");
+                    $(this).find(".one_state").removeClass("test_ok");
+                    
+                }else{
+                    $(this).find(".values").html("");
+                }                
                 $(this).removeClass("valide");
                 $(this).removeClass("error");
             })
@@ -8152,6 +8173,134 @@ $(document).ready(function (){
             _this.parents(".line_table_test").addClass("test_fail");
             _this.parents(".line_table_test").removeClass("test_ok");
         }
+    });
+    
+    $(".test_hw_container .bt_check.start_tssc_switch").on('click', function(){
+        var _this = $(this)        
+        _this.addClass("hidden");
+        var actualLine = _this.parents(".line_table_test");
+        actualLine.find(".stop_tssc_switch").removeClass("hidden");
+        
+        actualLine.find(".signal").each(function(){
+            if($(this).hasClass("switch1") || $(this).hasClass("switch2") || $(this).hasClass("switch3")){
+                $(this).find(".zero_state").addClass("hidden");
+                $(this).find(".zero_state").removeClass("test_ok");
+                $(this).find(".one_state").addClass("hidden");
+                $(this).find(".one_state").removeClass("test_ok");
+
+            }else{
+                $(this).find(".values").html("");
+            }                
+            
+        })
+        actualLine.removeClass("test_ok");
+        actualLine.find(".validation").html("");
+        actualLine.find(".user_action").html("Change micro-switchs position");
+        
+       _MODE = "TEST_HARDWARE_OMEGA";   
+       
+       pingSwitchInterval = setInterval(function(){
+           pingSwitch();
+       },1000);
+       
+       function pingSwitch(){
+           //ping des switch
+            var signalPing = Cal_post+"0300001fc22f0000"+"002b";
+            sendSignal(signalPing);
+            waitPingResponse = "1fc00f41";
+            setTimeout(function(){
+                var responseSwitch1 = finalResponseData.substring(6,8);
+                var signalPing = Cal_post+"0300001fc22f0000"+"002c";
+                sendSignal(signalPing);
+                waitPingResponse = "1fc00f41";
+                setTimeout(function(){
+                    var responseSwitch2 = finalResponseData.substring(6,8);
+                    var signalPing = Cal_post+"0300001fc22f0000"+"002d";
+                    sendSignal(signalPing);
+                    waitPingResponse = "1fc00f41";
+                    setTimeout(function(){
+                        var responseSwitch3 = finalResponseData.substring(6,8); 
+                        setTimeout(function(){
+                            updatePingState(responseSwitch1, responseSwitch2, responseSwitch3);
+                        },200);
+                    },200);
+                },200);
+            },200);                    
+        }
+        
+        function updatePingState(switch1, switch2, switch3){
+            var error = 0;
+            console.log(switch1+" "+switch2+" "+switch3);
+            if(switch1 == "00"){
+                actualLine.find(".hw1 .values .zero_state").removeClass("hidden");
+                actualLine.find(".hw1 .values .zero_state").addClass("test_ok");
+            }
+            if(switch1 == "01"){
+                actualLine.find(".hw1 .values .one_state").removeClass("hidden");
+                actualLine.find(".hw1 .values .one_state").addClass("test_ok");
+            }
+            
+            if(switch2 == "00"){
+                actualLine.find(".hw2 .values .zero_state").removeClass("hidden");
+                actualLine.find(".hw2 .values .zero_state").addClass("test_ok");
+            }
+            if(switch2 == "01"){
+                actualLine.find(".hw2 .values .one_state").removeClass("hidden");
+                actualLine.find(".hw2 .values .one_state").addClass("test_ok");
+            }
+            
+            if(switch3 == "00"){
+                actualLine.find(".hw3 .values .zero_state").removeClass("hidden");
+                actualLine.find(".hw3 .values .zero_state").addClass("test_ok");
+            }
+            if(switch3 == "01"){
+                actualLine.find(".hw3 .values .one_state").removeClass("hidden");
+                actualLine.find(".hw3 .values .one_state").addClass("test_ok");
+            }
+            
+            actualLine.find(".one_state").each(function(){                
+                if(!$(this).hasClass("test_ok")){
+                    error++;
+                }
+            })
+            actualLine.find(".zero_state").each(function(){                
+                if(!$(this).hasClass("test_ok")){
+                    error++;
+                }
+            })
+            
+            if(error == 0){
+                actualLine.find(".validation").html("<span class='valide'>Validate</span>");
+                actualLine.addClass("test_ok");
+                actualLine.removeClass("test_fail");
+                actualLine.find(".start_tssc_switch").removeClass("hidden");
+                actualLine.find(".stop_tssc_switch").addClass("hidden");
+                actualLine.find(".user_action").html("-");
+                clearInterval(pingSwitchInterval);
+                
+                var counterTotal = 0;
+                var counterOK = 0;                    
+                $(".test_hw_container .tssc_omega .line_table_test").each(function(){                    
+                    counterTotal++;
+                    if($(this).hasClass("test_ok")){
+                        counterOK++;
+                    }
+                });                    
+                if(counterTotal == counterOK){
+                   $(".continue_to_final").removeClass("hidden");      
+                }
+            }
+        }
+        
+    });
+    
+    $(".test_hw_container .bt_check.stop_tssc_switch").on('click', function(){
+        var _this = $(this);        
+        _this.addClass("hidden");
+        var actualLine = _this.parents(".line_table_test");
+        actualLine.find(".start_tssc_switch").removeClass("hidden");
+        actualLine.find(".user_action").html("-");
+        clearInterval(pingSwitchInterval);
     });
     
     $(".test_hw_container .bt_check.stop").on('click', function(){
