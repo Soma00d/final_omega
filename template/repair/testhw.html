@@ -144,13 +144,13 @@
                 <div class="td_test description">Master Pin Test</div>
                 <div class="td_test photo"><img src="images/chip.png" style="width: 45px;"></div>
                 <div class="td_test hw_signals">
-                    <div class="signal tbl_drive_down hw1"><span class="name">MASTER_PIN</span> <span class="values"></span></div>
+                    <div class="signal master_pin_2 hw1"><span class="name">MASTER_PIN_2</span> <span class="values"></span></div>
                 </div>
                 <div class="td_test press_test">-</div>
                 <div class="td_test release_test">-</div>
                 <div class="td_test user_action">-</div>
                 <div class="td_test validation">Untested</div>
-                <div class="td_test check" data-hw1="MASTER_PIN" data-hw2="TBL_DRIVE_UP" data-hw3="-" data-ping="000F">
+                <div class="td_test check" data-hw1="MASTER_PIN_2" data-hw2="-" data-hw3="-" data-ping="000F">
                     <button class="bt_check start_master_pin">Test</button>
                     <button class="bt_check stop_master_pin hidden">Stop</button>
                 </div>
@@ -299,13 +299,13 @@
                 <div class="td_test description">Master Pin Test</div>
                 <div class="td_test photo"><img src="images/chip.png" style="width: 45px;"></div>
                 <div class="td_test hw_signals">
-                    <div class="signal tbl_drive_down hw1"><span class="name">MASTER_PIN</span> <span class="values"></span></div>
+                    <div class="signal master_pin_2 hw1"><span class="name">MASTER_PIN_2</span> <span class="values"></span></div>
                 </div>
                 <div class="td_test press_test">-</div>
                 <div class="td_test release_test">-</div>
                 <div class="td_test user_action">-</div>
                 <div class="td_test validation">Untested</div>
-                <div class="td_test check" data-hw1="MASTER_PIN" data-hw2="TBL_DRIVE_UP" data-hw3="-" data-ping="000F">
+                <div class="td_test check" data-hw1="MASTER_PIN_2" data-hw2="-" data-hw3="-" data-ping="000F">
                     <button class="bt_check start_master_pin">Test</button>
                     <button class="bt_check stop_master_pin hidden">Stop</button>
                 </div>
@@ -327,19 +327,18 @@
             </div>
             
             <div class="title">ENABLE VALUES TEST</div>
-            <div class="line_table_test untested">
+            <div class="line_table_test untested pd3">
                 <div class="td_test description">Test button Enable</div>
                 <div class="td_test photo"><img src="images/TSSC_omega/PD3.jpg"></div>
                 <div class="td_test hw_signals">
                     <div class="signal lateral_swa1 hw1"><span class="name">LATERAL_SWA1</span> <span class="values"></span></div>
-                    <div class="signal global_gantry_enable hw2"><span class="name">GLOBAL_GANTRY_ENABLE</span> <span class="values"></span></div>                        
-                    <div class="signal sci_lat_dr_req hw3"><span class="name">SCI_LAT_DR_REQ</span> <span class="values"></span></div>                        
+                    <div class="signal global_gantry_enable hw2"><span class="name">GLOBAL_GANTRY_ENABLE</span> <span class="values"></span></div>                                             
                 </div>
                 <div class="td_test press_test">-</div>
                 <div class="td_test release_test">-</div>
                 <div class="td_test user_action">-</div>
                 <div class="td_test validation">Untested</div>
-                <div class="td_test check" data-hw1="LATERAL_SWA1" data-hw2="GLOBAL_GANTRY_ENABLE" data-hw3="SCI_LAT_DR_REQ" data-ping="0005">
+                <div class="td_test check" data-hw1="LATERAL_SWA1" data-hw2="GLOBAL_GANTRY_ENABLE" data-hw3="-" data-ping="0005">
                     <button class="bt_check start">Test</button>
                     <button class="bt_check stop hidden">Stop</button>
                 </div>
@@ -363,7 +362,7 @@
                 </div>
             </div>
             
-            <div class="line_table_test untested">
+            <div class="line_table_test untested pb7">
                 <div class="td_test description">Lat. Tube Lift Enable</div>
                 <div class="td_test photo"><img src="images/TSSC_omega/PB7.jpg"></div>
                 <div class="td_test hw_signals">
@@ -397,7 +396,7 @@
                 </div>
             </div>
             
-            <div class="line_table_test untested">
+            <div class="line_table_test untested emergency">
                 <div class="td_test description">Emergency Stop</div>
                 <div class="td_test photo"><img src="images/TSSC_omega/PD1.jpg"></div>
                 <div class="td_test hw_signals">
@@ -426,6 +425,65 @@
                 <div class="td_test check" data-hw1="OUT_CONTACT_STOP" data-hw2="-" data-hw3="-" data-ping="0000">
                     <button class="bt_check start">Test</button>
                     <button class="bt_check stop hidden">Stop</button>
+                </div>
+            </div>
+            
+            <div class="title">LOGICAL TEST</div>
+            <div class="line_table_test untested logical masterpin">
+                <div class="td_test description">Logical Output test</div>
+                <div class="td_test photo"><img src="images/chip.png" style="width: 45px;"></div>
+                <div class="td_test hw_signals">
+                    <div class="signal tt_lat_lock hw1">
+                        <span class="name">TT_LAT_LOCK</span> <span class="values"></span>
+                    </div>
+                    <div class="signal tt_long_lock hw2">
+                        <span class="name">TT_LONG_LOCK</span> <span class="values"></span>
+                    </div>
+                    <div class="signal tt_rotation_lock hw3">
+                        <span class="name">TT_ROTATION_LOCK</span> <span class="values"></span>
+                    </div>
+                </div>
+                <div class="td_test press_test">-</div>
+                <div class="td_test release_test">-</div>
+                <div class="td_test user_action">-</div>
+                <div class="td_test validation">Untested</div>
+                <div class="td_test check" data-hw1="TT_LAT_LOCK" data-hw2="TT_LONG_LOCK" data-hw3="TT_ROTATION_LOCK" data-ping="0301">
+                    <button class="bt_check start_tssc_pin">Test</button>
+                    <button class="bt_check stop_tssc_pin hidden">Stop</button>
+                </div>
+            </div>
+            
+            <div class="line_table_test untested logical masterpin">
+                <div class="td_test description">Logical Input Test</div>
+                <div class="td_test photo"><img src="images/chip.png" style="width: 45px;"></div>
+                <div class="td_test hw_signals">
+                    <div class="signal lat_lock_on hw1"><span class="name">LAT_LOCK_ON</span> <span class="values"></span></div>
+                    <div class="signal long_lock_on hw1"><span class="name">LONG_LOCK_ON</span> <span class="values"></span></div>
+                    <div class="signal rotation_lock_on hw1"><span class="name">ROTATION_LOCK_ON</span> <span class="values"></span></div>
+                </div>
+                <div class="td_test press_test">-</div>
+                <div class="td_test release_test">-</div>
+                <div class="td_test user_action">-</div>
+                <div class="td_test validation">Untested</div>
+                <div class="td_test check" data-hw1="LAT_LOCK_ON" data-hw2="LONG_LOCK_ON" data-hw3="ROTATION_LOCK_ON" data-ping="00002F">
+                    <button class="bt_check start_tssc_input_pin">Test</button>
+                    <button class="bt_check stop_tssc_input_pin hidden">Stop</button>
+                </div>
+            </div>
+            
+            <div class="line_table_test untested logical masterpin">
+                <div class="td_test description">Master Pin 1 Test</div>
+                <div class="td_test photo"><img src="images/chip.png" style="width: 45px;"></div>
+                <div class="td_test hw_signals">
+                    <div class="signal master_pin_1 hw1"><span class="name">MASTER_PIN_1</span> <span class="values"></span></div>
+                </div>
+                <div class="td_test press_test">-</div>
+                <div class="td_test release_test">-</div>
+                <div class="td_test user_action">-</div>
+                <div class="td_test validation">Untested</div>
+                <div class="td_test check" data-hw1="MASTER_PIN_1" data-hw2="-" data-hw3="-" data-ping="000032">
+                    <button class="bt_check start_tssc_master_pin">Test</button>
+                    <button class="bt_check stop_tssc_master_pin hidden">Stop</button>
                 </div>
             </div>
                         
