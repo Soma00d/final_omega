@@ -1,5 +1,5 @@
 $(document).ready(function (){
-    var UIsoftVersion = "1.2";
+    var UIsoftVersion = "1.2.2";
         
     var ws = new WebSocket("ws://localhost:8100");
     
@@ -6901,6 +6901,7 @@ $(document).ready(function (){
     document.getElementById('fileinput4').addEventListener('change', readSingleFile, false);
     document.getElementById('fileinput5').addEventListener('change', readSingleFile, false);
     document.getElementById('fileinput6').addEventListener('change', readSingleFile, false);
+    document.getElementById('fileinput7').addEventListener('change', readSingleFile, false);
 
     $(".testing_upl .start_download").on('click', function () {
 
