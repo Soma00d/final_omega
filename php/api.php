@@ -470,6 +470,35 @@ $saveNewDictionary = function ($connexion) {
     
 };
 
+// Modify a dictionary (delete and re create)
+$modifyDictionary = function ($connexion) {
+    
+    if(isset($_POST['newID'])){ $newID = $_POST['newID']; }else{ $newID = "";};
+    if(isset($_POST['description'])){ $description = $_POST['description']; }else{ $description= "";};
+    if(isset($_POST['refFamily'])){ $refFamily = $_POST['refFamily']; }else{ $refFamily= "";};
+    if(isset($_POST['refModel'])){ $refModel = $_POST['refModel']; }else{ $refModel= "";};
+    if(isset($_POST['refType'])){ $refType = $_POST['refType']; }else{ $refType= "";};
+    
+    if(isset($_POST['jsonDico'])){ 
+        $jsonDico = $_POST['jsonDico']; 
+        $data = json_decode($jsonDico, TRUE);
+        //print_r($data);        
+    }else{ $jsonDico = "";}
+    
+    //$insertDescriptionDico = $connexion->query("UPDATE `admin_dictionary` SET `description`=$description,`family_name`=$refFamily,`model_name`=$refModel,`type_name`=$refType,`date`= NOW() WHERE family_id = $newID");
+    
+    $deleteDico =  $connexion->query("DELETE FROM `dictionaries` WHERE family_id = $newID");
+    
+    $globalReq = "";
+    
+    for($i = 0; $i < count($data); $i++) {   
+       $globalReq.= "INSERT INTO `dictionaries` (`symbol_name`, `standard_name`, `type`, `value`, `pressed_val`, `released_val`, `x_pos`, `y_pos`, `calib_subindex_x`, `calib_subindex_y`, `threshold_min_axis`, `threshold_max_axis`, `threshold_min_zero`, `threshold_max_zero`, `description`, `photo_link`, `can_id`, `family_id`, `timer`, `is_final`, `zone`, `is_led`, `on_signal`, `off_signal`, `dim_signal`, `flash_signal`, `is_safety`, `is_enable`, `is_cdrh`) VALUES ('".$data[$i]['symbol_name']."','".$data[$i]['standard_name']."','".$data[$i]['type']."','".$data[$i]['value']."','".$data[$i]['pressed_val']."','".$data[$i]['released_val']."','".$data[$i]['x_pos']."','".$data[$i]['y_pos']."','".$data[$i]['calib_subindex_x']."','".$data[$i]['calib_subindex_y']."','".$data[$i]['threshold_min_axis']."','".$data[$i]['threshold_max_axis']."','".$data[$i]['threshold_min_zero']."','".$data[$i]['threshold_max_zero']."','".$data[$i]['description']."','".$data[$i]['photo_link']."','".$data[$i]['can_id']."','".$data[$i]['family_id']."','".$data[$i]['timer']."','".$data[$i]['is_final']."','".$data[$i]['zone']."','".$data[$i]['is_led']."','".$data[$i]['on_signal']."','".$data[$i]['off_signal']."','".$data[$i]['dim_signal']."','".$data[$i]['flash_signal']."','".$data[$i]['is_safety']."','".$data[$i]['is_enable']."','".$data[$i]['is_cdrh']."');";
+    }            
+    $insertUpdatedDico = $connexion->query($globalReq);
+   
+    
+};
+
 ///////////////////////////////////////////////////////////////////
 //Routeur des fonctions appelées en ajax via des param get en url//
 ///////////////////////////////////////////////////////////////////
@@ -540,6 +569,9 @@ if (isset($_GET["function"])) {
             break;
         case "save_new_dictionary":
             echo $saveNewDictionary($connexion);
+            break;
+        case "modify_dictionary":
+            echo $modifyDictionary($connexion);
             break;
         default:
             echo "no param";

@@ -3558,7 +3558,7 @@ and open the template in the editor.
 }
 
 /* line 2, ../sass/_testfwdownload.scss */
-#content_testfwdownload .get_config, #content_testfwdownloadfinal .get_config, #content_fctfwdownloadfinal .get_config, #content_omegadownload .get_config {
+#content_testfwdownload .get_config, #content_testfwdownloadfinal .get_config, #content_fctfwdownloadfinal .get_config, #content_omegadownload .get_config, #content_omegadiagdownload .get_config {
   text-align: center;
   background: #f2f2f2;
   padding: 10px;
@@ -3572,19 +3572,19 @@ and open the template in the editor.
   margin-right: auto;
 }
 /* line 14, ../sass/_testfwdownload.scss */
-#content_testfwdownload .get_config .bt_get_config, #content_testfwdownloadfinal .get_config .bt_get_config, #content_fctfwdownloadfinal .get_config .bt_get_config, #content_omegadownload .get_config .bt_get_config {
+#content_testfwdownload .get_config .bt_get_config, #content_testfwdownloadfinal .get_config .bt_get_config, #content_fctfwdownloadfinal .get_config .bt_get_config, #content_omegadownload .get_config .bt_get_config, #content_omegadiagdownload .get_config .bt_get_config {
   margin-bottom: 10px;
 }
 /* line 17, ../sass/_testfwdownload.scss */
-#content_testfwdownload .get_config .config_info, #content_testfwdownloadfinal .get_config .config_info, #content_fctfwdownloadfinal .get_config .config_info, #content_omegadownload .get_config .config_info {
+#content_testfwdownload .get_config .config_info, #content_testfwdownloadfinal .get_config .config_info, #content_fctfwdownloadfinal .get_config .config_info, #content_omegadownload .get_config .config_info, #content_omegadiagdownload .get_config .config_info {
   text-align: left;
 }
 /* line 19, ../sass/_testfwdownload.scss */
-#content_testfwdownload .get_config .config_info .text_config, #content_testfwdownloadfinal .get_config .config_info .text_config, #content_fctfwdownloadfinal .get_config .config_info .text_config, #content_omegadownload .get_config .config_info .text_config {
+#content_testfwdownload .get_config .config_info .text_config, #content_testfwdownloadfinal .get_config .config_info .text_config, #content_fctfwdownloadfinal .get_config .config_info .text_config, #content_omegadownload .get_config .config_info .text_config, #content_omegadiagdownload .get_config .config_info .text_config {
   font-weight: bold;
 }
 /* line 24, ../sass/_testfwdownload.scss */
-#content_testfwdownload .popup_test_fw_final, #content_testfwdownload .popup_test_fw, #content_testfwdownloadfinal .popup_test_fw_final, #content_testfwdownloadfinal .popup_test_fw, #content_fctfwdownloadfinal .popup_test_fw_final, #content_fctfwdownloadfinal .popup_test_fw, #content_omegadownload .popup_test_fw_final, #content_omegadownload .popup_test_fw {
+#content_testfwdownload .popup_test_fw_final, #content_testfwdownload .popup_test_fw, #content_testfwdownloadfinal .popup_test_fw_final, #content_testfwdownloadfinal .popup_test_fw, #content_fctfwdownloadfinal .popup_test_fw_final, #content_fctfwdownloadfinal .popup_test_fw, #content_omegadownload .popup_test_fw_final, #content_omegadownload .popup_test_fw, #content_omegadiagdownload .popup_test_fw_final, #content_omegadiagdownload .popup_test_fw {
   background: #f2f2f2;
   margin-top: 25px;
   text-align: center;
@@ -3592,7 +3592,7 @@ and open the template in the editor.
   padding: 15px;
 }
 /* line 30, ../sass/_testfwdownload.scss */
-#content_testfwdownload .popup_test_fw_final .bt_yes, #content_testfwdownload .popup_test_fw .bt_yes, #content_testfwdownloadfinal .popup_test_fw_final .bt_yes, #content_testfwdownloadfinal .popup_test_fw .bt_yes, #content_fctfwdownloadfinal .popup_test_fw_final .bt_yes, #content_fctfwdownloadfinal .popup_test_fw .bt_yes, #content_omegadownload .popup_test_fw_final .bt_yes, #content_omegadownload .popup_test_fw .bt_yes {
+#content_testfwdownload .popup_test_fw_final .bt_yes, #content_testfwdownload .popup_test_fw .bt_yes, #content_testfwdownloadfinal .popup_test_fw_final .bt_yes, #content_testfwdownloadfinal .popup_test_fw .bt_yes, #content_fctfwdownloadfinal .popup_test_fw_final .bt_yes, #content_fctfwdownloadfinal .popup_test_fw .bt_yes, #content_omegadownload .popup_test_fw_final .bt_yes, #content_omegadownload .popup_test_fw .bt_yes, #content_omegadiagdownload .popup_test_fw_final .bt_yes, #content_omegadiagdownload .popup_test_fw .bt_yes {
   display: inline-block;
   vertical-align: top;
   box-shadow: 3px 3px 3px black;
@@ -3611,12 +3611,12 @@ and open the template in the editor.
   margin: 15px;
 }
 /* line 47, ../sass/_testfwdownload.scss */
-#content_testfwdownload .popup_test_fw_final .bt_yes:hover, #content_testfwdownload .popup_test_fw .bt_yes:hover, #content_testfwdownloadfinal .popup_test_fw_final .bt_yes:hover, #content_testfwdownloadfinal .popup_test_fw .bt_yes:hover, #content_fctfwdownloadfinal .popup_test_fw_final .bt_yes:hover, #content_fctfwdownloadfinal .popup_test_fw .bt_yes:hover, #content_omegadownload .popup_test_fw_final .bt_yes:hover, #content_omegadownload .popup_test_fw .bt_yes:hover {
+#content_testfwdownload .popup_test_fw_final .bt_yes:hover, #content_testfwdownload .popup_test_fw .bt_yes:hover, #content_testfwdownloadfinal .popup_test_fw_final .bt_yes:hover, #content_testfwdownloadfinal .popup_test_fw .bt_yes:hover, #content_fctfwdownloadfinal .popup_test_fw_final .bt_yes:hover, #content_fctfwdownloadfinal .popup_test_fw .bt_yes:hover, #content_omegadownload .popup_test_fw_final .bt_yes:hover, #content_omegadownload .popup_test_fw .bt_yes:hover, #content_omegadiagdownload .popup_test_fw_final .bt_yes:hover, #content_omegadiagdownload .popup_test_fw .bt_yes:hover {
   background: #3895d2;
   box-shadow: 3px 3px 3px grey;
 }
 /* line 52, ../sass/_testfwdownload.scss */
-#content_testfwdownload .popup_test_fw_final .bt_no, #content_testfwdownload .popup_test_fw .bt_no, #content_testfwdownloadfinal .popup_test_fw_final .bt_no, #content_testfwdownloadfinal .popup_test_fw .bt_no, #content_fctfwdownloadfinal .popup_test_fw_final .bt_no, #content_fctfwdownloadfinal .popup_test_fw .bt_no, #content_omegadownload .popup_test_fw_final .bt_no, #content_omegadownload .popup_test_fw .bt_no {
+#content_testfwdownload .popup_test_fw_final .bt_no, #content_testfwdownload .popup_test_fw .bt_no, #content_testfwdownloadfinal .popup_test_fw_final .bt_no, #content_testfwdownloadfinal .popup_test_fw .bt_no, #content_fctfwdownloadfinal .popup_test_fw_final .bt_no, #content_fctfwdownloadfinal .popup_test_fw .bt_no, #content_omegadownload .popup_test_fw_final .bt_no, #content_omegadownload .popup_test_fw .bt_no, #content_omegadiagdownload .popup_test_fw_final .bt_no, #content_omegadiagdownload .popup_test_fw .bt_no {
   display: inline-block;
   vertical-align: top;
   box-shadow: 3px 3px 3px black;
@@ -3635,12 +3635,12 @@ and open the template in the editor.
   margin: 15px;
 }
 /* line 69, ../sass/_testfwdownload.scss */
-#content_testfwdownload .popup_test_fw_final .bt_no:hover, #content_testfwdownload .popup_test_fw .bt_no:hover, #content_testfwdownloadfinal .popup_test_fw_final .bt_no:hover, #content_testfwdownloadfinal .popup_test_fw .bt_no:hover, #content_fctfwdownloadfinal .popup_test_fw_final .bt_no:hover, #content_fctfwdownloadfinal .popup_test_fw .bt_no:hover, #content_omegadownload .popup_test_fw_final .bt_no:hover, #content_omegadownload .popup_test_fw .bt_no:hover {
+#content_testfwdownload .popup_test_fw_final .bt_no:hover, #content_testfwdownload .popup_test_fw .bt_no:hover, #content_testfwdownloadfinal .popup_test_fw_final .bt_no:hover, #content_testfwdownloadfinal .popup_test_fw .bt_no:hover, #content_fctfwdownloadfinal .popup_test_fw_final .bt_no:hover, #content_fctfwdownloadfinal .popup_test_fw .bt_no:hover, #content_omegadownload .popup_test_fw_final .bt_no:hover, #content_omegadownload .popup_test_fw .bt_no:hover, #content_omegadiagdownload .popup_test_fw_final .bt_no:hover, #content_omegadiagdownload .popup_test_fw .bt_no:hover {
   background: #3895d2;
   box-shadow: 3px 3px 3px grey;
 }
 /* line 75, ../sass/_testfwdownload.scss */
-#content_testfwdownload .bt_continue_diag, #content_testfwdownload .bt_continue_finaltest, #content_testfwdownloadfinal .bt_continue_diag, #content_testfwdownloadfinal .bt_continue_finaltest, #content_fctfwdownloadfinal .bt_continue_diag, #content_fctfwdownloadfinal .bt_continue_finaltest, #content_omegadownload .bt_continue_diag, #content_omegadownload .bt_continue_finaltest {
+#content_testfwdownload .bt_continue_diag, #content_testfwdownload .bt_continue_finaltest, #content_testfwdownloadfinal .bt_continue_diag, #content_testfwdownloadfinal .bt_continue_finaltest, #content_fctfwdownloadfinal .bt_continue_diag, #content_fctfwdownloadfinal .bt_continue_finaltest, #content_omegadownload .bt_continue_diag, #content_omegadownload .bt_continue_finaltest, #content_omegadiagdownload .bt_continue_diag, #content_omegadiagdownload .bt_continue_finaltest {
   display: block;
   box-shadow: 3px 3px 3px black;
   background: #3b73b9;
@@ -3657,12 +3657,12 @@ and open the template in the editor.
   cursor: pointer;
 }
 /* line 90, ../sass/_testfwdownload.scss */
-#content_testfwdownload .bt_continue_diag:hover, #content_testfwdownload .bt_continue_finaltest:hover, #content_testfwdownloadfinal .bt_continue_diag:hover, #content_testfwdownloadfinal .bt_continue_finaltest:hover, #content_fctfwdownloadfinal .bt_continue_diag:hover, #content_fctfwdownloadfinal .bt_continue_finaltest:hover, #content_omegadownload .bt_continue_diag:hover, #content_omegadownload .bt_continue_finaltest:hover {
+#content_testfwdownload .bt_continue_diag:hover, #content_testfwdownload .bt_continue_finaltest:hover, #content_testfwdownloadfinal .bt_continue_diag:hover, #content_testfwdownloadfinal .bt_continue_finaltest:hover, #content_fctfwdownloadfinal .bt_continue_diag:hover, #content_fctfwdownloadfinal .bt_continue_finaltest:hover, #content_omegadownload .bt_continue_diag:hover, #content_omegadownload .bt_continue_finaltest:hover, #content_omegadiagdownload .bt_continue_diag:hover, #content_omegadiagdownload .bt_continue_finaltest:hover {
   background: #3895d2;
   box-shadow: 3px 3px 3px grey;
 }
 /* line 95, ../sass/_testfwdownload.scss */
-#content_testfwdownload .download_tool, #content_testfwdownloadfinal .download_tool, #content_fctfwdownloadfinal .download_tool, #content_omegadownload .download_tool {
+#content_testfwdownload .download_tool, #content_testfwdownloadfinal .download_tool, #content_fctfwdownloadfinal .download_tool, #content_omegadownload .download_tool, #content_omegadiagdownload .download_tool {
   text-align: center;
   background: #f2f2f2;
   padding: 10px;
@@ -3677,22 +3677,22 @@ and open the template in the editor.
   margin-bottom: 40px;
 }
 /* line 108, ../sass/_testfwdownload.scss */
-#content_testfwdownload .download_tool .title_download, #content_testfwdownloadfinal .download_tool .title_download, #content_fctfwdownloadfinal .download_tool .title_download, #content_omegadownload .download_tool .title_download {
+#content_testfwdownload .download_tool .title_download, #content_testfwdownloadfinal .download_tool .title_download, #content_fctfwdownloadfinal .download_tool .title_download, #content_omegadownload .download_tool .title_download, #content_omegadiagdownload .download_tool .title_download {
   font-weight: bold;
   margin-bottom: 10px;
 }
 /* line 112, ../sass/_testfwdownload.scss */
-#content_testfwdownload .download_tool .content_upl, #content_testfwdownloadfinal .download_tool .content_upl, #content_fctfwdownloadfinal .download_tool .content_upl, #content_omegadownload .download_tool .content_upl {
+#content_testfwdownload .download_tool .content_upl, #content_testfwdownloadfinal .download_tool .content_upl, #content_fctfwdownloadfinal .download_tool .content_upl, #content_omegadownload .download_tool .content_upl, #content_omegadiagdownload .download_tool .content_upl {
   text-align: left;
   margin-top: -12px;
 }
 /* line 115, ../sass/_testfwdownload.scss */
-#content_testfwdownload .download_tool .content_upl span, #content_testfwdownloadfinal .download_tool .content_upl span, #content_fctfwdownloadfinal .download_tool .content_upl span, #content_omegadownload .download_tool .content_upl span {
+#content_testfwdownload .download_tool .content_upl span, #content_testfwdownloadfinal .download_tool .content_upl span, #content_fctfwdownloadfinal .download_tool .content_upl span, #content_omegadownload .download_tool .content_upl span, #content_omegadiagdownload .download_tool .content_upl span {
   color: green;
   font-weight: bold;
 }
 /* line 120, ../sass/_testfwdownload.scss */
-#content_testfwdownload .download_tool .start_download, #content_testfwdownloadfinal .download_tool .start_download, #content_fctfwdownloadfinal .download_tool .start_download, #content_omegadownload .download_tool .start_download {
+#content_testfwdownload .download_tool .start_download, #content_testfwdownloadfinal .download_tool .start_download, #content_fctfwdownloadfinal .download_tool .start_download, #content_omegadownload .download_tool .start_download, #content_omegadiagdownload .download_tool .start_download {
   border: 1px solid black;
   background: #3b73b9;
   color: white;
@@ -3705,7 +3705,7 @@ and open the template in the editor.
   margin-right: auto;
 }
 /* line 132, ../sass/_testfwdownload.scss */
-#content_testfwdownload .download_tool .stop_download, #content_testfwdownloadfinal .download_tool .stop_download, #content_fctfwdownloadfinal .download_tool .stop_download, #content_omegadownload .download_tool .stop_download {
+#content_testfwdownload .download_tool .stop_download, #content_testfwdownloadfinal .download_tool .stop_download, #content_fctfwdownloadfinal .download_tool .stop_download, #content_omegadownload .download_tool .stop_download, #content_omegadiagdownload .download_tool .stop_download {
   border: 1px solid black;
   background: red;
   color: white;
@@ -3718,20 +3718,20 @@ and open the template in the editor.
   margin-right: auto;
 }
 /* line 144, ../sass/_testfwdownload.scss */
-#content_testfwdownload .download_tool .downloading_bar_container, #content_testfwdownloadfinal .download_tool .downloading_bar_container, #content_fctfwdownloadfinal .download_tool .downloading_bar_container, #content_omegadownload .download_tool .downloading_bar_container {
+#content_testfwdownload .download_tool .downloading_bar_container, #content_testfwdownloadfinal .download_tool .downloading_bar_container, #content_fctfwdownloadfinal .download_tool .downloading_bar_container, #content_omegadownload .download_tool .downloading_bar_container, #content_omegadiagdownload .download_tool .downloading_bar_container {
   border: 1px solid black;
   height: 20px;
   margin-top: 6px;
   position: relative;
 }
 /* line 149, ../sass/_testfwdownload.scss */
-#content_testfwdownload .download_tool .downloading_bar_container .downloading_bar, #content_testfwdownloadfinal .download_tool .downloading_bar_container .downloading_bar, #content_fctfwdownloadfinal .download_tool .downloading_bar_container .downloading_bar, #content_omegadownload .download_tool .downloading_bar_container .downloading_bar {
+#content_testfwdownload .download_tool .downloading_bar_container .downloading_bar, #content_testfwdownloadfinal .download_tool .downloading_bar_container .downloading_bar, #content_fctfwdownloadfinal .download_tool .downloading_bar_container .downloading_bar, #content_omegadownload .download_tool .downloading_bar_container .downloading_bar, #content_omegadiagdownload .download_tool .downloading_bar_container .downloading_bar {
   background: #b9e8ff;
   width: 0%;
   height: 20px;
 }
 /* line 154, ../sass/_testfwdownload.scss */
-#content_testfwdownload .download_tool .downloading_bar_container .downloading_bar_content, #content_testfwdownloadfinal .download_tool .downloading_bar_container .downloading_bar_content, #content_fctfwdownloadfinal .download_tool .downloading_bar_container .downloading_bar_content, #content_omegadownload .download_tool .downloading_bar_container .downloading_bar_content {
+#content_testfwdownload .download_tool .downloading_bar_container .downloading_bar_content, #content_testfwdownloadfinal .download_tool .downloading_bar_container .downloading_bar_content, #content_fctfwdownloadfinal .download_tool .downloading_bar_container .downloading_bar_content, #content_omegadownload .download_tool .downloading_bar_container .downloading_bar_content, #content_omegadiagdownload .download_tool .downloading_bar_container .downloading_bar_content {
   position: absolute;
   margin-left: auto;
   margin-right: auto;

@@ -57,6 +57,9 @@
             <div id="content_omegadownload" class="page_content">
                 <?php include('template/repair/omegadownload.html'); ?>                
             </div>
+            <div id="content_omegadiagdownload" class="page_content">
+                <?php include('template/repair/omegadiagdownload.html'); ?>                
+            </div>
             <div id="content_history" class="page_content">
                 <?php include('template/repair/history.html'); ?>                
             </div>

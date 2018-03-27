@@ -3431,6 +3431,7 @@ $(document).ready(function (){
         $('#fileinput4').val(""); 
         $('#fileinput5').val(""); 
         $('#fileinput6').val(""); 
+        $('#fileinput7').val(""); 
         
         $(".safety_container .name_container").html("SAFETY LOOP");
         $(".enable_container .state").removeClass("hidden");
@@ -3481,11 +3482,15 @@ $(document).ready(function (){
         $(".legend_inge .nodeIDleg").removeClass("hidden");
         $(".legend_inge .dimleg").removeClass("hidden");
         $(".eprom_protect").removeClass("hidden");
-        $(".switch_nb.omega").addClass("hidden");        
+        $(".switch_nb.omega").addClass("hidden");  
+        $(".information_diag .test_bt_home").removeClass("hidden");
+        $(".information_diag .test_bt_home.omega").addClass("hidden");
         
         if (globalName == "OMEGA") {       
             $(".legend_inge .nodeIDleg").addClass("hidden");
             $(".legend_inge .dimleg").addClass("hidden");
+            $(".information_diag .test_bt_home").addClass("hidden");
+            $(".information_diag .test_bt_home.omega").removeClass("hidden");
             
             $(".bt_diag_mode").removeClass("hidden");
             $(".enable_container .state").addClass("hidden");

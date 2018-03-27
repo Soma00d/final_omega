@@ -351,6 +351,28 @@
                 }            
             }
         }
+        
+    }
+    .array_all_sn{
+        width: 1171px;
+        .header_array_sn{
+            .sn_id{
+                width:50px;
+            }
+            .sn_sn{
+                width: 115px;
+            }
+        }
+        .content_array_sn{
+            .line_sn{
+                .sn_id{
+                    width:50px;
+                }
+                .sn_sn{
+                    width: 115px;
+                }
+            }            
+        }        
     }
 }
 
@@ -492,6 +514,7 @@
                 display:none;
                 border: 2px solid #3b73b9d9;
                 padding: 10px;
+                width: 1018px;                
                 .header_new_dico{
                     .td_head{
                         background: #5b6f88;
@@ -746,6 +769,7 @@
 .step_one{
     .show_dictionary_type_listing{
         margin-top: 30px;
+        width: 1018px;
         .header_show_dico{
             .td_head{
                 background: #5b6f88;
@@ -818,6 +842,7 @@
 
 .array_all_tsui{
     margin-top: 35px;
+    width: 1111px;
     .header_array_tsui{
         .head_item{
             background: #5b6f88;

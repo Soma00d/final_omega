@@ -2593,7 +2593,107 @@ $(document).ready(function () {
         
     }
     
+    function updateDictionaryInDatabase(newID, description, refID, refFamily, refModel, refType){
+        
+        var newDictionaryData = [];
+        
+        $("#adm_content_show_dictionary .dictionary_type_listing .line_new_dico").each(function(){
+            
+            var calib_subindex_x = $(this).data("calibsubindexx");
+            var calib_subindex_y = $(this).data("calibsubindexy");
+            var can_id =  $(this).data("canid");
+            var description = $(this).data("description");
+            var dim_signal = $(this).data("dimsignal");
+            var family_id = newID;
+            var flash_signal = $(this).data("flashsignal");
+            var is_cdrh = $(this).data("iscdrh");
+            var is_enable = $(this).data("isenable");
+            var is_final = $(this).data("isfinal");
+            var is_led = $(this).data("isled");
+            var is_safety = $(this).data("issafety");
+            var off_signal = $(this).data("offsignal");
+            var on_signal = $(this).data("onsignal");
+            var photo_link = $(this).data("photolink");
+            var pressed_val = $(this).data("pressedval");
+            var released_val = $(this).data("releasedval");
+            var standard_name = $(this).data("standardname");
+            var symbol_name = $(this).data("symbolname");
+            var threshold_max_axis = $(this).data("thresholdmaxaxis");
+            var threshold_max_zero = $(this).data("threshold_max_zero");
+            var threshold_min_axis = $(this).data("thresholdminaxis");
+            var threshold_min_zero = $(this).data("thresholdminzero");
+            var timer = $(this).data("timer");
+            var type_t = $(this).data("type");
+            var value = $(this).data("value");
+            var x_pos = $(this).data("xpos");
+            var y_pos = $(this).data("ypos");
+            var zone = $(this).data("zone");
+            
+            newDictionaryData.push({
+                calib_subindex_x:calib_subindex_x,
+                calib_subindex_y:calib_subindex_y,
+                can_id:can_id,
+                description:description,
+                dim_signal:dim_signal,
+                family_id:family_id,
+                flash_signal:flash_signal,
+                is_cdrh:is_cdrh,
+                is_enable:is_enable,
+                is_final:is_final,
+                is_led:is_led,
+                is_safety:is_safety,
+                off_signal:off_signal,
+                on_signal:on_signal,
+                photo_link:photo_link,
+                pressed_val:pressed_val,
+                released_val:released_val,
+                standard_name:standard_name,
+                symbol_name:symbol_name,
+                threshold_max_axis:threshold_max_axis,
+                threshold_max_zero:threshold_max_zero,
+                threshold_min_axis:threshold_min_axis,
+                threshold_min_zero:threshold_min_zero,
+                timer:timer,
+                type:type_t,
+                value:value,
+                x_pos:x_pos,
+                y_pos:y_pos,
+                zone:zone
+            });
+                        
+        });
+        
+        var newDictionaryJson = JSON.stringify(newDictionaryData);
+        
+         if (confirm('Confirm the update of dictionary ID '+ newID+". This action will modify this dictionary in database.")) {
+            $.ajax({
+                url: '../php/api.php?function=modify_dictionary',
+                type: 'POST',
+                dataType: 'JSON',
+                data:{
+                    newID:newID,
+                    description:description,
+                    refID:refID,
+                    refFamily:refFamily,
+                    refModel:refModel,
+                    refType:refType,
+                    jsonDico:newDictionaryJson
+                },
+                success: function (data, statut) {
+                    
+                }
+            });
+            setTimeout(function(){
+                $(".step_two").fadeOut(200); 
+                $(".step_three .title").html("Congratulations, dictionary ID "+newID+" - "+description+" - is now updated and available.");
+                $(".step_three").fadeIn("200");
+            },500);
+        }        
+        
+    }
+    
     $(".step_three .okay").on('click', function(){
+        $("#adm_content_show_dictionary .dictionary_type_listing .content_new_dico").empty();
         $(".step_three").fadeOut("200");
         $(".step_one").fadeIn("200");
     })
