@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 26 Mars 2018 à 13:28
+-- Généré le :  Mar 27 Mars 2018 à 14:34
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -703,14 +703,14 @@ INSERT INTO `tsui` (`id`, `part_number`, `name`, `photo_link`, `family`, `linked
 (13, 'ELEGANCE', 'SmartBox', 'smartbox/agila.png', 4, '4', 'tst_01.pdf', 'ELEGANCE', 'SMARTBOX', 'AGILA', 4, 0, 0),
 (15, 'omegaSH', 'SmartHandle', 'omega1/SHomega.jpg', 12, '1', 'tst_01.pdf', 'OMEGA', 'SMARTHANDLE', 'OTHER', 2, 0, 0),
 (16, 'OMEGA', 'SmartHandle', 'omega1/SHomega_BP.jpg', 13, '1', 'tst_01.pdf', 'OMEGA', 'SMARTHANDLE', 'BIPLAN', 2, 0, 0),
-(17, 'OMEGA', 'SmartHandle', 'omega1/SHomega_HE.jpg', 15, '1', 'tst_01.pdf', 'OMEGA', 'SMARTHANDLE', 'HEROIC & BEFORE', 2, 0, 0),
+(17, 'OMEGA', 'SmartHandle', 'omega1/SHomega_HE.jpg', 15, '1', 'tst_01.pdf', 'OMEGA', 'SMARTHANDLE', 'HEROIC AND BEFORE', 2, 0, 0),
 (22, 'SB_test', 'SmartBox', 'omega1/SBomega.jpg', 11, '1', 'tst_01.pdf', 'OMEGA', 'SMARTBOX', 'OTHER', 3, 0, 0),
 (23, '5407493', 'Smartbox IPX4 Agila', 'smartbox/agila.png', 5407493, '4', 'tst_01.pdf', 'ELEGANCE', 'SMARTBOX', 'AGILA', 4, 0, 1),
 (24, '5145781-2', 'SmartHandle', 'omega1/SHomega.jpg', 12, '1', 'tst_01.pdf', 'OMEGA', 'SMARTHANDLE', 'OTHER', 2, 0, 0),
 (25, '5309866', 'SmartBox', 'omega1/5309866.jpg', 11, '1', 'tst_01.pdf', 'OMEGA', 'SMARTBOX', 'OTHER', 3, 0, 0),
 (28, '2237457-15', 'SmartBox', 'smartbox/2237457-15.jpg', 11, '1', 'tst_01.pdf', 'OMEGA', 'SMARTBOX', 'OTHER', 3, 0, 0),
 (30, '5309861', 'OMEGA PATHFINDER', 'tssc/5309861.JPG', 5309861, '1', '', 'OMEGA', 'TSSC', '', 0, 0, 0),
-(31, '5408841', 'Omega Silver Edition', '', 5408841, '1', '', 'OMEGA', 'TSSC', '', 0, 1, 0),
+(31, '5408841', 'Omega Silver Edition', '', 5408841, '1', '', 'OMEGA', 'TSSC', '', 0, 0, 0),
 (32, '5184126-2', 'SB biplan with protection', 'omega1/SBomega.jpg', 5184126, '1', '', 'OMEGA', 'SMARTBOX', 'OTHER', 2, 0, 0),
 (33, '2237456-11', 'SH Heroic Liberty Clarity', 'omega1/SHomega.jpg', 2237456, '1', '', 'OMEGA', 'SMARTHANDLE', 'OTHER', 2, 0, 0);
 
