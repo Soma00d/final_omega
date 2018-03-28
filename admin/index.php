@@ -33,7 +33,6 @@
                       </div>
                       <ul class="submenuItems">
                         <li><a href="#" class="menu_item all_user_page" data-menulink="user">Show all users</a></li>
-                        <li><a href="#" class="menu_item" data-menulink="user">Add a new user</a></li>
                       </ul>
                     </li>
                     <li>

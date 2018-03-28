@@ -8211,17 +8211,17 @@ $(document).ready(function (){
        
        function pingSwitch(){
            //ping des switch
-            var signalPing = Cal_post+"0300001fc22f0000"+"002b";
+            var signalPing = Cal_post+"0300001fc22f0000"+"002c";
             sendSignal(signalPing);
             waitPingResponse = "1fc00f41";
             setTimeout(function(){
                 var responseSwitch1 = finalResponseData.substring(6,8);
-                var signalPing = Cal_post+"0300001fc22f0000"+"002c";
+                var signalPing = Cal_post+"0300001fc22f0000"+"002d";
                 sendSignal(signalPing);
                 waitPingResponse = "1fc00f41";
                 setTimeout(function(){
                     var responseSwitch2 = finalResponseData.substring(6,8);
-                    var signalPing = Cal_post+"0300001fc22f0000"+"002d";
+                    var signalPing = Cal_post+"0300001fc22f0000"+"002b";
                     sendSignal(signalPing);
                     waitPingResponse = "1fc00f41";
                     setTimeout(function(){

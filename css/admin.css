@@ -569,7 +569,7 @@
   display: none;
   border: 2px solid #3b73b9d9;
   padding: 10px;
-  width: 1018px;
+  width: 1156px;
 }
 /* line 519, ../sass/_administration.scss */
 #adm_content_dictionaries .dico_main_container .dico_step2 .dictionary_type_listing .header_new_dico .td_head, #adm_content_dictionaries .dico_main_container .step_two .dictionary_type_listing .header_new_dico .td_head, #adm_content_dictionaries .dico_main_container .step_three .dictionary_type_listing .header_new_dico .td_head, #adm_content_dictionaries .adm_show_dictionary_container .dico_step2 .dictionary_type_listing .header_new_dico .td_head, #adm_content_dictionaries .adm_show_dictionary_container .step_two .dictionary_type_listing .header_new_dico .td_head, #adm_content_dictionaries .adm_show_dictionary_container .step_three .dictionary_type_listing .header_new_dico .td_head, #adm_content_show_dictionary .dico_main_container .dico_step2 .dictionary_type_listing .header_new_dico .td_head, #adm_content_show_dictionary .dico_main_container .step_two .dictionary_type_listing .header_new_dico .td_head, #adm_content_show_dictionary .dico_main_container .step_three .dictionary_type_listing .header_new_dico .td_head, #adm_content_show_dictionary .adm_show_dictionary_container .dico_step2 .dictionary_type_listing .header_new_dico .td_head, #adm_content_show_dictionary .adm_show_dictionary_container .step_two .dictionary_type_listing .header_new_dico .td_head, #adm_content_show_dictionary .adm_show_dictionary_container .step_three .dictionary_type_listing .header_new_dico .td_head {

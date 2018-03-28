@@ -289,6 +289,9 @@ $(document).ready(function () {
         $(".adm_all_user_container .overlay_create").fadeOut(300);
     }
     
+    $(".create_user_box .create_cancel_user_btn").on('click', function(){
+        closeUserCreateBox();
+    })
     
     //remplissage du tableau all user
     $(".all_user_page").on('click', function(){
@@ -309,7 +312,7 @@ $(document).ready(function () {
     //============================================================================//
     //                              LOGS ADMIN                                   //
     //============================================================================//
-    //
+    
     //remplissage du tableau logs
     $(".log_page").on('click', function(){
         searchLog();
