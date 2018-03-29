@@ -133,7 +133,7 @@ $( "#model_input_E" )
         if($("#family_choice").html().trim() == "OMEGA"){
             $(".agila_option").attr('disabled', 'test');
             $(".biplan_option").attr('disabled', 'test');
-            $(".old_option").attr('disabled', 'test');
+            $(".old_option").removeAttr('disabled', 'test');
         }else{
             $(".agila_option").removeAttr('disabled');
             $(".biplan_option").attr('disabled', 'test');

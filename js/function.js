@@ -7090,7 +7090,7 @@ $(document).ready(function (){
             getInfoCard(globalName, cobID2);
             
         },5000);
-         setTimeout(function(){
+        setTimeout(function(){
             sendSignal(startNodeMsg);
             
         },12000);
@@ -7128,6 +7128,9 @@ $(document).ready(function (){
         setTimeout(function(){
             getInfoCard(globalName, cobID2);
         },5000)
+        setTimeout(function(){
+            setGenericMessages();            
+        },10000);
 
     }
 
