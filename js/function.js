@@ -6955,7 +6955,12 @@ $(document).ready(function (){
     //début du download OMEGA
     function startDownloadOmega() {
         _MODE = "CALIBRATION";
+        msgCount = 0;
+        waitDownloadResponseOmega = "";
+        continueDownload = 0;
+        lineDownloading = 0;
         isDownloading = 1;
+        
         downloadingBarProgress(arrayOfLines.length);
         $(".downloading_bar_container").removeClass("hidden");
         //stop application mode
@@ -7128,7 +7133,7 @@ $(document).ready(function (){
             getInfoCard(globalName, cobID2);
         },5000)
         setTimeout(function(){
-            setGenericMessages();            
+            setGenericMessages(globalName);            
         },10000);
 
     }
