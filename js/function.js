@@ -1371,7 +1371,12 @@ $(document).ready(function (){
                                                 } else if ($(this).hasClass('dim')) {
                                                     sendSignal(postSignal + dlcCompletionSignal + dimSignal);
                                                 } else if ($(this).hasClass('flash')) {
-                                                    sendSignal(postSignal + dlcCompletionSignalFlash + flashSignal);
+                                                    if(globalName == "OMEGA"){
+                                                        sendSignal(postSignal + dlcCompletionSignalFlash + flashSignal);
+                                                    }else{
+                                                        sendSignal(postSignal + dlcCompletionSignal + flashSignal);
+                                                    }
+                                                    
                                                 }
                                             }
                                         });
