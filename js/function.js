@@ -1472,6 +1472,7 @@ $(document).ready(function (){
                 var message = JSON.parse(event.data);
                 console.log(event.data);
                 if (message.type == "from_GW") {
+                    //console.log("mode pretest ON");
                     var canId = message.canId;
                     var canData = message.canData;
                     for (var nb = 0; nb < dictionary.length; nb++) {
@@ -9389,7 +9390,9 @@ $(document).ready(function (){
             }
             
     });
-    
+    $(".bt_continue_diag").on('click', function(){
+        _MODE = "PRETEST";
+    })
     $(".manufacturing_history_bt").on('click', function(){
         modeManufacturing = 1;
         $(".content_history_table").empty();
