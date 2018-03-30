@@ -5682,6 +5682,20 @@ $(document).ready(function (){
                                 sendSignal(writeResult);
                                 calibrateMinLong(subindexX, subindexY, identifier);
                             }
+                        }else{
+                            if(afinalSigned < 0){var afinal = afinalSigned * -1}else{afinal = afinalSigned}  ;
+                            var result = decimalToHexStringCalib(convertHexaPic(minusHexValOmega(x1Response, x2Response)));
+                            if (seuilMinAxis <= afinal && afinal < seuilMaxAxis && modeEngineering == 0) {
+                                $(".realtime_joysticks_val.id" + identifier).find(".raw_max_x").html(afinalSigned);
+                                var writeResult = Cal_post + "050000" + canIdnew + "040" + addHexValOmega(subindexX, "10") + result;
+                                sendSignal(writeResult);
+                                calibrateMinLong(subindexX, subindexY, identifier);
+                            }else if(modeEngineering == 1){
+                                $(".realtime_joysticks_val.id" + identifier).find(".raw_max_x").html(afinalSigned);
+                                var writeResult = Cal_post + "050000" + canIdnew + "040" + addHexValOmega(subindexX, "10") + result;
+                                sendSignal(writeResult);
+                                calibrateMinLong(subindexX, subindexY, identifier);
+                            }
                         }
                     },200);
                 },200);             
@@ -5748,6 +5762,29 @@ $(document).ready(function (){
                         var x2Response = finalResponseData.substring(6,8);
                         var afinalSigned = convertHexaPic(minusHexValOmega(x1Response, x2Response));
                         if(afinalSigned < 0 && modelName == "TSSC"){
+                            if(afinalSigned <0){var afinal = afinalSigned * -1}else{afinal = afinalSigned}  ;
+                            var result = decimalToHexStringCalib(convertHexaPic(minusHexValOmega(x1Response, x2Response)));
+
+                            if (seuilMinAxis <= afinal && afinal <= seuilMaxAxis && modeEngineering == 0) {
+                                $(".realtime_joysticks_val.id" + identifier).find(".raw_min_x").html(afinalSigned);
+                                var writeResult = Cal_post + "050000" + canIdnew + "040" + addHexValOmega(subindexX, "e") + result;
+                                sendSignal(writeResult);
+                                if (subindexY !== "null" && subindexY !== "undefined" && subindexY) {
+                                    calibrateMinLat(subindexX, subindexY, identifier);
+                                } else {
+                                    resetCalibration(identifier);
+                                }
+                            }else if(modeEngineering == 1){
+                                $(".realtime_joysticks_val.id" + identifier).find(".raw_min_x").html(afinalSigned);
+                                var writeResult = Cal_post + "050000" + canIdnew + "040" + addHexValOmega(subindexX, "e") + result;
+                                sendSignal(writeResult);
+                                if (subindexY !== "null" && subindexY !== "undefined" && subindexY) {
+                                    calibrateMinLat(subindexX, subindexY, identifier);
+                                } else {
+                                    resetCalibration(identifier);
+                                }
+                            }
+                        }else{
                             if(afinalSigned <0){var afinal = afinalSigned * -1}else{afinal = afinalSigned}  ;
                             var result = decimalToHexStringCalib(convertHexaPic(minusHexValOmega(x1Response, x2Response)));
 
@@ -5844,7 +5881,22 @@ $(document).ready(function (){
                     setTimeout(function () {
                         var y2Response = finalResponseData.substring(6,8);
                         var afinalSigned = convertHexaPic(minusHexValOmega(y1Response, y2Response));
-                        if(afinalSigned <0 && modelName == "TSSC"){
+                        if(afinalSigned < 0 && modelName == "TSSC"){
+                            if(afinalSigned <0){var afinal = afinalSigned * -1}else{afinal = afinalSigned}  ;
+                            var result = decimalToHexStringCalib(convertHexaPic(minusHexValOmega(y1Response, y2Response)));
+
+                            if (seuilMinAxis <= afinal && afinal < seuilMaxAxis && modeEngineering == 0) {
+                                $(".realtime_joysticks_val.id" + identifier).find(".raw_min_y").html(afinalSigned);
+                                var writeResult = Cal_post + "050000" + canIdnew + "040" + addHexValOmega(subindexY, "16") + result;
+                                sendSignal(writeResult);
+                                calibrateMaxLat(subindexX, subindexY, identifier);
+                            }else if(modeEngineering == 1){
+                                $(".realtime_joysticks_val.id" + identifier).find(".raw_min_y").html(afinalSigned);
+                                var writeResult = Cal_post + "050000" + canIdnew + "040" + addHexValOmega(subindexY, "16") + result;
+                                sendSignal(writeResult);
+                                calibrateMaxLat(subindexX, subindexY, identifier);
+                            }
+                        }else{
                             if(afinalSigned <0){var afinal = afinalSigned * -1}else{afinal = afinalSigned}  ;
                             var result = decimalToHexStringCalib(convertHexaPic(minusHexValOmega(y1Response, y2Response)));
 
@@ -5924,6 +5976,21 @@ $(document).ready(function (){
                         var y2Response = finalResponseData.substring(6,8);
                         var afinalSigned = convertHexaPic(minusHexValOmega(y1Response, y2Response));
                         if(afinalSigned > 0 && modelName == "TSSC"){
+                            if(afinalSigned <0){var afinal = afinalSigned * -1}else{afinal = afinalSigned}  ;
+                            var result = decimalToHexStringCalib(convertHexaPic(minusHexValOmega(y1Response, y2Response)));
+
+                            if (seuilMinAxis <= afinal && afinal < seuilMaxAxis && modeEngineering == 0) {
+                                $(".realtime_joysticks_val.id" + identifier).find(".raw_max_y").html(afinalSigned);
+                                var writeResult = Cal_post + "050000" + canIdnew + "040" + addHexValOmega(subindexY, "18") + result;
+                                sendSignal(writeResult);
+                                calibrateZeroLat(subindexX, subindexY, identifier);
+                            }else if(modeEngineering == 1){
+                                $(".realtime_joysticks_val.id" + identifier).find(".raw_max_y").html(afinalSigned);
+                                var writeResult = Cal_post + "050000" + canIdnew + "040" + addHexValOmega(subindexY, "18") + result;
+                                sendSignal(writeResult);
+                                calibrateZeroLat(subindexX, subindexY, identifier);
+                            }
+                        }else{
                             if(afinalSigned <0){var afinal = afinalSigned * -1}else{afinal = afinalSigned}  ;
                             var result = decimalToHexStringCalib(convertHexaPic(minusHexValOmega(y1Response, y2Response)));
 
