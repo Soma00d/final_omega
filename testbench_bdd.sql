@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 03 Avril 2018 à 08:04
+-- Généré le :  Mer 04 Avril 2018 à 08:10
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -171,7 +171,7 @@ INSERT INTO `dictionaries` (`id`, `symbol_name`, `standard_name`, `type`, `value
 (374, 'L1', 'III6', 'joystick', '', '', '', '', '0', '', '0292', 50, 500, 0, 20, 'L arm & lateral carriage', 'SH_omega/III6.jpg', '08440051', '12', 10, 1, 8, 0, '', '', '', '', 0, 0, 0),
 (375, 'PC2', 'III7a', 'button', '', '82', '02', '', '', '', '', 0, 0, 0, 0, 'Frontal Plan Select', 'SH_omega/III7a.jpg', '04c40251', '12', 10, 1, 1, 1, '06e4225002', '06e4225000', '', '06e4225003', 0, 0, 0),
 (376, 'PC3', 'III7b', 'button', '', '81', '01', '', '', '', '', 0, 0, 0, 0, 'Lateral Plan Select', 'SH_omega/III7b.jpg', '04c40251', '12', 10, 1, 1, 1, '06e4225008', '06e4225000', '', '06e422500c', 0, 1, 0),
-(379, 'BAD', 'II11b', 'button', '', '', '', '', '', '', '', 0, 0, 0, 0, 'Serv.', 'TSSC_omega/BAD.jpg', '04020241', '10', 10, 0, 15, 0, '', '', '', '', 0, 1, 0),
+(379, 'BAD', 'II11b', 'button', '', '', '', '', '', '', '', 0, 0, 0, 0, 'Serv.', 'TSSC_omega/BAD.jpg', '04020241', '10', 10, 0, 15, 0, '', '', '', '', 0, 0, 0),
 (380, 'BAG', 'II11a', 'button', '', '1700', '9700', '', '', '', '', 0, 0, 0, 0, 'Reset', 'TSSC_omega/BAG.jpg', '04020241', '10', 10, 0, 15, 0, '', '', '', '', 1, 0, 0),
 (201, 'PG1', 'II20', 'button', '', '8b', '0b', '', '', '', '', 0, 0, 0, 0, 'Pref.', 'tssc_5413423/PG1.jpg', '00000280', '5413423', 10, 1, 0, 1, '000003280000800000000000', '000003280000000000000000', '000003280000400000000000', '000003280000C00000000000', 0, 0, 0),
 (202, 'PG2', 'II19', 'button', '', '88', '08', '', '', '', '', 0, 0, 0, 0, 'Sub.', 'tssc_5413423/PG2.jpg', '00000280', '5413423', 10, 1, 0, 1, '000003280020000000000000', '000003280000000000000000', '000003280010000000000000', '000003280030000000000000', 0, 0, 0),
@@ -458,7 +458,7 @@ INSERT INTO `dictionaries` (`id`, `symbol_name`, `standard_name`, `type`, `value
 (836, 'SG2', 'II2b', 'button', '', '8600', '0600', '', '', '', '', 0, 0, 0, 0, 'CB sat right', 'TSSC_omega/SG2.jpg', '04020241', '20', 10, 1, 3, 1, '1FC22F0003021E02', '1FC22F0003021E00', '', '062222403000000000000000', 0, 0, 0),
 (837, 'PB7', 'II9b', 'button', '', '9200', '1200', '', '', '', '', 0, 0, 0, 0, 'Lat Tube Lift Enable', 'TSSC_omega/PB7.jpg', '04020241', '20', 10, 1, 1, 1, '1FC22F0003022002', '1FC22F0003022000', '', '062222400000000000003000', 0, 1, 0),
 (838, 'SG1', 'II2d', 'button', '', '9d00', '1d00', '', '', '', '', 0, 0, 0, 0, 'CB sat up', 'TSSC_omega/SG1.jpg', '04020241', '20', 10, 1, 3, 1, '1FC22F0003022302', '1FC22F0003022300', '', '062222400300000000000000', 0, 0, 0),
-(839, 'SC3', 'II3c', 'button', '', '9c00', '1c00', '', '', '', '', 0, 0, 0, 0, 'CF sat down', 'TSSC_omega/SC3.jpg', '04020241', '20', 10, 1, 3, 1, '1FC22F0003021C02', '1FC22F0003021C00', '', '', 0, 0, 0),
+(839, 'SC3', 'II3c', 'button', '', '9c00', '1c00', '', '', '', '', 0, 0, 0, 0, 'CF sat down', 'TSSC_omega/SC3.jpg', '04020241', '20', 10, 1, 3, 0, '1FC22F0003021C02', '1FC22F0003021C00', '', '', 0, 0, 0),
 (840, 'SC1', 'II3b3', 'button', '', '8300', '0300', '', '', '', '', 0, 0, 0, 0, 'CF sat up', 'TSSC_omega/SC1.jpg', '04020241', '20', 10, 1, 3, 1, '1FC22F0003021B02', '1FC22F0003021B00', '', '062222400C00000000000000', 0, 0, 0),
 (841, 'SC2', 'II3b2', 'button', '', '8200', '0200', '', '', '', '', 0, 0, 0, 0, 'CF sat right', 'TSSC_omega/SC2.jpg', '04020241', '20', 10, 1, 3, 1, '1FC22F0003021A02', '1FC22F0003021A00', '', '062222403000000000000000', 0, 0, 0),
 (842, 'SD1', 'II4b21', 'button', '', '860000000000', '060000000000', '', '', '', '', 0, 0, 0, 0, 'Autopos 4', 'TSSC_omega/SD1.jpg', '04420241', '20', 10, 1, 3, 1, '1FC22F0003021402', '1FC22F0003021400', '', '066222400300000a00', 0, 0, 0),
@@ -477,10 +477,10 @@ INSERT INTO `dictionaries` (`id`, `symbol_name`, `standard_name`, `type`, `value
 (855, 'PA3', 'II4a2', 'display', '', '', '', '', '', '', '', 0, 0, 0, 0, 'Operator display', 'TSSC_omega/PA3.jpg', '04020241', '20', 10, 1, 8, 0, '066222400000000800', '066222400000000a00', '', '066222400000008800', 0, 0, 0),
 (856, 'BUZZER', 'II22', 'buzzer', '', '', '', '', '', '', '', 0, 0, 0, 0, 'Buzzer', 'TSSC_omega/beep.jpg', '', '20', 10, 1, 50, 0, '1fc22f00030400c7', '1fc22f0003040000', '', '', 0, 0, 0),
 (857, 'TLED', '', 'display', '', '', '', '', '', '', '', 0, 0, 0, 0, 'Rotation Center Lamp', 'TSSC_omega/LO.jpg', '', '20', 10, 1, 8, 1, '1FC22F0003021F02', '1FC22F0003021F00', '', '062222400000000003000000', 0, 0, 0),
-(858, 'BAD', 'II11b', 'button', '', '', '', '', '', '', '', 0, 0, 0, 0, 'Serv.', 'TSSC_omega/BAD.jpg', '04020241', '20', 10, 0, 15, 0, '', '', '', '', 0, 1, 0),
+(858, 'BAD', 'II11b', 'button', '', '', '', '', '', '', '', 0, 0, 0, 0, 'Serv.', 'TSSC_omega/BAD.jpg', '04020241', '20', 10, 0, 15, 0, '', '', '', '', 0, 0, 0),
 (859, 'BAG', 'II11a', 'button', '', '1700', '9700', '', '', '', '', 0, 0, 0, 0, 'Reset', 'TSSC_omega/BAG.jpg', '04020241', '20', 10, 0, 15, 0, '', '', '', '', 1, 0, 0),
 (860, 'JD', 'II4b1', 'button', '', '8b0000000000', '0b0000000000', '', '', '', '', 0, 0, 0, 0, 'Autopos enable', 'TSSC_omega/JD.jpg', '04420241', '20', 10, 1, 3, 0, '', '', '', '', 0, 1, 0),
-(861, 'SG3', 'II2c', 'button', '', '9b00', '1b00', '', '', '', '', 0, 0, 0, 0, 'CB sat down', 'TSSC_omega/SG3.jpg', '04020241', '20', 10, 1, 3, 1, '1FC22F0003022202', '1FC22F0003022200', '', '', 0, 0, 0),
+(861, 'SG3', 'II2c', 'button', '', '9b00', '1b00', '', '', '', '', 0, 0, 0, 0, 'CB sat down', 'TSSC_omega/SG3.jpg', '04020241', '20', 10, 1, 3, 0, '1FC22F0003022202', '1FC22F0003022200', '', '', 0, 0, 0),
 (862, 'SC4', 'II3b1', 'button', '', '8100', '0100', '', '', '', '', 0, 0, 0, 0, 'CF sat left', 'TSSC_omega/SC4.jpg', '04020241', '20', 10, 1, 3, 1, '1FC22F0003021902', '1FC22F0003021900', '', '06222240c000000000000000', 0, 0, 0),
 (863, 'PD1', 'II10', 'button', '', '9700', '1700', '', '', '', '', 0, 0, 0, 0, 'Emergency Stop', 'TSSC_omega/PD1.jpg', '04020241', '20', 10, 1, 2, 0, '', '', '', '', 1, 0, 0),
 (864, 'JG', 'II1', 'button', '', '87', '07', '', '', '', '', 0, 0, 0, 0, 'Collimator blades button', 'TSSC_omega/JG_B.jpg', '04020241', '20', 10, 0, 3, 0, '', '', '', '', 0, 0, 0),
@@ -718,7 +718,7 @@ CREATE TABLE `tsui` (
 
 INSERT INTO `tsui` (`id`, `part_number`, `name`, `photo_link`, `family`, `linked_sequence`, `tst_name`, `family_name`, `model`, `type`, `switch_pos_number`, `has_service_bt`, `has_SRTL`) VALUES
 (2, 'ELEGANCE', 'Elegance', 'tsui1/tsui1.jpg', 1, '1', 'tst_01.pdf', 'ELEGANCE', 'TSSC', '', 0, 0, 0),
-(4, 'OMEGA', 'Omega TSSC', 'omega1/TSSComega.jpg', 20, '2', 'tst_01.pdf', 'OMEGA', 'TSSC', '', 0, 0, 0),
+(4, 'OMEGA', 'Omega TSSC', 'omega1/TSSComega.jpg', 20, '2', 'tst_01.pdf', 'OMEGA', 'TSSC', '', 0, 1, 0),
 (7, 'ELEGANCE', 'SmartBox', 'smartbox1/smartbox.png', 3, '3', 'tst_01.pdf', 'ELEGANCE', 'SMARTBOX', 'OTHER', 3, 0, 0),
 (18, 'test_IPX4_TSSC', 'Elegance', 'tsui1/tsui1.jpg', 5407492, '1', 'tst_01.pdf', 'ELEGANCE', 'TSSC', '', 0, 0, 1),
 (8, 'ELEGANCE', 'Elegance TSSC', 'tssc/5407492.jpg', 8, '1', 'tst_01.pdf', 'ELEGANCE', 'TSSC', 'OTHER', 0, 0, 0),
@@ -734,8 +734,8 @@ INSERT INTO `tsui` (`id`, `part_number`, `name`, `photo_link`, `family`, `linked
 (24, '5145781-2', 'SmartHandle', 'omega1/SHomega.jpg', 12, '1', 'tst_01.pdf', 'OMEGA', 'SMARTHANDLE', 'OTHER', 2, 0, 0),
 (25, '5309866', 'SmartBox', 'omega1/5309866.jpg', 11, '1', 'tst_01.pdf', 'OMEGA', 'SMARTBOX', 'OTHER', 3, 0, 0),
 (28, '2237457-15', 'SmartBox', 'smartbox/2237457-15.jpg', 11, '1', 'tst_01.pdf', 'OMEGA', 'SMARTBOX', 'OTHER', 3, 0, 0),
-(30, '5309861', 'OMEGA PATHFINDER', 'tssc/5309861.JPG', 5309861, '1', '', 'OMEGA', 'TSSC', '', 0, 0, 0),
-(31, '5408841', 'Omega Silver Edition', '', 5408841, '1', '', 'OMEGA', 'TSSC', '', 0, 0, 0),
+(30, '5309861', 'OMEGA PATHFINDER', 'tssc/5309861.JPG', 5309861, '1', '', 'OMEGA', 'TSSC', '', 0, 1, 0),
+(31, '5408841', 'Omega Silver Edition', '', 5408841, '1', '', 'OMEGA', 'TSSC', '', 0, 1, 0),
 (32, '5184126-2', 'SB biplan with protection', 'omega1/SBomega.jpg', 5184126, '1', '', 'OMEGA', 'SMARTBOX', 'OTHER', 3, 0, 0),
 (33, '2237456-11', 'SH Heroic Liberty Clarity', 'omega1/SHomega.jpg', 2237456, '1', '', 'OMEGA', 'SMARTHANDLE', 'OTHER', 2, 0, 0),
 (34, 'OMEGA', 'Smartbox', 'smartbox/2237457-15.jpg', 16, '1', '', 'OMEGA', 'SMARTBOX', 'HEROIC AND BEFORE', 2, 0, 0);
@@ -770,7 +770,8 @@ INSERT INTO `user` (`id`, `user_sso`, `user_name`, `user_role`, `user_descriptio
 (17, '212574424', 'Arthur COURNE', 'REPAIR_FINAL', 'Repair', 0, '2018-01-04 12:21:18'),
 (18, '100037698', 'Laurent LAZAROWICZ', 'INGE', 'Engineering', 1, '2018-01-04 12:21:18'),
 (22, '502675758', 'Florentin BIGOT', 'INGE', 'Engineering', 1, '2018-01-04 12:21:18'),
-(26, '502675758', 'Florentin BIGOT', 'REPAIR_ALL', 'Repair', 1, '2018-03-23 10:59:03');
+(26, '502675758', 'Florentin BIGOT', 'REPAIR_ALL', 'Repair', 1, '2018-03-23 10:59:03'),
+(28, '212593507', 'Joy TANIOS', 'INGE', 'Engineering', 1, '2018-04-04 10:02:49');
 
 --
 -- Index pour les tables exportées
@@ -845,7 +846,7 @@ ALTER TABLE `tsui`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
