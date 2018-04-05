@@ -2636,10 +2636,14 @@ $(document).ready(function (){
                             sciLATCtn.find(".value").html("0 V");
                         };  
                         
-                        tsuiSupplyCtn.find(".value").html(tsuiSupply.toFixed(2)+ " V");
-                        FRTLgantryCtn.find(".value").html(FRTLgantry.toFixed(2)+ " V");
-                        unreg5Ctn.find(".value").html(unreg5.toFixed(2)+ " V");
-                        unreg12Ctn.find(".value").html(unreg12.toFixed(2)+ " V");
+                        if(counterDisplayFreqTens == 2){
+                            tsuiSupplyCtn.find(".value").html(tsuiSupply.toFixed(2)+ " V");
+                            FRTLgantryCtn.find(".value").html(FRTLgantry.toFixed(2)+ " V");
+                            unreg5Ctn.find(".value").html(unreg5.toFixed(2)+ " V");
+                            unreg12Ctn.find(".value").html(unreg12.toFixed(2)+ " V");
+                            
+                            counterDisplayFreqTens = 0;
+                        }
 
                     
                     }else if(message.typeMsg == "S"){  
@@ -2760,16 +2764,16 @@ $(document).ready(function (){
                             latSwitch2Ctn.find(".value").html("0 V");
                         }
                         
-                        tsuiSupplyCtn.find(".value").html(tsuiSupply.toFixed(2)+ " V");
-                        FRTLgantryCtn.find(".value").html(FRTLgantry.toFixed(2)+ " V");
-                        unreg5Ctn.find(".value").html(unreg5.toFixed(2)+ " V");
-                        unreg12Ctn.find(".value").html(unreg12.toFixed(2)+ " V");
+                         if(counterDisplayFreqTens == 2){
                         
-                        
-                        
+                            tsuiSupplyCtn.find(".value").html(tsuiSupply.toFixed(2)+ " V");
+                            FRTLgantryCtn.find(".value").html(FRTLgantry.toFixed(2)+ " V");
+                            unreg5Ctn.find(".value").html(unreg5.toFixed(2)+ " V");
+                            unreg12Ctn.find(".value").html(unreg12.toFixed(2)+ " V");
+                            
+                            counterDisplayFreqTens = 0;
+                        }
                     }
-                    
-
                 } else {
                     var canId = message.canId;
                     canId = canId;

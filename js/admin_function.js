@@ -437,8 +437,8 @@ $(document).ready(function () {
                         "<div class='sn_item sn_date_serial'>"+allSerial[i].date+"</div>"+                        
                         "<div class='sn_item sn_date_comment'>"+date_comment+"</div>"+    
                         "<div class='sn_item sn_action' data-id='"+allSerial[i].id+"' data-sn='"+allSerial[i].serial_number+"' data-comment='"+allSerial[i].commentary+"''>"+
-                            "<img src='../images/modif_admin.png' class='modif_admin'>"+
-                            "<img src='../images/delete_admin.png' class='delete_admin'>"+
+                            //"<img src='../images/modif_admin.png' class='modif_admin'>"+
+                            "<img src='../images/delete.png' class='delete_admin'>"+
                         "</div>"+
                     "</div>"
                 );
