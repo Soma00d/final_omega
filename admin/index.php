@@ -55,7 +55,6 @@
                       </div>
                       <ul class="submenuItems">
                         <li><a href="#" class="menu_item log_page" data-menulink="log">View all logs</a></li>
-                        <li><a href="#">Find log</a></li>
                       </ul>
                     </li>
                     <li>
