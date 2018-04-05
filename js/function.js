@@ -1,6 +1,6 @@
 $(document).ready(function (){
     var UIsoftVersion = "1.2.2";
-        
+    $("#ui_version").html(UIsoftVersion);   
     var ws = new WebSocket("ws://localhost:8100");
     
     //déclaration des différents objets et array qui seront utilisés
