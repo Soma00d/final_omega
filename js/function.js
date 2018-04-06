@@ -7172,7 +7172,12 @@ $(document).ready(function (){
         },5000);
         setTimeout(function(){
             sendSignal(startNodeMsg);
-            
+            setTimeout(function(){
+                if(modelName == "SMARTBOX"){
+                    var sign = "002400806d68d7551407f09b861e3aad000549a844080000" + cobID2 + "2f01300101000000";
+                    sendSignal(sign);
+                }
+            },2000)            
         },12000);
         //sendSignal("002400806d68d7551407f09b861e3aad000549a8440800000000072d2f511f0101000000");
     }
