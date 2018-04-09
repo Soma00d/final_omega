@@ -1,5 +1,5 @@
 $(document).ready(function (){
-    var UIsoftVersion = "1.2.2";
+    var UIsoftVersion = "1.2.4";
     $("#ui_version").html(UIsoftVersion);   
     var ws = new WebSocket("ws://localhost:8100");
     
@@ -381,7 +381,7 @@ $(document).ready(function (){
                                                 }
                                             }
                                             if (data[iter].type == "joystick" || data[iter].type == "mushroom") {
-                                                joystickContainerNewRepair.append("<div class='new_joystick' id='id" + data[iter].id + "'><div class='name'>" + data[iter].description + "</div><div class='area_visual'><div class='area_etalon'><img class='cursor' src='images/cross_red.png'></div></div><div class='values'>x : <span class='x_val'></span> y : <span class='y_val'></span></div><div class='diag_test_bt hidden' data-id='"+data[iter].id+"' data-name='"+data[iter].symbol_name+"' data-function='" + data[iter].type + "'><div class='bt_test_ok'>OK</div><div class='bt_test_fail'>FAIL</div></div></div>");
+                                                joystickContainerNewRepair.append("<div class='new_joystick' id='id" + data[iter].id + "'><div class='photo_joy' style='text-align:center'><img style='width:150px;height:auto;' src='images/" + data[iter].photo_link + "'></div><div class='name'>" + data[iter].description + "</div><div class='area_visual'><div class='area_etalon'><img class='cursor' src='images/cross_red.png'></div></div><div class='values'>x : <span class='x_val'></span> y : <span class='y_val'></span></div><div class='diag_test_bt hidden' data-id='"+data[iter].id+"' data-name='"+data[iter].symbol_name+"' data-function='" + data[iter].type + "'><div class='bt_test_ok'>OK</div><div class='bt_test_fail'>FAIL</div></div></div>");
                                             }
                                         }
                                         //gestion des boutons de test des leds et buzzers
@@ -1074,7 +1074,6 @@ $(document).ready(function (){
         }
 
     });
-
 
 
 
@@ -1921,7 +1920,11 @@ $(document).ready(function (){
                                             console.log("last : " + last_value_joy, "instant : " + instant_value_joy);
                                             last_value_joy = instant_value_joy;
                                             if (instant_value_joy == -100) {
-                                                descriptionFinal.html("Please move " + currDescription + " to RIGHT..");
+                                                if(globalName == "OMEGA" && (modelName == "SMARTBOX" || modelName == "SMARTHANDLE")){
+                                                    descriptionFinal.html("Please move " + currDescription + " to X positive.");
+                                                }else{
+                                                    descriptionFinal.html("Please move " + currDescription + " to RIGHT..");
+                                                }
                                                 last_value_joy = 0;
                                                 waitingAction = "JOYSTICK_X_RIGHT";
                                             }
@@ -1945,7 +1948,12 @@ $(document).ready(function (){
                                             last_value_joy = instant_value_joy;
                                             if (instant_value_joy == 100) {
                                                 if (waitingYpos != "") {
-                                                    descriptionFinal.html("Please move " + currDescription + " to BOTTOM..");
+                                                    if(globalName == "OMEGA" && (modelName == "SMARTBOX" || modelName == "SMARTHANDLE")){
+                                                        descriptionFinal.html("Please move " + currDescription + " to Y negative.");
+                                                    }else{
+                                                        descriptionFinal.html("Please move " + currDescription + " to BOTTOM..");
+                                                    }
+                                                                                                        
                                                     waitingAction = "JOYSTICK_Y_BOTTOM";
                                                     last_value_joy = 0;
                                                 } else {
@@ -1970,7 +1978,11 @@ $(document).ready(function (){
                                             console.log("last : " + last_value_joy, "instant : " + instant_value_joy);
                                             last_value_joy = instant_value_joy;
                                             if (instant_value_joy == -100) {
-                                                descriptionFinal.html("Please move " + currDescription + " to TOP..");
+                                                if(globalName == "OMEGA" && (modelName == "SMARTBOX" || modelName == "SMARTHANDLE")){
+                                                    descriptionFinal.html("Please move " + currDescription + " to Y positive.");
+                                                }else{
+                                                    descriptionFinal.html("Please move " + currDescription + " to TOP..");
+                                                }
                                                 last_value_joy = 0;
                                                 waitingAction = "JOYSTICK_Y_TOP";
                                             }
@@ -3493,7 +3505,9 @@ $(document).ready(function (){
         $(".eprom_protect").removeClass("hidden");
         $(".switch_nb.omega").addClass("hidden");  
         $(".information_diag .test_bt_home").removeClass("hidden");
-        $(".information_diag .test_bt_home.omega").addClass("hidden");
+        $(".information_diag .test_bt_home.omega").addClass("hidden");        
+        $(".sb_info").addClass("hidden");
+        $(".sh_info").addClass("hidden");
         
         if (globalName == "OMEGA") {       
             $(".legend_inge .nodeIDleg").addClass("hidden");
@@ -4530,7 +4544,11 @@ $(document).ready(function (){
                     waitingYpos = y_pos;
                     symbolNameFinal.html("Test " + currDescription);
                     imgFinal.attr('src', 'images/' + currPhoto_link);
-                    descriptionFinal.html("Please move " + currDescription + " to LEFT..");
+                    if(globalName == "OMEGA" && (modelName == "SMARTBOX" || modelName == "SMARTHANDLE")){
+                        descriptionFinal.html("Please move " + currDescription + " to X negative.");
+                    }else{
+                        descriptionFinal.html("Please move " + currDescription + " to LEFT..");
+                    }                    
                     last_value_joy = 0;
                     waitingAction = "JOYSTICK_X_LEFT";
                     waitingID = can_id;
@@ -4540,7 +4558,11 @@ $(document).ready(function (){
                     waitingYpos = "";
                     symbolNameFinal.html("Test " + currDescription);
                     imgFinal.attr('src', 'images/' + currPhoto_link);
-                    descriptionFinal.html("Please move " + currDescription + " to LEFT..");
+                    if(globalName == "OMEGA" && (modelName == "SMARTBOX" || modelName == "SMARTHANDLE")){
+                        descriptionFinal.html("Please move " + currDescription + " to X negative.");
+                    }else{
+                        descriptionFinal.html("Please move " + currDescription + " to LEFT..");
+                    }
                     last_value_joy = 0;
                     waitingAction = "JOYSTICK_X_LEFT";
                     waitingID = can_id;
@@ -4550,7 +4572,11 @@ $(document).ready(function (){
                     waitingXpos = "";
                     symbolNameFinal.html("Test " + currDescription);
                     imgFinal.attr('src', 'images/' + currPhoto_link);
-                    descriptionFinal.html("Please move " + currDescription + " to BOTTOM..");
+                    if(globalName == "OMEGA" && (modelName == "SMARTBOX" || modelName == "SMARTHANDLE")){
+                        descriptionFinal.html("Please move " + currDescription + " to Y negative.");
+                    }else{
+                        descriptionFinal.html("Please move " + currDescription + " to BOTTOM..");
+                    }
                     last_value_joy = 0;
                     waitingAction = "JOYSTICK_Y_BOTTOM";
                     waitingID = can_id;
@@ -5032,10 +5058,14 @@ $(document).ready(function (){
                 + "<div><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'>V TSUI</span><span style='display:inline-block;vertical-align:top;width:120px;margin-left:5px;'>" + currGlobalVoltage + "V</span><span style='display:inline-block;vertical-align:top;width:50px;margin-left:5px;'>" + lsl + "V</span><span style='display:inline-block;vertical-align:top;width:50px;margin-left:5px;'>" + usl + "V</span><span style='display:inline-block;vertical-align:top;width:50px;margin-left:5px;'>" + testAlimTSUI + "</span></div>"
         
             var partInitial = "<h3>INITIAL STATES</h3><div>"+ "<div>"+lineInitial+"</div>"; 
-            var partBuzzer = "<h3>BUZZER</h3>"
-                + "<h5>Test is PASS when user has confirmed he heard TSUI buzzer. </h5>"
-                + "<div><span style='display:inline-block;vertical-align:top;width:75px;margin-left:5px;'><b>Name</b></span><span style='display:inline-block;vertical-align:top;width:100px;margin-left:5px;'><b>Test Result</b></span><span style='display:inline-block;vertical-align:top;width:100px;margin-left:5px;'><b>CDRH</b></span></div>"
-                + "<div>" + lineBuzzer + "</div>";
+            if(modelNameRapport == "TSSC"){
+                var partBuzzer = "<h3>BUZZER</h3>"
+                    + "<h5>Test is PASS when user has confirmed he heard TSUI buzzer. </h5>"
+                    + "<div><span style='display:inline-block;vertical-align:top;width:75px;margin-left:5px;'><b>Name</b></span><span style='display:inline-block;vertical-align:top;width:100px;margin-left:5px;'><b>Test Result</b></span><span style='display:inline-block;vertical-align:top;width:100px;margin-left:5px;'><b>CDRH</b></span></div>"
+                    + "<div>" + lineBuzzer + "</div>";
+            }else{
+                var partBuzzer = "";
+            }
             var partDisplay = "<h3>7 SEGMENTS DISPLAYS</h3>"
                 + "<h5>Test is PASS when user has confirmed 8 is lit. </h5>"
                 + "<div><span style='display:inline-block;vertical-align:top;width:75px;margin-left:5px;'><b>Name</b></span><span style='display:inline-block;vertical-align:top;width:100px;margin-left:5px;'><b>Ref. TST</b></span><span style='display:inline-block;vertical-align:top;width:100px;margin-left:5px;'><b>Test Result</b></span><span style='display:inline-block;vertical-align:top;width:100px;margin-left:5px;'><b>CDRH</b></span></div>"
@@ -9558,6 +9588,21 @@ $(document).ready(function (){
             }            
         }
     });
+    
+    $(".tableau_sbsh img").on('click', function(){
+        if($(this).hasClass("open")){
+            $(this).removeClass("open");
+            $(".sb_info").addClass("hidden")
+            $(".sh_info").addClass("hidden")
+        }else{
+            $(this).addClass("open");
+            if(modelName == "SMARTBOX"){
+                $(".sb_info").removeClass("hidden")
+            }else{
+                $(".sh_info").removeClass("hidden")
+            }
+        }
+    })
     
     function stopAllLED(globalName, modelName, typeChoice){
         if (globalName === "ELEGANCE" && modelName === "TSSC") {
