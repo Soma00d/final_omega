@@ -129,6 +129,10 @@ $(document).ready(function(){
         $(".download_test_fw_content_final").removeClass("hidden");
         $(".popup_test_fw_final").addClass("hidden");
     });
+    $(".popup_test_fw_final.fct .bt_yes").on("click", function(){
+        $(".download_test_fw_content_final.fct").removeClass("hidden");
+        $(".popup_test_fw_final.fct").addClass("hidden");
+    });
     
     
     
