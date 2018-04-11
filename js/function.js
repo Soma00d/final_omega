@@ -1,5 +1,5 @@
 $(document).ready(function (){
-    var UIsoftVersion = "1.2.4";
+    var UIsoftVersion = "1.2.5";
     $("#ui_version").html(UIsoftVersion);   
     var ws = new WebSocket("ws://localhost:8100");
     
@@ -1920,7 +1920,7 @@ $(document).ready(function (){
                                             console.log("last : " + last_value_joy, "instant : " + instant_value_joy);
                                             last_value_joy = instant_value_joy;
                                             if (instant_value_joy == -100) {
-                                                if(globalName == "OMEGA" && (modelName == "SMARTBOX" || modelName == "SMARTHANDLE")){
+                                                if(modelName == "SMARTBOX" || modelName == "SMARTHANDLE"){
                                                     descriptionFinal.html("Please move " + currDescription + " to X positive.");
                                                 }else{
                                                     descriptionFinal.html("Please move " + currDescription + " to RIGHT..");
@@ -1948,7 +1948,7 @@ $(document).ready(function (){
                                             last_value_joy = instant_value_joy;
                                             if (instant_value_joy == 100) {
                                                 if (waitingYpos != "") {
-                                                    if(globalName == "OMEGA" && (modelName == "SMARTBOX" || modelName == "SMARTHANDLE")){
+                                                    if(modelName == "SMARTBOX" || modelName == "SMARTHANDLE"){
                                                         descriptionFinal.html("Please move " + currDescription + " to Y negative.");
                                                     }else{
                                                         descriptionFinal.html("Please move " + currDescription + " to BOTTOM..");
@@ -1978,7 +1978,7 @@ $(document).ready(function (){
                                             console.log("last : " + last_value_joy, "instant : " + instant_value_joy);
                                             last_value_joy = instant_value_joy;
                                             if (instant_value_joy == -100) {
-                                                if(globalName == "OMEGA" && (modelName == "SMARTBOX" || modelName == "SMARTHANDLE")){
+                                                if(modelName == "SMARTBOX" || modelName == "SMARTHANDLE"){
                                                     descriptionFinal.html("Please move " + currDescription + " to Y positive.");
                                                 }else{
                                                     descriptionFinal.html("Please move " + currDescription + " to TOP..");
@@ -4544,7 +4544,7 @@ $(document).ready(function (){
                     waitingYpos = y_pos;
                     symbolNameFinal.html("Test " + currDescription);
                     imgFinal.attr('src', 'images/' + currPhoto_link);
-                    if(globalName == "OMEGA" && (modelName == "SMARTBOX" || modelName == "SMARTHANDLE")){
+                    if(modelName == "SMARTBOX" || modelName == "SMARTHANDLE"){
                         descriptionFinal.html("Please move " + currDescription + " to X negative.");
                     }else{
                         descriptionFinal.html("Please move " + currDescription + " to LEFT..");
@@ -4558,7 +4558,7 @@ $(document).ready(function (){
                     waitingYpos = "";
                     symbolNameFinal.html("Test " + currDescription);
                     imgFinal.attr('src', 'images/' + currPhoto_link);
-                    if(globalName == "OMEGA" && (modelName == "SMARTBOX" || modelName == "SMARTHANDLE")){
+                    if(modelName == "SMARTBOX" || modelName == "SMARTHANDLE"){
                         descriptionFinal.html("Please move " + currDescription + " to X negative.");
                     }else{
                         descriptionFinal.html("Please move " + currDescription + " to LEFT..");
@@ -4572,7 +4572,7 @@ $(document).ready(function (){
                     waitingXpos = "";
                     symbolNameFinal.html("Test " + currDescription);
                     imgFinal.attr('src', 'images/' + currPhoto_link);
-                    if(globalName == "OMEGA" && (modelName == "SMARTBOX" || modelName == "SMARTHANDLE")){
+                    if(modelName == "SMARTBOX" || modelName == "SMARTHANDLE"){
                         descriptionFinal.html("Please move " + currDescription + " to Y negative.");
                     }else{
                         descriptionFinal.html("Please move " + currDescription + " to BOTTOM..");
@@ -7028,13 +7028,17 @@ $(document).ready(function (){
     //début du download
     function startDownload(canId) {
         _MODE = "CALIBRATION";
+        msgCount = 0;
+        waitDownloadResponseOmega = "";
+        continueDownload = 0;
+        lineDownloading = 0;
         isDownloading = 1;
         downloadingBarProgress(arrayOfLines.length);
         $(".downloading_bar_container").removeClass("hidden");
         //stop application mode
         console.log("stop application mode");
         sendSignal(Cal_post + Cal_dlc + canId + "2f511f0100000000");
-
+        
         setTimeout(function () {
             console.log("start download mode");
             if (arrayOfLines[0].substring(0, 1) == "+") {
@@ -9011,46 +9015,51 @@ $(document).ready(function (){
             if(modelName == "TSSC"){
 //                sendSignal("002400806d68d7551407f09b861e3aad000549a84408000006222240AAAAAAAAAAAAAA88");
 //                sendSignal("002400806d68d7551407f09b861e3aad000549a84405000006622240AAAAA028AA000000");
-
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302000200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302010200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302020200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302030200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302040200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302050200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302060200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302070200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302080200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302090200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020A0200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020B0200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020C0200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020D0200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020E0200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020F0200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302100200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302110200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302120200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302130200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302140200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302150200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302160200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302170200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302180200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302190200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021A0200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021B0200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021C0200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021D0200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021E0200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021F0200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302200200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302210200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302220200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302230200000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440800000622224000000000000a0088");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a844050000066222400000000800000000");
-                  
+                   
+                sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302000200000000");
+                sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302010200000000");
+                sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302020200000000");
+                sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302030200000000");
+                sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302040200000000");
+                sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302050200000000");
+                sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302060200000000");
+                sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302070200000000");
+                sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302080200000000");
+                sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302090200000000");
+                setTimeout(function(){
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020A0200000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020B0200000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020C0200000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020D0200000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020E0200000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020F0200000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302100200000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302110200000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302120200000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302130200000000");                  
+                },200);
+                setTimeout(function(){
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302140200000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302150200000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302160200000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302170200000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302180200000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302190200000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021A0200000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021B0200000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021C0200000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021D0200000000");                  
+                },400);
+                setTimeout(function(){
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021E0200000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021F0200000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302200200000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302210200000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302220200000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302230200000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440800000622224000000000000a0088");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a844050000066222400000000800000000");
+                },600);
             }else{
                 sendSignal("002400806d68d7551407f09b861e3aad000549a84401000006c422500800000000000000");
                 sendSignal("002400806d68d7551407f09b861e3aad000549a84401000006c422502a00000000000000");
@@ -9623,8 +9632,7 @@ $(document).ready(function (){
             sendSignal("002400806d68d7551407f09b861e3aad000549a844080000000002200200000000000000");
             sendSignal("002400806d68d7551407f09b861e3aad000549a844080000000002200100000000000000");
         }else if(globalName == "OMEGA"){
-            if(modelName == "TSSC"){
-                
+            if(modelName == "TSSC"){                
 //                sendSignal("002400806d68d7551407f09b861e3aad000549a84408000006222240AAAAAAAAAAAAAA88");
 //                sendSignal("002400806d68d7551407f09b861e3aad000549a84405000006622240AAAAA028AA000000");
                   sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302000000000000");
@@ -9638,34 +9646,39 @@ $(document).ready(function (){
                   sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302080000000000");
                   sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302090000000000");
                   sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020A0000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020B0000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020C0000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020D0000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020E0000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020F0000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302100000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302110000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302120000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302130000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302140000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302150000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302160000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302170000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302180000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302190000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021A0000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021B0000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021C0000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021D0000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021E0000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021F0000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302200000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302210000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302220000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302230000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a844080000062222400000000000000000");
-                  sendSignal("002400806d68d7551407f09b861e3aad000549a844050000066222400000000a00000000");
-                
+                  setTimeout(function(){
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020B0000000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020C0000000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020D0000000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020E0000000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003020F0000000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302100000000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302110000000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302120000000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302130000000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302140000000000");                  
+                  },200);
+                  setTimeout(function(){
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302150000000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302160000000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302170000000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302180000000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302190000000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021A0000000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021B0000000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021C0000000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021D0000000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021E0000000000");                  
+                  },400)
+                  setTimeout(function(){
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F0003021F0000000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302200000000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302210000000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302220000000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a8440400001FC22F000302230000000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a844080000062222400000000000000000");
+                    sendSignal("002400806d68d7551407f09b861e3aad000549a844050000066222400000000a00000000");
+                  },600)
 //                sendSignal("002400806d68d7551407f09b861e3aad000549a844080000062222400000000000000000");
 //                sendSignal("002400806d68d7551407f09b861e3aad000549a844050000066222400000000A00000000");
             }else{
