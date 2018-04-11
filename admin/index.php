@@ -8,8 +8,9 @@
         <link rel="stylesheet" type="text/css" href="../css/application.css">
         <link rel="stylesheet" type="text/css" href="../css/admin.css">
         <script src="../lib/jquery-3.1.1.min.js"></script>
-        <script src="../lib/jquery-ui.js"></script>
+        <script src="../lib/jquery-ui.js"></script>      
         
+        <link href="../css/style_uploader.css" rel="stylesheet" />
     </head>
     <body>
         <div class="overlay_admin_login">
@@ -28,7 +29,8 @@
             <div class="main_admin_menu">
                 <ul class="accordion-menu">
                     <li>
-                        <div class="dropdownlink"> <img src="../images/admin/man-user.png">Users
+                      <div class="dropdownlink"> 
+                          <img src="../images/admin/man-user.png">Users
                         
                       </div>
                       <ul class="submenuItems">
@@ -64,11 +66,21 @@
                         <li><a href="#" class="menu_item serial_page" data-menulink="serial">View all SN</a></li>
                       </ul>
                     </li>
+                    <li>
+                      <div class="dropdownlink"><img src="../images/admin/tsui.png"> Uploader Tool
+                      </div>
+                      <ul class="submenuItems">
+                        <li><a href="#" class="menu_item serial_page" data-menulink="upload">Upload your files</a></li>
+                      </ul>
+                    </li>
                   </ul>
             </div>
             <div class="main_admin_panels">
                 <div id="adm_content_home" class="page_content active">
                     <?php include('template/home.html'); ?>
+                </div>
+                <div id="adm_content_upload" class="page_content">
+                    <?php include('template/uploadtool.html'); ?>
                 </div>
                 <div id="adm_content_user" class="page_content">
                     <?php include('template/users.html'); ?>
@@ -91,7 +103,12 @@
             </div>
         </div>      
         
-        
+        <script src="../lib/jquery.knob.js"></script>
         <script src="../js/admin_function.js"></script>
+        <!-- jQuery File Upload Dependencies -->
+        <script src="../lib/jquery.ui.widget.js"></script>
+        <script src="../lib/jquery.iframe-transport.js"></script>
+        <script src="../lib/jquery.fileupload.js"></script>
+        <script src="../js/fileupload.js"></script>
     </body>
 </html>

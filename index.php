@@ -5,6 +5,7 @@
         <link rel="stylesheet" type="text/css" href="css/application.css">
         <script src="lib/jquery-3.1.1.min.js"></script>
         <script src="lib/jquery-ui.js"></script>
+                
         
     </head>
     <body>        
@@ -86,8 +87,10 @@
         <div id="footer">
             <?php include('template/global/footer.html'); ?>
         </div>
-                
+        
         <script src="js/function.js"></script>
         <script src="js/integration.js"></script>
+        
+        
     </body>
 </html>
