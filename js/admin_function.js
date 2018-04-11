@@ -371,6 +371,10 @@ $(document).ready(function () {
                         "<div class='logs_item logs_pn'>"+allLogs[i].part_number+"</div>"+
                         "<div class='logs_item logs_type'>"+allLogs[i].type+"</div>"+                        
                         "<div class='logs_item logs_date'>"+allLogs[i].date+"</div>"+                        
+                        "<div class='logs_item logs_powertest hidden'>"+allLogs[i].json_powertest_log+"</div>"+                        
+                        "<div class='logs_item logs_calibration hidden'>"+allLogs[i].json_calib_log+"</div>"+                        
+                        "<div class='logs_item logs_testhw hidden'>"+allLogs[i].json_testhw_log+"</div>"+                        
+                        "<div class='logs_item logs_json hidden'>"+allLogs[i].json_log+"</div>"+                        
                         "<div class='logs_item logs_actions' data-type='"+allLogs[i].type+"' data-id='"+allLogs[i].id+"'><a class='open' style='cursor:pointer;text-decoration:underline'>Logs file</a></div>"+
                     "</div>"
                 );
@@ -386,22 +390,11 @@ $(document).ready(function () {
                 }
             })
             
-            //generateLogsJson();
+            generateLogsJson();
         }
         
     };   
-    
-    contentArrayAlllogs.find(".open").on('click', function(){
-        console.log("oppp")
-        var id_el = $(this).parent().data("id");
-        var type_el = $(this).parent().data("type");
-        
-        if(type_el == "pretest"){
-            printHistoryLog(id_el);
-        }else{
-            printHistoryLogFinal(id_el);
-        }
-    })
+       
     
     
     //Generation du rapport de test et affichage de la fenetre d'impression 
@@ -1157,9 +1150,18 @@ $(document).ready(function () {
             var linePN = $(this).find(".logs_pn").html();
             var lineSN = $(this).find(".logs_sn").html();
             var lineSSO = $(this).find(".logs_sso").html();
+            var lineRole = $(this).find(".logs_role").html();
             var lineType = $(this).find(".logs_type").html();
             var lineDate = $(this).find(".logs_date").html();
-            jsonExcel.push({id: lineID, part_number: linePN, serial_number: lineSN, user_sso: lineSSO, type: lineType, date: lineDate});
+            var lineTestHw = $(this).find(".logs_testhw").html();
+            var lineCalibration = $(this).find(".logs_calibration").html();
+            var linePowerTest = $(this).find(".logs_powertest").html();
+            var lineJson = $(this).find(".logs_json").html();
+            jsonExcel.push({
+                id: lineID, part_number: linePN, serial_number: lineSN, user_sso: lineSSO, 
+                type: lineType, date: lineDate, role:lineRole, 
+                json_logs: lineJson, json_test_hw:lineTestHw, json_calibration:lineCalibration, json_power_test:linePowerTest
+            });
         });
         jsonExcel = JSON.stringify(jsonExcel);
         generateLogsExcelFile(jsonExcel);
@@ -1172,7 +1174,12 @@ $(document).ready(function () {
             "serial_number": "String",
             "user_sso": "String",
             "type": "String",
-            "date": "String"
+            "date": "String",
+            "role": "String",
+            "json_logs": "String",
+            "json_test_hw": "String",
+            "json_calibration": "String",
+            "json_power_test": "String"
         };
 
         emitXmlHeader = function () {
