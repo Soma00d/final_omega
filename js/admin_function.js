@@ -1160,7 +1160,10 @@ $(document).ready(function () {
             jsonExcel.push({
                 id: lineID, part_number: linePN, serial_number: lineSN, user_sso: lineSSO, 
                 type: lineType, date: lineDate, role:lineRole, 
-                json_logs: lineJson, json_test_hw:lineTestHw, json_calibration:lineCalibration, json_power_test:linePowerTest
+                json_logs: lineJson, 
+                //json_test_hw:lineTestHw, 
+                json_calibration:lineCalibration, 
+                json_power_test:linePowerTest
             });
         });
         jsonExcel = JSON.stringify(jsonExcel);
@@ -1177,7 +1180,7 @@ $(document).ready(function () {
             "date": "String",
             "role": "String",
             "json_logs": "String",
-            "json_test_hw": "String",
+            //"json_test_hw": "String",
             "json_calibration": "String",
             "json_power_test": "String"
         };
