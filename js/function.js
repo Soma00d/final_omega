@@ -1,5 +1,5 @@
 $(document).ready(function (){
-    var UIsoftVersion = "1.2.5";
+    var UIsoftVersion = "1.2.6";
     $("#ui_version").html(UIsoftVersion);   
     var ws = new WebSocket("ws://localhost:8100");
     
