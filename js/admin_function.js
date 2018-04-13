@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    var UIsoftVersion = "1.2.7";
+    
     var userInfo = {};
     var allUser = {};
     var allLogs = {};
@@ -21,7 +23,7 @@ $(document).ready(function () {
     
     var updateUserBox = $(".adm_all_user_container .overlay_udpdate .update_user_box");
     var createUserBox = $(".adm_all_user_container .overlay_create .create_user_box");
-    var UIsoftVersion = "1.2.6";
+    
     
     console.log("welcome admin");
     
