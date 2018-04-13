@@ -66,7 +66,7 @@
             </div>
             <!------------------------------------------------->
             
-             <!-- ENGINEERING MODE ---------------------------------->
+             <!-- MANUFACTURING MODE ---------------------------------->
             <div id="content_homeM" class="page_content">
                 <?php include('template/manufacturing/homepage.html'); ?>
             </div>

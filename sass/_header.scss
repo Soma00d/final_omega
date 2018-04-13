@@ -71,6 +71,44 @@
             }
         }
     }
+    .connexion_states{
+        color: white;
+        text-align: left;
+        list-style: none;
+        position: absolute;
+        top: -8px;
+        right: 285px;
+        ul{
+            list-style:none;
+            li{
+                img{
+                    display: inline-block;
+                    vertical-align: middle;
+                    width: 20px;
+                }
+                &#CAN_statut{
+                    .voyant_on{
+                        opacity:0;
+                        position: absolute;
+                        left: 40px;
+                        top: 59px;
+                    }
+                    .voyant_off{
+                        opacity:1;
+                    }
+                    
+                }
+                &#CAN_statut.on{
+                    .voyant_on{
+                        opacity:1;
+                    }
+                    .voyant_off{
+                        opacity:0;
+                    }
+                }
+            }
+        }
+    }
 }
 #header_admin{
     .head_container{

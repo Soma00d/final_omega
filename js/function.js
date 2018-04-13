@@ -1452,6 +1452,8 @@ $(document).ready(function (){
 
     //Traitement des données websocket selon des modes prédéfinis
     ws.onmessage = function (event) {
+        //allumage du voyant à la reception d'un message dans la websocket
+        $("#CAN_statut").addClass("on");
         switch (_MODE) {
             case "START": //utilisé au démarrage du soft pour récupérer les heartbeats et associer un node ID (pour elegance)
                 var message = JSON.parse(event.data);
@@ -1464,6 +1466,22 @@ $(document).ready(function (){
                         cobID1 = addHexVal("00000580", nodeID);
                         cobID2 = addHexVal("00000600", nodeID);
                         $(".actual_node_id").html(nodeID);
+                    }
+                }else if(message.type == "from_DRIVER"){
+                    var typeStatut = message.typeStatut;
+                    var state = message.state;
+                    if(typeStatut == "GW"){
+                        if(state == "1"){
+                            $("#GW_statut img").attr('src', 'images/voyant_on.png');
+                        }else{
+                            $("#GW_statut img").attr('src', 'images/voyant_off.png');
+                        }
+                    }else if(typeStatut == "PIC"){
+                        if(state == "1"){
+                            $("#PIC_statut img").attr('src', 'images/voyant_on.png');
+                        }else{
+                            $("#PIC_statut img").attr('src', 'images/voyant_off.png');
+                        }
                     }
                 }
                 break;
@@ -3202,7 +3220,6 @@ $(document).ready(function (){
                 }
                 break;
         }
-
     };
 
 
@@ -3326,6 +3343,7 @@ $(document).ready(function (){
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////// SET GENERIC MESSAGES ///////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
     function setGenericMessages(family) {
         if (family === "ELEGANCE") {            
             //orientation du can hub A -> prise sub D9 elegance
@@ -9710,6 +9728,8 @@ $(document).ready(function (){
             var jsonData = '{"type":"signal", "msg":"' + signal + '"}';
             console.log(jsonData);    
             alert("Error : invalid format message, sending aborted to prevent Gateway corruption. "+signal.substring(42, signal.length));
+            //on éteint le voyant lors d'une erreur du format CAN
+            $("#CAN_statut").removeClass("on");
         }
     }
     function sendSignalDownloadOmega(signal) {
